@@ -1,4 +1,4 @@
-package network
+package phosphorus
 
 import "fmt"
 import "bytes"
@@ -67,14 +67,15 @@ func (ip *InboundPacket) ReadUInt8() (byte, error) {
         return 0, err
     }
 
-    return ip.buffer[ip.bufPos++], nil
+    ip.bufPos++
+    return ip.buffer[ip.bufPos - 1], nil
 }
 
 func NewOutboundPacket(packetType PacketType, packetCode PacketCode) *OutboundPacket {
     packet := &OutboundPacket{
         Type: packetType,
         Code: packetCode,
-        buffer: new(bytes.Buffer)
+        buffer: &bytes.Buffer{},
     }
 
     // Write our packet length placeholder and the packet code.

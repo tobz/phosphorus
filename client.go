@@ -1,7 +1,6 @@
 package phosphorus
 
 import "net"
-import "github.com/tobz/phosphorus/network"
 
 type Client struct {
 	coordinator *Coordinator
@@ -13,8 +12,8 @@ type Client struct {
 	bufPosition uint64
 	readBuffer  []byte
 
-	sendQueue    chan *network.OutboundPacket
-	receiveQueue chan *network.InboundPacket
+	sendQueue    chan *OutboundPacket
+	receiveQueue chan *InboundPacket
 
 	clientId uint16
 }
@@ -26,8 +25,8 @@ func NewClient(server *Server, connection *net.TCPConn) {
 		server:       server,
 		connection:   connection,
 		readBuffer:   make([]byte, 32768),
-		sendQueue:    make(chan *network.OutboundPacket, 128),
-		receiveQueue: make(chan *netwok.InboundPacket, 128),
+		sendQueue:    make(chan *OutboundPacket, 128),
+		receiveQueue: make(chan *InboundPacket, 128),
 		clientId:     0,
 	}
 }
@@ -111,19 +110,19 @@ func (c *Client) Start() {
 	}()
 }
 
-func (c *Client) tryForPacket() (*network.InboundPacket, error) {
+func (c *Client) tryForPacket() (*InboundPacket, error) {
 	return nil, nil
 }
 
-func (c *Client) handlePacket(packet *network.InboundPacket) error {
+func (c *Client) handlePacket(packet *InboundPacket) error {
 	return network.DefaultPacketManager.HandlePacket(c, packet)
 }
 
-func (c *Client) Send(packet *network.OutboundPacket) {
+func (c *Client) Send(packet *OutboundPacket) {
 	c.sendQueue <- packet
 }
 
-func (c *Client) sendPacket(packet *network.OutboundPacket) error {
+func (c *Client) sendPacket(packet *OutboundPacket) error {
 	// Figure out if we have to hand this over to the server to send over UDP.
 	if packet.Type == network.PacketType_UDP {
 		return c.server.SendUDP(packet)

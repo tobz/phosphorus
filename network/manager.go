@@ -1,6 +1,4 @@
-package network
-
-import "github.com/tobz/phosphorus"
+package phosphorus
 
 var DefaultPacketManager *PacketManager = &PacketManager{}
 
@@ -10,5 +8,5 @@ type PacketManager struct {
 func (pm *PacketManager) RegisterInboundHandler(handler *InboundPacketHandler) {
 }
 
-func (pm *PacketManager) Send(client *phosphorus.Client, handler *OutboundPacketHandler) {
+func (pm *PacketManager) Send(client *Client, handler *OutboundPacketHandler) {
 }

@@ -1,6 +1,4 @@
-package network
-
-import "github.com/tobz/phosphorus"
+package phosphorus
 
 type BaseHandler struct {
     packetType PacketType
@@ -22,10 +20,10 @@ type BasePacketHandler interface {
 
 type InboundPacketHandler interface {
     BasePacketHandler
-    HandleRequest(client *phosphorus.Client, packet *phosphorus.Packet) error
+    HandleRequest(client *Client, packet *InboundPacket) error
 }
 
 type OutboundPacketHandler interface {
     BasePacketHandler
-    SendResponse(client *phosphorus.Client) error
+    SendResponse(client *Client) error
 }
