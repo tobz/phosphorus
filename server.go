@@ -3,13 +3,15 @@ package phosphorus
 import "net"
 import "sync"
 import "github.com/tobz/phosphorus/interfaces"
+import "github.com/tobz/phosphorus/log"
+import "github.com/tobz/phosphorus/utils"
 
 type Server struct {
 	config *ServerConfig
 
 	tcpListener *net.TCPListener
 	udpListener *net.UDPConn
-	coordinator *Coordinator
+	coordinator *utils.Coordinator
 
 	clients    map[string]*Client
 	clientLock *sync.RWMutex
@@ -18,7 +20,7 @@ type Server struct {
 func NewServer(config *ServerConfig) *Server {
 	return &Server{
 		config:      config,
-		coordinator: NewCoordinator(),
+		coordinator: utils.NewCoordinator(),
 		tcpListener: nil,
 		udpListener: nil,
 		clients:     make(map[string]*Client, 128),
@@ -38,6 +40,8 @@ func (s *Server) Start() error {
 
 	s.tcpListener = tl
 
+	log.Server.Info("server", "Now listening for TCP connections at %s", s.config.tcpListenAddr.String())
+
 	ul, err := net.ListenUDP(s.config.udpListenAddr.Network(), s.config.udpListenAddr)
 	if err != nil {
 		s.Cleanup()
@@ -45,6 +49,8 @@ func (s *Server) Start() error {
 	}
 
 	s.udpListener = ul
+
+	log.Server.Info("server", "Now listening for UDP at %s", s.config.udpListenAddr.String())
 
 	// Now run our workers that pull things off the wire and accept connections.
 	go func() {

@@ -1,4 +1,4 @@
-package phosphorus
+package utils
 
 import "sync"
 

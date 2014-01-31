@@ -2,12 +2,14 @@ package phosphorus
 
 import "net"
 import "github.com/tobz/phosphorus/constants"
+import "github.com/tobz/phosphorus/utils"
+import "github.com/tobz/phosphorus/log"
 import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/managers"
 import "github.com/tobz/phosphorus/network"
 
 type Client struct {
-	coordinator *Coordinator
+	coordinator *utils.Coordinator
 	errors      chan error
 
 	server     *Server
@@ -25,7 +27,7 @@ type Client struct {
 
 func NewClient(server *Server, connection *net.TCPConn) *Client {
 	return &Client{
-		coordinator:  NewCoordinator(),
+		coordinator:  utils.NewCoordinator(),
 		errors:       make(chan error, 1),
 		server:       server,
 		connection:   connection,
@@ -46,7 +48,7 @@ func (c *Client) Start() {
 			select {
 			case <-stop:
 				break
-			case err := <-c.errors:
+			case <-c.errors:
 				// Log this error and stop the client.
 				c.Stop()
 				break
@@ -65,7 +67,7 @@ func (c *Client) Start() {
 			default:
 				// Make sure we have runway to receive.
 				if c.bufPosition >= len(c.readBuffer) {
-					c.errors <- ClientErrorf(c, "overflowed receive buffer: offset %d with buf size %d", c.bufPosition, len(c.readBuffer))
+					c.errors <- log.ClientErrorf(c, "overflowed receive buffer: offset %d with buf size %d", c.bufPosition, len(c.readBuffer))
 					break
 				}
 
@@ -144,7 +146,7 @@ func (c *Client) sendPacket(packet interfaces.Packet) error {
 
 	// Make sure we sent it all.
 	if n != len(packet.Buffer()) {
-		return ClientErrorf(c, "tried to send packet with %d bytes, but only sent %d bytes", len(packet.Buffer()), n)
+		return log.ClientErrorf(c, "tried to send packet with %d bytes, but only sent %d bytes", len(packet.Buffer()), n)
 	}
 
 	return nil
