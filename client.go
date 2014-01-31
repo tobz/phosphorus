@@ -123,8 +123,10 @@ func (c *Client) handlePacket(packet *network.InboundPacket) error {
 	return managers.DefaultPacketManager.HandlePacket(c, packet)
 }
 
-func (c *Client) Send(packet *network.OutboundPacket) {
+func (c *Client) Send(packet *network.OutboundPacket) error {
 	c.sendQueue <- packet
+
+    return nil
 }
 
 func (c *Client) sendPacket(packet *network.OutboundPacket) error {
