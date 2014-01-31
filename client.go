@@ -14,8 +14,8 @@ type Client struct {
 	bufPosition int
 	readBuffer  []byte
 
-	sendQueue    chan *network.InboundPacket
-	receiveQueue chan *network.OutboundPacket
+	sendQueue    chan *network.OutboundPacket
+	receiveQueue chan *network.InboundPacket
 
 	clientId uint16
 }
@@ -127,7 +127,7 @@ func (c *Client) Send(packet *network.OutboundPacket) {
 func (c *Client) sendPacket(packet *network.OutboundPacket) error {
 	// Figure out if we have to hand this over to the server to send over UDP.
 	if packet.Type == network.PacketType_UDP {
-		return c.server.SendUDP(packet)
+		return c.server.SendUDP(client, packet)
 	}
 
 	// No UDP, so just send this over our TCP connection.
@@ -137,8 +137,8 @@ func (c *Client) sendPacket(packet *network.OutboundPacket) error {
 	}
 
 	// Make sure we sent it all.
-	if n != len(packet.Buffer) {
-		return ClientErrorf(c, "tried to send packet with %d bytes, but only sent %d bytes", len(packet.Buffer), n)
+	if n != len(packet.Buffer()) {
+		return ClientErrorf(c, "tried to send packet with %d bytes, but only sent %d bytes", len(packet.Buffer()), n)
 	}
 
 	return nil

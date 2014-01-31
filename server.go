@@ -2,6 +2,7 @@ package phosphorus
 
 import "net"
 import "sync"
+import "github.com/tobz/phosphorus/network"
 
 type Server struct {
 	config *ServerConfig
@@ -91,6 +92,10 @@ func (s *Server) handleNewConnection(connection *net.TCPConn) {
 	s.clientLock.Unlock()
 
 	newClient.Start()
+}
+
+func (s *Server) SendUDP(client *Client, packet *network.OutboundPacket) error {
+    return nil
 }
 
 func (s *Server) Stop() {
