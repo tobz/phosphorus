@@ -1,6 +1,7 @@
 package phosphorus
 
 import "net"
+import "github.com/tobz/phosphorus/constants"
 import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/managers"
 import "github.com/tobz/phosphorus/network"
@@ -129,9 +130,9 @@ func (c *Client) Send(packet *interfaces.Packet) error {
     return nil
 }
 
-func (c *Client) sendPacket(packet *network.OutboundPacket) error {
+func (c *Client) sendPacket(packet *interfaces.Packet) error {
 	// Figure out if we have to hand this over to the server to send over UDP.
-	if packet.Type == network.PacketType_UDP {
+	if packet.Type() == constants.PacketType_UDP {
 		return c.server.SendUDP(c, packet)
 	}
 

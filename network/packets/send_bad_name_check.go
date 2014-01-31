@@ -1,11 +1,12 @@
 package packets
 
+import "github.com/tobz/phosphorus/constants"
 import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/network"
 
 func SendBadNameCheckResponse(client interfaces.Client, characterName string, validName bool) error {
     // Set up our outbound packet.
-    packet := network.NewOutboundPacket(network.PacketType_TCP, 0xC3)
+    packet := network.NewOutboundPacket(constants.PacketType_TCP, constants.PacketCode_BadNameCheckResponse)
 
     // Stick the character name in there so the client knows what we're responding about.
     packet.WriteBoundedString(characterName, 30)

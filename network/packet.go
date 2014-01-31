@@ -2,14 +2,7 @@ package network
 
 import "fmt"
 import "bytes"
-
-type PacketType int
-type PacketCode byte
-
-const (
-    PacketType_UDP PacketType = iota
-    PacketType_TCP
-)
+import "github.com/tobz/phosphorus/constants"
 
 type BasePacket interface {
     Buffer() []byte

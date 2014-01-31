@@ -1,12 +1,13 @@
 package packets
 
 import "strings"
+import "github.com/tobz/phosphorus/constants"
 import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/network"
 import "github.com/tobz/phosphorus/managers"
 
 func init() {
-    managers.DefaultPacketManager.RegisterRequestHandler(network.PacketType_TCP, 0x6A ^ 168, HandleBadNameCheckRequest)
+    managers.DefaultPacketManager.RegisterRequestHandler(constants.PacketType_TCP, constants.PacketCode_CheckBadNameRequest, HandleBadNameCheckRequest)
 }
 
 func HandleBadNameCheckRequest(client interfaces.Client, packet *network.InboundPacket) error {
