@@ -47,7 +47,7 @@ func (ip *InboundPacket) readHeader() {
     ip.Skip(2)
 
     code, _ := ip.ReadUInt8()
-    ip.Code = code
+    ip.Code = code.(PacketCode)
 }
 
 func (ip *InboundPacket) hasNumBytes(n int) (bool, error) {
