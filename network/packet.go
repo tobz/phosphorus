@@ -46,16 +46,21 @@ func (ip *InboundPacket) readHeader() {
     // Skip the length field because we don't care.
     ip.Skip(2)
 
-    ip.Code = ip.ReadUInt8()
+    code, _ = ip.ReadUInt8()
+    ip.Code = code
 }
 
 func (ip *InboundPacket) hasNumBytes(n int) bool {
-    remaining := len(ip.Buffer) - ip.bufPos
+    remaining := len(ip.buffer) - ip.bufPos
     if remaining < n {
         return false, fmt.Errorf("needed %d bytes, only have %d bytes available", n, remaining)
     }
 
     return true, nil
+}
+
+func (op *InboundPacket) Buffer() []byte {
+    return buffer
 }
 
 func (ip *InboundPacket) Skip(n int) {
@@ -82,6 +87,10 @@ func NewOutboundPacket(packetType PacketType, packetCode PacketCode) *OutboundPa
     packet.buffer.Write([]byte{ 0x00, 0x00, packetCode })
 
     return packet
+}
+
+func (op *OutboundPacket) Buffer() []byte {
+    return op.buffer.Bytes()
 }
 
 func (op *OutboundPacket) Finalize() {
