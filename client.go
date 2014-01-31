@@ -1,6 +1,7 @@
 package phosphorus
 
 import "net"
+import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/managers"
 import "github.com/tobz/phosphorus/network"
 
@@ -18,6 +19,7 @@ type Client struct {
 	receiveQueue chan *network.InboundPacket
 
 	clientId uint16
+	account  interfaces.Account
 }
 
 func NewClient(server *Server, connection *net.TCPConn) *Client {
@@ -30,6 +32,7 @@ func NewClient(server *Server, connection *net.TCPConn) *Client {
 		sendQueue:    make(chan *network.OutboundPacket, 128),
 		receiveQueue: make(chan *network.InboundPacket, 128),
 		clientId:     0,
+		account:      nil,
 	}
 }
 
@@ -145,7 +148,15 @@ func (c *Client) sendPacket(packet *network.OutboundPacket) error {
 }
 
 func (c *Client) GetUniqueIdentifier() string {
-    return "notveryunique"
+	return "notveryunique"
+}
+
+func (c *Client) SetAccount(account interfaces.Account) {
+	c.account = account
+}
+
+func (c *Client) Account() interfaces.Account {
+	return c.account
 }
 
 func (c *Client) Stop() {

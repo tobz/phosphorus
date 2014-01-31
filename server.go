@@ -95,11 +95,11 @@ func (s *Server) handleNewConnection(connection *net.TCPConn) {
 }
 
 func (s *Server) SendUDP(client *Client, packet *network.OutboundPacket) error {
-    return nil
+	return nil
 }
 
 func (s *Server) Cleanup() {
-    // This is where we might stop all managers, save to the DB, etc.
+	// This is where we might stop all managers, save to the DB, etc.
 }
 
 func (s *Server) Stop() {
