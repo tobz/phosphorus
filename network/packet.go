@@ -1,4 +1,4 @@
-package phosphorus
+package network
 
 import "fmt"
 import "bytes"
