@@ -2,7 +2,7 @@ package phosphorus
 
 import "net"
 import "sync"
-import "github.com/tobz/phosphorus/network"
+import "github.com/tobz/phosphorus/interfaces"
 
 type Server struct {
 	config *ServerConfig
