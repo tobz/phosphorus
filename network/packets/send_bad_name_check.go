@@ -1,34 +1,28 @@
-package phosphorus
+package packets
 
-type BadNameCheckResponse struct {
-    Name string
-    Valid bool
-}
+import "github.com/tobz/phosphorus/interfaces"
+import "github.com/tobz/phosphorus/network"
 
-func (r *BadNameCheckResponse) GetPacketType() PacketType {
-    return network.PacketType_TCP
-}
+func SendBadNameCheckResponse(client *interfaces.Client, characterName string, validName bool) error {
+    // Set up our outbound packet.
+    packet := network.NewOutboundPacket(network.PacketType_TCP, 0xC3)
 
-func (r *BadNameCheckResponse) GetPacketCode() PacketCode {
-    return 0xC3
-}
+    // Stick the character name in there so the client knows what we're responding about.
+    packet.WriteBoundedString(characterName, 30)
 
-func (r *BadNameCheckResponse) SendResponse(client *Client) error {
-    packet := NewOutboundPacket(r.GetPacketType(), r.GetPacketCode())
-
-    packet.WriteBoundedString(r.Name, 30)
-
-    if client.Account != nil {
-        packet.WriteBoundedString(client.Account.Name, 20)
+    // They should have an account at this point, but this is just for correctness.
+    if client.Account() != nil {
+        packet.WriteBoundedString(client.Account().Name(), 20)
     } else {
         packet.WriteRepeated(0x00, 20)
     }
 
-    if valid {
+    // Tell them if the name was valid or not.
+    if validName {
         packet.WriteUInt8(0x01)
     } else {
         packet.WriteUInt8(0x00)
     }
 
-    client.Send(packet)
+    return client.Send(packet)
 }

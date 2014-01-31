@@ -1,29 +1,23 @@
-package phosphorus
+package network
 
-type BaseHandler struct {
+import "github.com/tobz/phosphorus/interfaces"
+
+type BasePacketHandler struct {
     packetType PacketType
     packetCode uint64
 }
 
-func (bh *BaseHandler) GetPacketType() PacketType {
+func (bh *BasePacketHandler) GetPacketType() PacketType {
     return bh.packetType
 }
 
-func (bh *BaseHandler) GetPacketCode() uint64 {
+func (bh *BasePacketHandler) GetPacketCode() uint64 {
     return bh.packetCode
 }
 
-type BasePacketHandler interface {
+type BasicPacketHandler interface {
     GetPacketType() PacketType
     GetPacketCode() uint64
 }
 
-type InboundPacketHandler interface {
-    BasePacketHandler
-    HandleRequest(client *Client, packet *InboundPacket) error
-}
-
-type OutboundPacketHandler interface {
-    BasePacketHandler
-    SendResponse(client *Client) error
-}
+type InboundPacketHandler func(client *interfaces.Client, packet *InboundPacket) error

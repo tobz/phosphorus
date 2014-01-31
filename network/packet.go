@@ -3,7 +3,7 @@ package phosphorus
 import "fmt"
 import "bytes"
 
-type PacketType uint64
+type PacketType int
 type PacketCode byte
 
 const (
@@ -37,12 +37,12 @@ func NewInboundPacket(sourceBuf []byte, sourceLen uint64, packetType PacketType)
         buffer: newBuf,
     }
 
-    packet.ReadHeader()
+    packet.readHeader()
 
     return packet
 }
 
-func (ip *InboundPacket) ReadHeader() {
+func (ip *InboundPacket) readHeader() {
     // Skip the length field because we don't care.
     ip.Skip(2)
 
