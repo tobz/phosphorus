@@ -76,7 +76,7 @@ func (ip *InboundPacket) ReadUInt8() (byte, error) {
 func NewOutboundPacket(packetType constants.PacketType, packetCode constants.PacketCode) *OutboundPacket {
     packet := &OutboundPacket{
         packetType: packetType,
-        packetTode: packetCode,
+        packetCode: packetCode,
         buffer: &bytes.Buffer{},
     }
 
