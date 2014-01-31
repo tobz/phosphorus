@@ -9,15 +9,15 @@ type BasePacket interface {
 }
 
 type InboundPacket struct {
-    Type constants.PacketType
-    Code constants.PacketCode
+    packetType constants.PacketType
+    packetCode constants.PacketCode
     buffer []byte
     bufPos int
 }
 
 type OutboundPacket struct {
-    Type constants.PacketType
-    Code constants.PacketCode
+    packetType constants.PacketType
+    packetCode constants.PacketCode
     buffer *bytes.Buffer
 }
 
@@ -26,7 +26,7 @@ func NewInboundPacket(sourceBuf []byte, sourceLen uint64, packetType constants.P
     copy(sourceBuf[:sourceLen], newBuf)
 
     packet := &InboundPacket{
-        Type: packetType,
+        packetType: packetType,
         buffer: newBuf,
     }
 
@@ -40,7 +40,7 @@ func (ip *InboundPacket) readHeader() {
     ip.Skip(2)
 
     code, _ := ip.ReadUInt8()
-    ip.Code = constants.PacketCode(code)
+    ip.packetCode = constants.PacketCode(code)
 }
 
 func (ip *InboundPacket) hasNumBytes(n int) (bool, error) {
@@ -50,6 +50,10 @@ func (ip *InboundPacket) hasNumBytes(n int) (bool, error) {
     }
 
     return true, nil
+}
+
+func (ip *InboundPacket) Type() constants.PacketType {
+    return ip.packetType
 }
 
 func (op *InboundPacket) Buffer() []byte {
@@ -71,8 +75,8 @@ func (ip *InboundPacket) ReadUInt8() (byte, error) {
 
 func NewOutboundPacket(packetType constants.PacketType, packetCode constants.PacketCode) *OutboundPacket {
     packet := &OutboundPacket{
-        Type: packetType,
-        Code: packetCode,
+        packetType: packetType,
+        packetTode: packetCode,
         buffer: &bytes.Buffer{},
     }
 
@@ -80,6 +84,10 @@ func NewOutboundPacket(packetType constants.PacketType, packetCode constants.Pac
     packet.buffer.Write([]byte{ 0x00, 0x00, byte(packetCode) })
 
     return packet
+}
+
+func (op *OutboundPacket) Type() constants.PacketType {
+    return op.packetType
 }
 
 func (op *OutboundPacket) Buffer() []byte {

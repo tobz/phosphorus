@@ -127,7 +127,7 @@ func (c *Client) handlePacket(packet *network.InboundPacket) error {
 func (c *Client) Send(packet interfaces.Packet) error {
 	c.sendQueue <- packet
 
-    return nil
+	return nil
 }
 
 func (c *Client) sendPacket(packet interfaces.Packet) error {

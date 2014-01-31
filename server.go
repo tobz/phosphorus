@@ -94,7 +94,7 @@ func (s *Server) handleNewConnection(connection *net.TCPConn) {
 	newClient.Start()
 }
 
-func (s *Server) SendUDP(client *Client, packet *network.OutboundPacket) error {
+func (s *Server) SendUDP(client *Client, packet interfaces.Packet) error {
 	return nil
 }
 
