@@ -9,7 +9,7 @@ func init() {
     managers.DefaultPacketManager.RegisterRequestHandler(network.PacketType_TCP, 0x6A ^ 168, HandleBadNameCheckRequest)
 }
 
-func HandleBadNameCheckRequest(client *interfaces.Client, packet *network.InboundPacket) error {
+func HandleBadNameCheckRequest(client interfaces.Client, packet *network.InboundPacket) error {
     characterName := packet.ReadString(30)
 
     validName := true

@@ -11,6 +11,6 @@ type PacketManager struct {
 func (pm *PacketManager) RegisterInboundHandler(packetType network.PacketType, packetCode network.PacketCode, handler network.InboundPacketHandler) {
 }
 
-func (pm *PacketManager) HandlePacket(client *interfaces.Client, packet *network.InboundPacket) error {
+func (pm *PacketManager) HandlePacket(client interfaces.Client, packet *network.InboundPacket) error {
     return nil
 }

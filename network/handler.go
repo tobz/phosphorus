@@ -20,4 +20,4 @@ type BasicPacketHandler interface {
     GetPacketCode() uint64
 }
 
-type InboundPacketHandler func(client *interfaces.Client, packet *InboundPacket) error
+type InboundPacketHandler func(client interfaces.Client, packet *InboundPacket) error

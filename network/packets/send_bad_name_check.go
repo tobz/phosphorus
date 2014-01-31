@@ -3,7 +3,7 @@ package packets
 import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/network"
 
-func SendBadNameCheckResponse(client *interfaces.Client, characterName string, validName bool) error {
+func SendBadNameCheckResponse(client interfaces.Client, characterName string, validName bool) error {
     // Set up our outbound packet.
     packet := network.NewOutboundPacket(network.PacketType_TCP, 0xC3)
 
