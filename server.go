@@ -56,7 +56,7 @@ func (s *Server) Start() error {
 			case <-stop:
 				break
 			default:
-				c, err := s.tcpListener.Accept()
+				c, err := s.tcpListener.AcceptTCP()
 				if err != nil {
 					// Log this or... something.
 
@@ -85,10 +85,10 @@ func (s *Server) Start() error {
 }
 
 func (s *Server) handleNewConnection(connection *net.TCPConn) {
-	newClient := NewClient(server, connection)
+	newClient := NewClient(s, connection)
 
 	s.clientLock.Lock()
-	clients[newClient.GetUniqueIdentifier()] = newClient
+	s.clients[newClient.GetUniqueIdentifier()] = newClient
 	s.clientLock.Unlock()
 
 	newClient.Start()
@@ -96,6 +96,10 @@ func (s *Server) handleNewConnection(connection *net.TCPConn) {
 
 func (s *Server) SendUDP(client *Client, packet *network.OutboundPacket) error {
     return nil
+}
+
+func (s *Server) Cleanup() {
+    // This is where we might stop all managers, save to the DB, etc.
 }
 
 func (s *Server) Stop() {
