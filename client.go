@@ -15,7 +15,7 @@ type Client struct {
 	bufPosition int
 	readBuffer  []byte
 
-	sendQueue    chan *network.OutboundPacket
+	sendQueue    chan interfaces.Packet
 	receiveQueue chan *network.InboundPacket
 
 	clientId uint16
@@ -29,7 +29,7 @@ func NewClient(server *Server, connection *net.TCPConn) *Client {
 		server:       server,
 		connection:   connection,
 		readBuffer:   make([]byte, 32768),
-		sendQueue:    make(chan *network.OutboundPacket, 128),
+		sendQueue:    make(chan interfaces.Packet, 128),
 		receiveQueue: make(chan *network.InboundPacket, 128),
 		clientId:     0,
 		account:      nil,
@@ -123,7 +123,7 @@ func (c *Client) handlePacket(packet *network.InboundPacket) error {
 	return managers.DefaultPacketManager.HandlePacket(c, packet)
 }
 
-func (c *Client) Send(packet *network.OutboundPacket) error {
+func (c *Client) Send(packet *interfaces.Packet) error {
 	c.sendQueue <- packet
 
     return nil
