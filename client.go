@@ -1,7 +1,6 @@
 package phosphorus
 
 import "net"
-import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/managers"
 import "github.com/tobz/phosphorus/network"
 
@@ -12,7 +11,7 @@ type Client struct {
 	server     *Server
 	connection *net.TCPConn
 
-	bufPosition uint64
+	bufPosition int
 	readBuffer  []byte
 
 	sendQueue    chan *network.InboundPacket
@@ -21,7 +20,7 @@ type Client struct {
 	clientId uint16
 }
 
-func NewClient(server *Server, connection *net.TCPConn) {
+func NewClient(server *Server, connection *net.TCPConn) *Client {
 	return &Client{
 		coordinator:  NewCoordinator(),
 		errors:       make(chan error, 1),
@@ -62,7 +61,7 @@ func (c *Client) Start() {
 			default:
 				// Make sure we have runway to receive.
 				if c.bufPosition >= len(c.readBuffer) {
-					c.errors <- ClientErrorf(c, "overflowed receive buffer: offset %d with buf size %d", c.readPosition, len(c.readBuffer))
+					c.errors <- ClientErrorf(c, "overflowed receive buffer: offset %d with buf size %d", c.bufPosition, len(c.readBuffer))
 					break
 				}
 
@@ -125,7 +124,7 @@ func (c *Client) Send(packet *network.OutboundPacket) {
 	c.sendQueue <- packet
 }
 
-func (c *Client) sendPacket(packet *OutboundPacket) error {
+func (c *Client) sendPacket(packet *network.OutboundPacket) error {
 	// Figure out if we have to hand this over to the server to send over UDP.
 	if packet.Type == network.PacketType_UDP {
 		return c.server.SendUDP(packet)
