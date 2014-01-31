@@ -124,13 +124,13 @@ func (c *Client) handlePacket(packet *network.InboundPacket) error {
 	return managers.DefaultPacketManager.HandlePacket(c, packet)
 }
 
-func (c *Client) Send(packet *interfaces.Packet) error {
+func (c *Client) Send(packet interfaces.Packet) error {
 	c.sendQueue <- packet
 
     return nil
 }
 
-func (c *Client) sendPacket(packet *interfaces.Packet) error {
+func (c *Client) sendPacket(packet interfaces.Packet) error {
 	// Figure out if we have to hand this over to the server to send over UDP.
 	if packet.Type() == constants.PacketType_UDP {
 		return c.server.SendUDP(c, packet)
