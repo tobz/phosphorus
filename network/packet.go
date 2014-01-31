@@ -9,19 +9,19 @@ type BasePacket interface {
 }
 
 type InboundPacket struct {
-    Type PacketType
-    Code PacketCode
+    Type constants.PacketType
+    Code constants.PacketCode
     buffer []byte
     bufPos int
 }
 
 type OutboundPacket struct {
-    Type PacketType
-    Code PacketCode
+    Type constants.PacketType
+    Code constants.PacketCode
     buffer *bytes.Buffer
 }
 
-func NewInboundPacket(sourceBuf []byte, sourceLen uint64, packetType PacketType) *InboundPacket {
+func NewInboundPacket(sourceBuf []byte, sourceLen uint64, packetType constants.PacketType) *InboundPacket {
     newBuf := make([]byte, sourceLen)
     copy(sourceBuf[:sourceLen], newBuf)
 
@@ -69,7 +69,7 @@ func (ip *InboundPacket) ReadUInt8() (byte, error) {
     return ip.buffer[ip.bufPos - 1], nil
 }
 
-func NewOutboundPacket(packetType PacketType, packetCode PacketCode) *OutboundPacket {
+func NewOutboundPacket(packetType constants.PacketType, packetCode constants.PacketCode) *OutboundPacket {
     packet := &OutboundPacket{
         Type: packetType,
         Code: packetCode,
