@@ -1,5 +1,5 @@
 package interfaces
 
 type Account interface {
-    Name() string
+	Name() string
 }

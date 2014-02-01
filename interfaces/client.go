@@ -1,7 +1,12 @@
 package interfaces
 
-type Client interface {
-    Account() Account
+import "net"
 
-    Send(packet Packet) error
+type Client interface {
+	SetAccount(account Account)
+	Account() Account
+
+	RemoteAddr() net.Addr
+
+	Send(packet Packet) error
 }

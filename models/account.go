@@ -1,9 +1,9 @@
 package models
 
 type Account struct {
-    name string
+	name string
 }
 
 func (a *Account) Name() {
-    return a.name
+	return a.name
 }

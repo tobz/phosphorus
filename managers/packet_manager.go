@@ -13,5 +13,5 @@ func (pm *PacketManager) RegisterInboundHandler(packetType constants.PacketType,
 }
 
 func (pm *PacketManager) HandlePacket(client interfaces.Client, packet *network.InboundPacket) error {
-    return nil
+	return nil
 }

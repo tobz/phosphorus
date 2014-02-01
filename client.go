@@ -1,6 +1,8 @@
 package phosphorus
 
+import "fmt"
 import "net"
+import "hash/crc32"
 import "github.com/tobz/phosphorus/constants"
 import "github.com/tobz/phosphorus/utils"
 import "github.com/tobz/phosphorus/log"
@@ -48,8 +50,10 @@ func (c *Client) Start() {
 			select {
 			case <-stop:
 				break
-			case <-c.errors:
+			case err := <-c.errors:
 				// Log this error and stop the client.
+				log.Server.Error("client", log.WrapForClient(c, "caught an error: %s", err))
+
 				c.Stop()
 				break
 			}
@@ -67,7 +71,7 @@ func (c *Client) Start() {
 			default:
 				// Make sure we have runway to receive.
 				if c.bufPosition >= len(c.readBuffer) {
-					c.errors <- log.ClientErrorf(c, "overflowed receive buffer: offset %d with buf size %d", c.bufPosition, len(c.readBuffer))
+					c.errors <- fmt.Errorf("overflowed receive buffer: offset %d with buf size %d", c.bufPosition, len(c.readBuffer))
 					break
 				}
 
@@ -146,14 +150,15 @@ func (c *Client) sendPacket(packet interfaces.Packet) error {
 
 	// Make sure we sent it all.
 	if n != len(packet.Buffer()) {
-		return log.ClientErrorf(c, "tried to send packet with %d bytes, but only sent %d bytes", len(packet.Buffer()), n)
+		return fmt.Errorf("tried to send packet with %d bytes, but only sent %d bytes", len(packet.Buffer()), n)
 	}
 
 	return nil
 }
 
-func (c *Client) GetUniqueIdentifier() string {
-	return "notveryunique"
+func (c *Client) GetUniqueIdentifier() uint32 {
+	data := []byte(c.connection.RemoteAddr().String())
+	return crc32.Checksum(data, crc32.MakeTable(crc32.Castagnoli))
 }
 
 func (c *Client) SetAccount(account interfaces.Account) {
@@ -164,7 +169,23 @@ func (c *Client) Account() interfaces.Account {
 	return c.account
 }
 
+func (c *Client) RemoteAddr() net.Addr {
+	return c.connection.RemoteAddr()
+}
+
+func (c *Client) Cleanup() {
+}
+
 func (c *Client) Stop() {
 	c.coordinator.Ping()
 	c.coordinator.Stop()
+
+	// Close our socket.
+	c.connection.Close()
+
+	// Clean ourselves up.
+	c.Cleanup()
+
+	// Inform the server we're closing up shop so it can clean us up.
+	c.server.RemoveClient(c)
 }
