@@ -5,6 +5,8 @@ import (
 )
 
 type ServerConfig struct {
-	tcpListenAddr *net.TCPAddr
-	udpListenAddr *net.UDPAddr
+	TcpListenAddress *net.TCPAddr
+	UdpListenAddress *net.UDPAddr
+
+    InvalidWords []string
 }

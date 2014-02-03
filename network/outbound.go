@@ -1,15 +1,15 @@
-package packet
+package network
 
 import "bytes"
 
-type Outbound struct {
-	base
+type OutboundPacket struct {
+	basePacket
 	buf       *bytes.Buffer
 	finalized bool
 }
 
-func NewOutbound(typ Type, code Code) *Outbound {
-	p := &Outbound{
+func NewOutboundPacket(typ PacketType, code PacketCode) *OutboundPacket {
+	p := &OutboundPacket{
 		typ,
 		code,
 		bytes.Buffer,
@@ -19,14 +19,14 @@ func NewOutbound(typ Type, code Code) *Outbound {
 	return p
 }
 
-func (p *Outbound) Buffer() []byte {
+func (p *OutboundPacket) Buffer() []byte {
 	if !p.finalized {
-		panic("Tried to get unfinalized packet content!")
+		panic("tried to get unfinalized packet content!")
 	}
 	return p.buf.Bytes()
 }
 
-func (p *Outbound) Finalize() {
+func (p *OutboundPacket) Finalize() {
 	lensize := 2
 	buflen := p.buf.Len() - lensize
 
