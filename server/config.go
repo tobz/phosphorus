@@ -1,6 +1,8 @@
 package phosphorus
 
-import "net"
+import (
+	"net"
+)
 
 type ServerConfig struct {
 	tcpListenAddr *net.TCPAddr

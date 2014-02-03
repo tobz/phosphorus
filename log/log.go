@@ -1,10 +1,13 @@
 package log
 
-import "os"
-import "fmt"
-import "log"
-import "time"
-import "github.com/tobz/phosphorus/interfaces"
+import (
+	"fmt"
+	"log"
+	"os"
+	"time"
+
+	"github.com/tobz/phosphorus/interfaces"
+)
 
 var Server *Logger = &Logger{
 	logger: log.New(os.Stdout, "", 0),
