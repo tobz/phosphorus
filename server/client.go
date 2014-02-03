@@ -70,13 +70,7 @@ func (c *Client) handle(packet *packet.Inbound) error {
 }
 
 func (c *Client) Send(packet packet.Packet) error {
-	c.outbound.Write(packet)
-
-	return nil
-}
-
-func (c *Client) GetUniqueIdentifier() uint32 {
-
+	return c.outbound.Write(packet)
 }
 
 func (c *Client) RemoteAddr() net.Addr {
