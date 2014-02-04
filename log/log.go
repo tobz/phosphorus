@@ -5,8 +5,6 @@ import (
 	"log"
 	"os"
 	"time"
-
-	"github.com/tobz/phosphorus/interfaces"
 )
 
 var Server *Logger = &Logger{
@@ -38,16 +36,4 @@ func (l *Logger) Warn(id, format string, args ...interface{}) {
 
 func (l *Logger) Error(id, format string, args ...interface{}) {
 	l.Log("ERROR", id, format, args...)
-}
-
-func WrapForClient(c interfaces.Client, format string, args ...interface{}) string {
-	var prefix string
-
-	if c.Account() != nil {
-		prefix = fmt.Sprintf("[%s / %s] ", c.RemoteAddr().String(), c.Account().Name())
-	} else {
-		prefix = fmt.Sprintf("[%s] ", c.RemoteAddr().String())
-	}
-
-	return fmt.Sprintf(prefix+format, args...)
 }

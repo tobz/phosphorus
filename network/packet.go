@@ -1,24 +1,25 @@
 package network
 
-import "github.com/tobz/phosphorus/server"
+import "github.com/tobz/phosphorus/constants"
+import "github.com/tobz/phosphorus/interfaces"
 
-type PacketHandler func(client *server.Client, packet Packet)
+type PacketHandler func(client interfaces.Client, packet Packet)
 
 type Packet interface {
-	Type() PacketType
-	Code() PacketCode
+	Type() constants.PacketType
+	Code() constants.PacketCode
 	Buffer() []byte
 }
 
 type basePacket struct {
-	typ  PacketType
-	code PacketCode
+	typ  constants.PacketType
+	code constants.PacketCode
 }
 
-func (p *basePacket) Type() PacketType {
+func (p *basePacket) Type() constants.PacketType {
 	return p.typ
 }
 
-func (p *basePacket) Code() PacketCode {
+func (p *basePacket) Code() constants.PacketCode {
 	return p.code
 }

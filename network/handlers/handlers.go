@@ -3,24 +3,28 @@ package handlers
 import (
 	"fmt"
 
+	"github.com/tobz/phosphorus/constants"
+	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/network"
 )
 
-type handlerMap map[network.PacketCode]network.PacketHandler
-type handlersMap map[network.PacketType]HandlerMap
+type PacketHandler func(c interfaces.Client, p *network.InboundPacket) error
+
+type handlerMap map[constants.PacketCode]PacketHandler
+type handlersMap map[constants.PacketType]handlerMap
 
 var handlers = handlersMap{
-    network.PacketUDP: make(handlerMap),
-	network.PacketTCP: make(handlerMap),
+	constants.PacketUDP: make(handlerMap),
+	constants.PacketTCP: make(handlerMap),
 }
 
-func Register(typ network.PacketType, code network.PacketCode, handler network.PacketHandler) {
+func Register(typ constants.PacketType, code constants.PacketCode, handler PacketHandler) {
 	if _, ok := handlers[typ][code]; ok {
 		panic(fmt.Sprintf("packet handler for %v:%v is already defined!", typ, code))
 	}
 	handlers[typ][code] = handler
 }
 
-func Handle(c *server.Client, p network.Packet) error {
+func Handle(c interfaces.Client, p *network.InboundPacket) error {
 	return handlers[p.Type()][p.Code()](c, p)
 }
