@@ -1,6 +1,7 @@
 server:
     tcpListen: 0.0.0.0:10300
     udpListen: 0.0.0.0:10400
+    ruleset: rvr
 misc:
     invalidWords:
         - fuck

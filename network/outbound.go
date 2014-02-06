@@ -87,6 +87,19 @@ func (p *OutboundPacket) WriteBoundedString(val string, length int) {
 	p.buf.Write(byteVal)
 }
 
+func (p *OutboundPacket) WriteLengthPrefixedString(val string) {
+    strBytes := []byte(val)
+
+    // We can't go over 255 characters in length.
+    strLen := len(strBytes)
+    if strLen > 255 {
+        strLen = 255
+    }
+
+    p.WriteUint8(uint8(strLen))
+    p.buf.Write(strBytes[0:strLen])
+}
+
 func (p *OutboundPacket) WriteRepeated(val uint8, count int) {
 	buf := make([]byte, count)
 

@@ -17,6 +17,7 @@ const (
 	ResponseBadNameCheck PacketCode = 0xC3
 	RequestLogin         PacketCode = 0xA7
 	OneWayLoginDenied    PacketCode = 0x2C
+    OneWayLoginGranted   PacketCode = 0x2A
 )
 
 const (

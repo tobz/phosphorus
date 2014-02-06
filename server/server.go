@@ -6,6 +6,7 @@ import (
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/utils"
+    "github.com/tobz/phosphorus/rulesets"
 )
 
 type Server struct {
@@ -19,6 +20,8 @@ type Server struct {
 	register   chan *Client
 	unregister chan *Client
 	stop       chan struct{}
+
+    ruleset interfaces.Ruleset
 }
 
 func NewServer(config *Config) *Server {
@@ -33,13 +36,30 @@ func NewServer(config *Config) *Server {
 		register:   make(chan *Client),
 		unregister: make(chan *Client),
 		stop:       make(chan struct{}),
+
+        ruleset: nil,
 	}
 }
 
 func (s *Server) Start() error {
 	log.Server.Info("server", "Starting the server...")
 
-	// Do a bunch of random shit here.
+    // This is where managers and database connections and all that shit will be instanciated.
+
+	// Load the ruleset we should be using.
+    rulesetName, err := s.config.GetAsString("server/ruleset")
+    if err != nil {
+        return err
+    }
+
+    ruleset, err := rulesets.GetRuleset(rulesetName, s)
+    if err != nil {
+        return err
+    }
+
+    s.ruleset = ruleset
+
+    log.Server.Info("server", "Ruleset configured for '%s'", rulesetName)
 
 	// Now start listening.
 	tcpListenAddr, err := s.config.GetAsString("server/tcpListen")
@@ -164,4 +184,17 @@ func (s *Server) Stop() {
 // Methods to satisfy interfaces.Server
 func (s *Server) Config() interfaces.Config {
 	return s.config
+}
+
+func (s *Server) Ruleset() interfaces.Ruleset {
+    return s.ruleset
+}
+
+func (s *Server) ShortName() string {
+    shortName, err := s.config.GetAsString("server/shortName")
+    if err != nil {
+        return "noname"
+    }
+
+    return shortName
 }

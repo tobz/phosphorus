@@ -61,3 +61,32 @@ func SendLoginDenied(c interfaces.Client, reason constants.LoginError) error {
     return c.Send(p)
 }
 
+func SendLoginGranted(c interfaces.Client) error {
+    p := network.NewOutboundPacket(constants.PacketTCP, constants.OneWayLoginGranted)
+
+    // Send the client version back, too.  Fucking client is obsessed with it.
+    versionDivisor := 100
+    if c.ClientVersion() > 199 {
+        versionDivisor = 1000
+    }
+
+    p.WriteUint8(0x01)
+    p.WriteUint8(uint8(int(c.ClientVersion()) / versionDivisor))
+    p.WriteUint8(uint8((int(c.ClientVersion()) % versionDivisor) / 10))
+    p.WriteUint8(0x00)
+
+    // Write the account name, and then server shortname.
+    p.WriteLengthPrefixedString(c.Account().Name())
+    p.WriteLengthPrefixedString(c.Server().ShortName())
+
+    // Write ther server ID.
+    p.WriteUint8(0x0C)
+
+    // Write the realm color stuff.  The constant definition explains
+    // the differences.
+    p.WriteUint8(uint8(c.Server().Ruleset().ColorHandling()))
+    p.WriteUint8(0x00)
+
+    return c.Send(p)
+}
+
