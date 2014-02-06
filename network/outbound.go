@@ -104,13 +104,21 @@ func (p *OutboundPacket) Buffer() []byte {
 	return p.buf.Bytes()
 }
 
+func (p *OutboundPacket) Len() int {
+    return p.buf.Len()
+}
+
 func (p *OutboundPacket) Finalize() {
-	lensize := 2
+    if p.finalized {
+        return
+    }
+
+	lensize := 3
 	buflen := p.buf.Len() - lensize
 
 	b := p.buf.Bytes()
-	b[0] = byte(buflen)
-	b[1] = byte(buflen >> 8)
+	b[0] = byte(buflen >> 8)
+	b[1] = byte(buflen)
 
 	p.finalized = true
 }

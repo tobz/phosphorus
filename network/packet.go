@@ -3,13 +3,7 @@ package network
 import "github.com/tobz/phosphorus/constants"
 import "github.com/tobz/phosphorus/interfaces"
 
-type PacketHandler func(client interfaces.Client, packet Packet)
-
-type Packet interface {
-	Type() constants.PacketType
-	Code() constants.PacketCode
-	Buffer() []byte
-}
+type PacketHandler func(client interfaces.Client, packet interfaces.Packet)
 
 type basePacket struct {
 	typ  constants.PacketType

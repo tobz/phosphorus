@@ -1,4 +1,4 @@
-package phosphorus
+package server
 
 import (
 	"net"
@@ -9,7 +9,7 @@ import (
 )
 
 type Server struct {
-	config *ServerConfig
+	config *Config
 
 	tcpListener *net.TCPListener
 	udpListener *net.UDPConn
@@ -21,7 +21,7 @@ type Server struct {
 	stop       chan struct{}
 }
 
-func NewServer(config *ServerConfig) *Server {
+func NewServer(config *Config) *Server {
 	return &Server{
 		config: config,
 
@@ -152,7 +152,7 @@ func (s *Server) Stop() {
 	log.Server.Info("server", "Stopping the server...")
 
 	go func() {
-		// Spray and pray: send tons of stop messages, so anyone listening is sure to get one..
+		// Spray and pray: send tons of stop messages, so anyone listening is sure to get one.
 		for {
 			s.stop <- struct{}{}
 		}

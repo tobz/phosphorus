@@ -11,8 +11,12 @@ type PacketCode byte
 
 const (
 	InvalidCode          PacketCode = 0x0
-	RequestBadNameCheck  PacketCode = 0x6A ^ 168
+	RequestCryptKey      PacketCode = 0xF4
+	ResponseCryptKey     PacketCode = 0x22
+	RequestBadNameCheck  PacketCode = 0xC2
 	ResponseBadNameCheck PacketCode = 0xC3
+	RequestLogin         PacketCode = 0xA7
+	OneWayLoginDenied    PacketCode = 0x2C
 )
 
 const (

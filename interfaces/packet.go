@@ -6,4 +6,6 @@ type Packet interface {
 	Type() constants.PacketType
 	Code() constants.PacketCode
 	Buffer() []byte
+    Len() int
+    Finalize()
 }

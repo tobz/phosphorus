@@ -51,6 +51,10 @@ func (p *InboundPacket) Buffer() []byte {
 	return p.buf
 }
 
+func (p *InboundPacket) Len() int {
+    return p.bufPos
+}
+
 func (p *InboundPacket) ReadUint8() (uint8, error) {
 	var val uint8
 
@@ -339,4 +343,8 @@ func (p *InboundPacket) ReadLengthPrefixedString() (string, error) {
 
 func (p *InboundPacket) canReadFurther(n int) bool {
 	return (p.bufPos + n) <= len(p.buf)
+}
+
+// No-op function to satisfy the packet interface.
+func (p *InboundPacket) Finalize() {
 }

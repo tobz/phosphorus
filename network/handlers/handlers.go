@@ -5,6 +5,7 @@ import (
 
 	"github.com/tobz/phosphorus/constants"
 	"github.com/tobz/phosphorus/interfaces"
+	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/network"
 )
 
@@ -26,5 +27,17 @@ func Register(typ constants.PacketType, code constants.PacketCode, handler Packe
 }
 
 func Handle(c interfaces.Client, p *network.InboundPacket) error {
+	packetType := "TCP"
+	if p.Type() == constants.PacketUDP {
+		packetType = "UDP"
+	}
+
+    // Make sure we actually have a packet handler to fulfill this request.
+    if _, ok := handlers[p.Type()][p.Code()]; !ok {
+        return fmt.Errorf("tried to handle packet %s(0x%X) but no registered handler found", packetType, byte(p.Code()))
+    }
+
+    log.Server.ClientDebug(c, "network", "Handling packet %s(0x%X) -> %d bytes", packetType, byte(p.Code()), p.Len())
+
 	return handlers[p.Type()][p.Code()](c, p)
 }

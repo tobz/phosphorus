@@ -2,6 +2,7 @@ package network
 
 import "io"
 import "fmt"
+import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/constants"
 import "github.com/tobz/phosphorus/utils"
 
@@ -68,6 +69,11 @@ func NewPacketWriter(conn io.Writer) *PacketWriter {
 	return &PacketWriter{conn}
 }
 
-func (r *PacketWriter) Write(p Packet) error {
-	return nil
+func (r *PacketWriter) Write(p interfaces.Packet) error {
+	// Finalize the packet.
+    p.Finalize()
+
+    // Write the packet.
+    _, err := r.conn.Write(p.Buffer())
+    return err
 }

@@ -1,10 +1,10 @@
-package phosphorus
+package server
 
 import (
-	"fmt"
 	"io"
 	"net"
 
+    "github.com/tobz/phosphorus/constants"
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/network"
@@ -21,6 +21,7 @@ type Client struct {
 	outbound *network.PacketWriter
 
 	clientId     uint16
+    version constants.ClientVersion
 	connectionId uint32
 	account      interfaces.Account
 }
@@ -45,12 +46,13 @@ func (c *Client) Start() {
 		// Zero tolerance error handling
 		defer func() {
 			err := recover()
-			if err == io.EOF {
-				return
-			}
-
 			if err != nil {
-				log.Server.Error("client", wrapForClient(c, "caught an error: %s", err))
+                if err == io.EOF {
+                    log.Server.ClientInfo(c, "client", "Connection closed from client side.")
+                } else {
+				    log.Server.ClientError(c, "client", "Caught an error while in network loop: %s", err)
+                }
+
 				c.Stop()
 			}
 		}()
@@ -85,25 +87,25 @@ func (c *Client) Stop() {
 	c.cleanup()
 }
 
-func wrapForClient(c *Client, format string, args ...interface{}) string {
-	var prefix string
-
-	if c.Account() != nil {
-		prefix = fmt.Sprintf("[%s / %s] ", c.connection.RemoteAddr().String(), c.Account().Name())
-	} else {
-		prefix = fmt.Sprintf("[%s] ", c.connection.RemoteAddr().String())
-	}
-
-	return fmt.Sprintf(prefix+format, args...)
+// Methods to satisfy interfaces.Client
+func (c *Client) Connection() interfaces.LimitedConnection {
+    return c.connection
 }
 
-// Methods to satisfy interfaces.Client
 func (c *Client) SetAccount(account interfaces.Account) {
 	c.account = account
 }
 
 func (c *Client) Account() interfaces.Account {
 	return c.account
+}
+
+func (c *Client) SetClientVersion(version constants.ClientVersion) {
+	c.version = version
+}
+
+func (c *Client) ClientVersion() constants.ClientVersion {
+	return c.version
 }
 
 func (c *Client) ConnectionId() uint32 {
@@ -114,6 +116,13 @@ func (c *Client) Server() interfaces.Server {
 	return c.server
 }
 
-func (c *Client) Send(packet interfaces.Packet) error {
-	return c.outbound.Write(packet)
+func (c *Client) Send(p interfaces.Packet) error {
+    packetType := "TCP"
+    if p.Type() == constants.PacketUDP {
+        packetType = "UDP"
+    }
+
+    log.Server.ClientDebug(c, "client", "Sending packet %s(0x%X) -> %d bytes", packetType, uint8(p.Code()), p.Len())
+
+	return c.outbound.Write(p)
 }
