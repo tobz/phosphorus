@@ -23,6 +23,7 @@ func Register(typ constants.PacketType, code constants.PacketCode, handler Packe
 	if _, ok := handlers[typ][code]; ok {
 		panic(fmt.Sprintf("packet handler for %v:%v is already defined!", typ, code))
 	}
+
 	handlers[typ][code] = handler
 }
 

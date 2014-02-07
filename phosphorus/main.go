@@ -5,6 +5,7 @@ import "os/signal"
 import "github.com/tobz/phosphorus/log"
 import "github.com/tobz/phosphorus/server"
 import _ "github.com/tobz/phosphorus/network/all"
+import _ "github.com/tobz/phosphorus/database/all"
 
 func main() {
 	log.Server.Info("main", "Phosphorus is starting...")
