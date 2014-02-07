@@ -71,9 +71,9 @@ func NewPacketWriter(conn io.Writer) *PacketWriter {
 
 func (r *PacketWriter) Write(p interfaces.Packet) error {
 	// Finalize the packet.
-    p.Finalize()
+	p.Finalize()
 
-    // Write the packet.
-    _, err := r.conn.Write(p.Buffer())
-    return err
+	// Write the packet.
+	_, err := r.conn.Write(p.Buffer())
+	return err
 }

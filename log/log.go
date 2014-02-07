@@ -2,10 +2,10 @@ package log
 
 import (
 	"fmt"
+	"github.com/tobz/phosphorus/interfaces"
 	"log"
 	"os"
 	"time"
-    "github.com/tobz/phosphorus/interfaces"
 )
 
 var Server *Logger = &Logger{
@@ -24,8 +24,8 @@ func (l *Logger) Log(level, id, format string, args ...interface{}) {
 }
 
 func (l *Logger) ClientLog(level string, c interfaces.Client, id, format string, args ...interface{}) {
-    var clientPrefix string
-    if c.Account() != nil {
+	var clientPrefix string
+	if c.Account() != nil {
 		clientPrefix = fmt.Sprintf("[%s / %s]", c.Connection().RemoteAddr().String(), c.Account().Name())
 	} else {
 		clientPrefix = fmt.Sprintf("[%s]", c.Connection().RemoteAddr().String())

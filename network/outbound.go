@@ -88,16 +88,16 @@ func (p *OutboundPacket) WriteBoundedString(val string, length int) {
 }
 
 func (p *OutboundPacket) WriteLengthPrefixedString(val string) {
-    strBytes := []byte(val)
+	strBytes := []byte(val)
 
-    // We can't go over 255 characters in length.
-    strLen := len(strBytes)
-    if strLen > 255 {
-        strLen = 255
-    }
+	// We can't go over 255 characters in length.
+	strLen := len(strBytes)
+	if strLen > 255 {
+		strLen = 255
+	}
 
-    p.WriteUint8(uint8(strLen))
-    p.buf.Write(strBytes[0:strLen])
+	p.WriteUint8(uint8(strLen))
+	p.buf.Write(strBytes[0:strLen])
 }
 
 func (p *OutboundPacket) WriteRepeated(val uint8, count int) {
@@ -118,13 +118,13 @@ func (p *OutboundPacket) Buffer() []byte {
 }
 
 func (p *OutboundPacket) Len() int {
-    return p.buf.Len()
+	return p.buf.Len()
 }
 
 func (p *OutboundPacket) Finalize() {
-    if p.finalized {
-        return
-    }
+	if p.finalized {
+		return
+	}
 
 	lensize := 3
 	buflen := p.buf.Len() - lensize

@@ -4,8 +4,8 @@ func CalculatePacketChecksum(buf []byte, offset, length int) uint16 {
 	one := uint8(0x7E)
 	two := uint8(0x7E)
 
-    for i := 0; i < length; i++ {
-		one += buf[offset + i]
+	for i := 0; i < length; i++ {
+		one += buf[offset+i]
 		two += one
 	}
 

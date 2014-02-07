@@ -32,12 +32,12 @@ func Handle(c interfaces.Client, p *network.InboundPacket) error {
 		packetType = "UDP"
 	}
 
-    // Make sure we actually have a packet handler to fulfill this request.
-    if _, ok := handlers[p.Type()][p.Code()]; !ok {
-        return fmt.Errorf("tried to handle packet %s(0x%X) but no registered handler found", packetType, byte(p.Code()))
-    }
+	// Make sure we actually have a packet handler to fulfill this request.
+	if _, ok := handlers[p.Type()][p.Code()]; !ok {
+		return fmt.Errorf("tried to handle packet %s(0x%X) but no registered handler found", packetType, byte(p.Code()))
+	}
 
-    log.Server.ClientDebug(c, "network", "Handling packet %s(0x%X) -> %d bytes", packetType, byte(p.Code()), p.Len())
+	log.Server.ClientDebug(c, "network", "Handling packet %s(0x%X) -> %d bytes", packetType, byte(p.Code()), p.Len())
 
 	return handlers[p.Type()][p.Code()](c, p)
 }

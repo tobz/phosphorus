@@ -1,8 +1,8 @@
 package interfaces
 
 type Server interface {
-    Config() Config
-    Ruleset() Ruleset
+	Config() Config
+	Ruleset() Ruleset
 
-    ShortName() string
+	ShortName() string
 }

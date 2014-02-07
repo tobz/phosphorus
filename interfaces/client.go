@@ -3,17 +3,17 @@ package interfaces
 import "github.com/tobz/phosphorus/constants"
 
 type Client interface {
-    Connection() LimitedConnection
+	Connection() LimitedConnection
 
-    SetAccount(Account)
+	SetAccount(Account)
 	Account() Account
 
-    SetClientVersion(constants.ClientVersion)
-    ClientVersion() constants.ClientVersion
+	SetClientVersion(constants.ClientVersion)
+	ClientVersion() constants.ClientVersion
 
-    ConnectionId() uint32
+	ConnectionId() uint32
 
-    Server() Server
+	Server() Server
 
 	Send(Packet) error
 }

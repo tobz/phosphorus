@@ -5,8 +5,8 @@ import (
 
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
+	"github.com/tobz/phosphorus/rulesets"
 	"github.com/tobz/phosphorus/utils"
-    "github.com/tobz/phosphorus/rulesets"
 )
 
 type Server struct {
@@ -21,7 +21,7 @@ type Server struct {
 	unregister chan *Client
 	stop       chan struct{}
 
-    ruleset interfaces.Ruleset
+	ruleset interfaces.Ruleset
 }
 
 func NewServer(config *Config) *Server {
@@ -37,29 +37,29 @@ func NewServer(config *Config) *Server {
 		unregister: make(chan *Client),
 		stop:       make(chan struct{}),
 
-        ruleset: nil,
+		ruleset: nil,
 	}
 }
 
 func (s *Server) Start() error {
 	log.Server.Info("server", "Starting the server...")
 
-    // This is where managers and database connections and all that shit will be instanciated.
+	// This is where managers and database connections and all that shit will be instanciated.
 
 	// Load the ruleset we should be using.
-    rulesetName, err := s.config.GetAsString("server/ruleset")
-    if err != nil {
-        return err
-    }
+	rulesetName, err := s.config.GetAsString("server/ruleset")
+	if err != nil {
+		return err
+	}
 
-    ruleset, err := rulesets.GetRuleset(rulesetName, s)
-    if err != nil {
-        return err
-    }
+	ruleset, err := rulesets.GetRuleset(rulesetName, s)
+	if err != nil {
+		return err
+	}
 
-    s.ruleset = ruleset
+	s.ruleset = ruleset
 
-    log.Server.Info("server", "Ruleset configured for '%s'", rulesetName)
+	log.Server.Info("server", "Ruleset configured for '%s'", rulesetName)
 
 	// Now start listening.
 	tcpListenAddr, err := s.config.GetAsString("server/tcpListen")
@@ -187,14 +187,14 @@ func (s *Server) Config() interfaces.Config {
 }
 
 func (s *Server) Ruleset() interfaces.Ruleset {
-    return s.ruleset
+	return s.ruleset
 }
 
 func (s *Server) ShortName() string {
-    shortName, err := s.config.GetAsString("server/shortName")
-    if err != nil {
-        return "noname"
-    }
+	shortName, err := s.config.GetAsString("server/shortName")
+	if err != nil {
+		return "noname"
+	}
 
-    return shortName
+	return shortName
 }

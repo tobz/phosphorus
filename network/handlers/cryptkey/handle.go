@@ -5,7 +5,7 @@ import (
 
 	"github.com/tobz/phosphorus/constants"
 	"github.com/tobz/phosphorus/interfaces"
-    "github.com/tobz/phosphorus/log"
+	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/network"
 	"github.com/tobz/phosphorus/network/handlers"
 )
@@ -15,77 +15,76 @@ func init() {
 }
 
 func HandleCryptKeyRequest(c interfaces.Client, p *network.InboundPacket) error {
-    // Get the client type and the encryption stuff.
-    rc4, err := p.ReadUint8()
-    if err != nil {
-        return err
-    }
+	// Get the client type and the encryption stuff.
+	rc4, err := p.ReadUint8()
+	if err != nil {
+		return err
+	}
 
-    // Client metadata. High bits are client type and lower bits are client addons.
-    _, err = p.ReadUint8()
-    if err != nil {
-        return err
-    }
+	// Client metadata. High bits are client type and lower bits are client addons.
+	_, err = p.ReadUint8()
+	if err != nil {
+		return err
+	}
 
-    // Pull in the client version - three bytes.
-    versionMajor, err := p.ReadUint8()
-    if err != nil {
-        return err
-    }
+	// Pull in the client version - three bytes.
+	versionMajor, err := p.ReadUint8()
+	if err != nil {
+		return err
+	}
 
-    versionMinor, err := p.ReadUint8()
-    if err != nil {
-        return err
-    }
+	versionMinor, err := p.ReadUint8()
+	if err != nil {
+		return err
+	}
 
-    versionBuild, err := p.ReadUint8()
-    if err != nil {
-        return err
-    }
+	versionBuild, err := p.ReadUint8()
+	if err != nil {
+		return err
+	}
 
-    // Now get the right client version value.  We add 900 to the value if it's over 200 as
-    // that corresponds to the jump in client versions starting at 1.110.
-    versionNumeric := uint16(versionMajor * 100) + uint16(versionMinor * 10) + uint16(versionBuild)
-    if versionNumeric >= 200 {
-        versionNumeric += 900
-    }
+	// Now get the right client version value.  We add 900 to the value if it's over 200 as
+	// that corresponds to the jump in client versions starting at 1.110.
+	versionNumeric := uint16(versionMajor*100) + uint16(versionMinor*10) + uint16(versionBuild)
+	if versionNumeric >= 200 {
+		versionNumeric += 900
+	}
 
-    // Make sure it's a valid version.
-    version := constants.ClientVersion(versionNumeric)
-    if version < constants.ClientVersionMinimum || version > constants.ClientVersionMaximum {
-        return fmt.Errorf("client version reported as %d: allowed range %d to %d", version, constants.ClientVersionMinimum, constants.ClientVersionMaximum)
-    }
+	// Make sure it's a valid version.
+	version := constants.ClientVersion(versionNumeric)
+	if version < constants.ClientVersionMinimum || version > constants.ClientVersionMaximum {
+		return fmt.Errorf("client version reported as %d: allowed range %d to %d", version, constants.ClientVersionMinimum, constants.ClientVersionMaximum)
+	}
 
-    c.SetClientVersion(version)
-    log.Server.ClientDebug(c, "cryptkey", "client version: %d", version)
+	c.SetClientVersion(version)
+	log.Server.ClientDebug(c, "cryptkey", "client version: %d", version)
 
-    // If 'rc4' is == 1, that means there's an RC4 sbox chunk waiting for us.  We have to read it, store it, and then
-    // start encrypting the rest of our communications using RC4 seeded from the given sbox.
-    if rc4 == 1 {
-        log.Server.ClientWarn(c, "cryptkey", "client is trying to initiate RC4 encryption, but we don't support it.. yet?")
-        return nil
-    }
+	// If 'rc4' is == 1, that means there's an RC4 sbox chunk waiting for us.  We have to read it, store it, and then
+	// start encrypting the rest of our communications using RC4 seeded from the given sbox.
+	if rc4 == 1 {
+		log.Server.ClientWarn(c, "cryptkey", "client is trying to initiate RC4 encryption, but we don't support it.. yet?")
+		return nil
+	}
 
-    // No RC4 means that we get to dictate whether or not we want encryption.
-    return SendCryptKeyResponse(c)
+	// No RC4 means that we get to dictate whether or not we want encryption.
+	return SendCryptKeyResponse(c)
 }
 
 func SendCryptKeyResponse(c interfaces.Client) error {
-    p := network.NewOutboundPacket(constants.PacketTCP, constants.ResponseCryptKey)
+	p := network.NewOutboundPacket(constants.PacketTCP, constants.ResponseCryptKey)
 
-    // Send the client version back.
-    versionDivisor := 100
-    if c.ClientVersion() > 199 {
-        versionDivisor = 1000
-    }
+	// Send the client version back.
+	versionDivisor := 100
+	if c.ClientVersion() > 199 {
+		versionDivisor = 1000
+	}
 
-    p.WriteUint8(uint8(int(c.ClientVersion()) / versionDivisor))
-    p.WriteUint8(uint8((int(c.ClientVersion()) % versionDivisor) / 10))
+	p.WriteUint8(uint8(int(c.ClientVersion()) / versionDivisor))
+	p.WriteUint8(uint8((int(c.ClientVersion()) % versionDivisor) / 10))
 
-    // I think this used to be/was going to be the build component of the client version?  Or
-    // it's the "use / don't use" encryption value now.  Not sure yet.
-    p.WriteUint8(0x00)
+	// I think this used to be/was going to be the build component of the client version?  Or
+	// it's the "use / don't use" encryption value now.  Not sure yet.
+	p.WriteUint8(0x00)
 
-    return c.Send(p)
+	return c.Send(p)
 }
-

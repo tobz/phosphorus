@@ -52,7 +52,7 @@ func (p *InboundPacket) Buffer() []byte {
 }
 
 func (p *InboundPacket) Len() int {
-    return p.bufPos
+	return p.bufPos
 }
 
 func (p *InboundPacket) ReadUint8() (uint8, error) {
@@ -305,6 +305,9 @@ func (p *InboundPacket) ReadBoundedString(length int) (string, error) {
 	end := p.bufPos + length
 	if end >= len(p.buf) {
 		end = len(p.buf)
+		p.bufPos = end
+	} else {
+		p.bufPos += length
 	}
 
 	possibleStr := p.buf[start:end]
