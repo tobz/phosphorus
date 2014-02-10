@@ -74,7 +74,7 @@ func (s *scryptWrapper) parseFromHash(hash string) error {
 
 func (s *scryptWrapper) Reset() error {
     // Get a new salt here, make sure our parameters are accurate, etc.
-    s.paramN = 16384
+    s.paramN = 32768
     s.paramR = 8
     s.paramP = 1
     salt, err := getRandomBytes(8)
