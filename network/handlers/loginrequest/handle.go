@@ -1,11 +1,13 @@
 package clientstart
 
 import (
+    "database/sql"
 	"github.com/tobz/phosphorus/constants"
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/network"
 	"github.com/tobz/phosphorus/network/handlers"
+    "github.com/tobz/phosphorus/database/models"
 )
 
 func init() {
@@ -33,12 +35,35 @@ func HandleLoginRequest(c interfaces.Client, p *network.InboundPacket) error {
 		return err
 	}
 
-	log.Server.ClientDebug(c, "login", "username: %s(%d), password: %s(%d)", username, len(username), password, len(password))
+    // See if the account exists yet.  If so, validate that our password matches.
+    tx, err := c.Server().Database().Begin()
+    if err != nil {
+        log.Server.ClientError(c, "login", "Couldn't start transaction for account validation: %s", err)
+        return SendLoginDenied(c, constants.LoginErrorAuthorizationServerUnavailable)
+    }
+    defer tx.Rollback()
 
-	// From here, we have many options.  We can respond back with any of the multiple
-	// login errors - game closed, already logged in, account mid-logout, etc.
+    var account models.Account
+    err = tx.SelectOne(&account, "SELECT * FROM account WHERE username = ?", username)
+    if err == sql.ErrNoRows {
+        log.Server.ClientError(c, "login", "No account found for '%s'!", username)
+        return SendLoginDenied(c, constants.LoginErrorAccountNotFound)
+    }
 
-	return SendLoginDenied(c, constants.LoginErrorGameCurrentlyClosed)
+    if err != nil {
+        log.Server.ClientError(c, "login", "Caught an error when trying to select account: %s", err)
+        return SendLoginDenied(c, constants.LoginErrorAccountNotFound)
+    }
+
+    // They do, in fact, have an account, so make sure the password matches.
+    if !account.PasswordMatches(password) {
+        return SendLoginDenied(c, constants.LoginErrorWrongPassword)
+    }
+
+    c.SetAccount(&account)
+
+    // At this point, their password matches... so let them in.
+	return SendLoginGranted(c)
 }
 
 func SendLoginDenied(c interfaces.Client, reason constants.LoginError) error {
@@ -76,7 +101,7 @@ func SendLoginGranted(c interfaces.Client) error {
 	p.WriteUint8(0x00)
 
 	// Write the account name, and then server shortname.
-	p.WriteLengthPrefixedString(c.Account().Name())
+	p.WriteLengthPrefixedString(c.Account().Username())
 	p.WriteLengthPrefixedString(c.Server().ShortName())
 
 	// Write ther server ID.

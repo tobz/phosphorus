@@ -2,6 +2,9 @@ server:
     tcpListen: 0.0.0.0:10300
     udpListen: 0.0.0.0:10400
     ruleset: rvr
+database:
+    type: sqlite3
+    dsn: ./phosphorus.db
 misc:
     invalidWords:
         - fuck

@@ -26,7 +26,7 @@ func (l *Logger) Log(level, id, format string, args ...interface{}) {
 func (l *Logger) ClientLog(level string, c interfaces.Client, id, format string, args ...interface{}) {
 	var clientPrefix string
 	if c.Account() != nil {
-		clientPrefix = fmt.Sprintf("[%s / %s]", c.Connection().RemoteAddr().String(), c.Account().Name())
+		clientPrefix = fmt.Sprintf("[%s / %s]", c.Connection().RemoteAddr().String(), c.Account().Username())
 	} else {
 		clientPrefix = fmt.Sprintf("[%s]", c.Connection().RemoteAddr().String())
 	}

@@ -23,3 +23,4 @@ _testmain.go
 
 # Phosphorus-specific files.
 phosphorus/phosphorus
+phosphorus/phosphorus.db

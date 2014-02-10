@@ -34,9 +34,7 @@ func NewClient(server *Server, connection *net.TCPConn, connectionId uint32) *Cl
 		inbound:  network.NewPacketReader(connection),
 		outbound: network.NewPacketWriter(connection),
 
-		clientId:     0,
 		connectionId: connectionId,
-		account:      nil,
 	}
 }
 

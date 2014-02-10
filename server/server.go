@@ -7,10 +7,12 @@ import (
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/rulesets"
 	"github.com/tobz/phosphorus/utils"
+    "github.com/tobz/phosphorus/database"
 )
 
 type Server struct {
 	config *Config
+    database interfaces.Database
 
 	tcpListener *net.TCPListener
 	udpListener *net.UDPConn
@@ -28,23 +30,36 @@ func NewServer(config *Config) *Server {
 	return &Server{
 		config: config,
 
-		tcpListener: nil,
-		udpListener: nil,
-
 		clients: make(map[uint32]*Client, 128),
 
 		register:   make(chan *Client),
 		unregister: make(chan *Client),
 		stop:       make(chan struct{}),
-
-		ruleset: nil,
 	}
 }
 
 func (s *Server) Start() error {
 	log.Server.Info("server", "Starting the server...")
 
-	// This is where managers and database connections and all that shit will be instanciated.
+	// This is where managers and all that shit will be instanciated.
+
+    // Get our database connection poppin'.
+    databaseType, err := s.config.GetAsString("database/type")
+    if err != nil {
+        return err
+    }
+
+    databaseDsn, err := s.config.GetAsString("database/dsn")
+    if err != nil {
+        return err
+    }
+
+    database, err := database.NewDatabaseConnection(databaseType, databaseDsn)
+    if err != nil {
+        return err
+    }
+
+    s.database = database
 
 	// Load the ruleset we should be using.
 	rulesetName, err := s.config.GetAsString("server/ruleset")
@@ -188,6 +203,10 @@ func (s *Server) Config() interfaces.Config {
 
 func (s *Server) Ruleset() interfaces.Ruleset {
 	return s.ruleset
+}
+
+func (s *Server) Database() interfaces.Database {
+    return s.database
 }
 
 func (s *Server) ShortName() string {
