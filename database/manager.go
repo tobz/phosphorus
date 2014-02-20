@@ -7,59 +7,68 @@ import _ "github.com/go-sql-driver/mysql"
 import _ "github.com/lib/pq"
 import _ "github.com/mattn/go-sqlite3"
 import "github.com/tobz/phosphorus/log"
+import "github.com/tobz/phosphorus/interfaces"
 
-var schemaMap = make(map[string]interface{})
-
-func RegisterTableSchema(i interface{}, tableName string) {
-    if _, ok := schemaMap[tableName]; ok {
-        panic(fmt.Sprintf("table schema %s is already defined!", tableName))
-    }
-
-    schemaMap[tableName] = i
-
-    log.Server.Info("database", "Registered '%s' schema", tableName)
+type tableSchemaHandler struct {
+	tableObject      interface{}
+	tableMapModifier func(interfaces.DatabaseTableMap)
 }
 
-func NewDatabaseConnection(databaseType, databaseDsn string) (*Database, error) {
-    // Set up our driver and dialect before handing over to modl.
-    dialect, err := getDatabaseDialect(databaseType)
-    if err != nil {
-        return nil, err
-    }
+var tableMap = make(map[string]*tableSchemaHandler)
 
-    // Now set up our connection.
-    databaseConnection, err := sql.Open(databaseType, databaseDsn)
-    if err != nil {
-        return nil, err
-    }
+func RegisterTableSchema(tableObject interface{}, tableName string, tableMapModifier func(interfaces.DatabaseTableMap)) {
+	if _, ok := tableMap[tableName]; ok {
+		panic(fmt.Sprintf("Table '%s' is already defined!", tableName))
+	}
 
-    dbMap := &gorp.DbMap{ Db: databaseConnection, Dialect: dialect }
+	tableMap[tableName] = &tableSchemaHandler{tableObject: tableObject, tableMapModifier: tableMapModifier}
 
-    // Now run our registered schema objects against the map to bring them in.
-    for tableName, tableObject := range schemaMap {
-        dbMap.AddTableWithName(tableObject, tableName)
-    }
+	log.Server.Info("database", "Registered schema for '%s' table...", tableName)
+}
 
-    // Make sure our schema exists.
-    err = dbMap.CreateTablesIfNotExists()
-    if err != nil {
-        return nil, fmt.Errorf("failed to ensure schema exists: %s", err)
-    }
+func NewDatabaseConnection(databaseType, databaseDsn string) (interfaces.Database, error) {
+	// Set up our driver and dialect before handing over to modl.
+	dialect, err := getDatabaseDialect(databaseType)
+	if err != nil {
+		return nil, err
+	}
 
-    log.Server.Info("database", "New database connection created; using '%s'", databaseType)
+	// Now set up our connection.
+	databaseConnection, err := sql.Open(databaseType, databaseDsn)
+	if err != nil {
+		return nil, err
+	}
 
-    return NewDatabase(dbMap), nil
+	dbMap := &gorp.DbMap{Db: databaseConnection, Dialect: dialect}
+
+	// Now run our registered schema objects against the database map to bring them in.
+	for tableName, tableHandler := range tableMap {
+		tableMap := dbMap.AddTableWithName(tableHandler.tableObject, tableName)
+		if tableHandler.tableMapModifier != nil {
+			tableHandler.tableMapModifier(NewDatabaseTableMap(tableMap))
+		}
+	}
+
+	// Make sure our schema exists.
+	err = dbMap.CreateTablesIfNotExists()
+	if err != nil {
+		return nil, fmt.Errorf("failed to ensure schema exists: %s", err)
+	}
+
+	log.Server.Info("database", "New database connection created; using '%s'", databaseType)
+
+	return NewDatabase(dbMap), nil
 }
 
 func getDatabaseDialect(databaseType string) (gorp.Dialect, error) {
-    switch databaseType {
-    case "mysql":
-        return gorp.MySQLDialect{"InnoDB", "UTF-8"}, nil
-    case "postgres":
-        return gorp.PostgresDialect{}, nil
-    case "sqlite3":
-        return gorp.SqliteDialect{}, nil
-    }
+	switch databaseType {
+	case "mysql":
+		return gorp.MySQLDialect{"InnoDB", "UTF-8"}, nil
+	case "postgres":
+		return gorp.PostgresDialect{}, nil
+	case "sqlite3":
+		return gorp.SqliteDialect{}, nil
+	}
 
-    return nil, fmt.Errorf("couldn't find matching dialect")
+	return nil, fmt.Errorf("couldn't find matching dialect")
 }

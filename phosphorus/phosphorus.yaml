@@ -1,7 +1,9 @@
 server:
     tcpListen: 0.0.0.0:10300
     udpListen: 0.0.0.0:10400
+    playerLimit: 2048
     ruleset: rvr
+    autocreateAccounts: true
 database:
     type: sqlite3
     dsn: ./phosphorus.db

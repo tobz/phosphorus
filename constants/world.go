@@ -1,5 +1,5 @@
 package constants
 
 const (
-    DefaultOctreeDepth = 6
+	DefaultOctreeDepth = 6
 )

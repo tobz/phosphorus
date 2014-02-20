@@ -18,3 +18,7 @@ func NewRvRRuleset(s interfaces.Server) (interfaces.Ruleset, error) {
 func (rs *RvRRuleset) ColorHandling() constants.ColorHandling {
 	return constants.ColorHandlingRvR
 }
+
+func (rs *RvRRuleset) CanChooseAnyRealm(c interfaces.Client) bool {
+	return false
+}

@@ -3,16 +3,17 @@ package server
 import (
 	"net"
 
+	"github.com/tobz/phosphorus/database"
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/rulesets"
 	"github.com/tobz/phosphorus/utils"
-    "github.com/tobz/phosphorus/database"
+	"github.com/tobz/phosphorus/world"
 )
 
 type Server struct {
-	config *Config
-    database interfaces.Database
+	config   *Config
+	database interfaces.Database
 
 	tcpListener *net.TCPListener
 	udpListener *net.UDPConn
@@ -24,6 +25,7 @@ type Server struct {
 	stop       chan struct{}
 
 	ruleset interfaces.Ruleset
+	world   interfaces.World
 }
 
 func NewServer(config *Config) *Server {
@@ -43,23 +45,23 @@ func (s *Server) Start() error {
 
 	// This is where managers and all that shit will be instanciated.
 
-    // Get our database connection poppin'.
-    databaseType, err := s.config.GetAsString("database/type")
-    if err != nil {
-        return err
-    }
+	// Get our database connection poppin'.
+	databaseType, err := s.config.GetAsString("database/type")
+	if err != nil {
+		return err
+	}
 
-    databaseDsn, err := s.config.GetAsString("database/dsn")
-    if err != nil {
-        return err
-    }
+	databaseDsn, err := s.config.GetAsString("database/dsn")
+	if err != nil {
+		return err
+	}
 
-    database, err := database.NewDatabaseConnection(databaseType, databaseDsn)
-    if err != nil {
-        return err
-    }
+	database, err := database.NewDatabaseConnection(databaseType, databaseDsn)
+	if err != nil {
+		return err
+	}
 
-    s.database = database
+	s.database = database
 
 	// Load the ruleset we should be using.
 	rulesetName, err := s.config.GetAsString("server/ruleset")
@@ -75,6 +77,19 @@ func (s *Server) Start() error {
 	s.ruleset = ruleset
 
 	log.Server.Info("server", "Ruleset configured for '%s'", rulesetName)
+
+	// Load our world manager.
+	world, err := world.NewWorldMgr(s.config)
+	if err != nil {
+		return err
+	}
+
+	err = world.Start()
+	if err != nil {
+		return err
+	}
+
+	s.world = world
 
 	// Now start listening.
 	tcpListenAddr, err := s.config.GetAsString("server/tcpListen")
@@ -128,12 +143,12 @@ func (s *Server) Start() error {
 				return
 			case c := <-s.register:
 				log.Server.Info("server", "Accepting new connection from client %s", c.connection.RemoteAddr().String())
-				s.clients[c.ConnectionId()] = c
+				s.clients[c.ConnectionID()] = c
 
 				c.Start()
 			case c := <-s.unregister:
 				log.Server.Info("server", "Closing connection for client %s", c.connection.RemoteAddr().String())
-				delete(s.clients, c.ConnectionId())
+				delete(s.clients, c.ConnectionID())
 			}
 		}
 	}()
@@ -206,7 +221,11 @@ func (s *Server) Ruleset() interfaces.Ruleset {
 }
 
 func (s *Server) Database() interfaces.Database {
-    return s.database
+	return s.database
+}
+
+func (s *Server) World() interfaces.World {
+	return s.world
 }
 
 func (s *Server) ShortName() string {

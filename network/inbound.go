@@ -30,16 +30,16 @@ func (p *InboundPacket) readHeader() {
 	// Skip the length field because we don't care.
 	p.Skip(2)
 
-	sequence, _ := p.ReadBEUint16()
+	sequence, _ := p.ReadUInt16()
 	p.Sequence = sequence
 
-	sessionId, _ := p.ReadBEUint16()
+	sessionId, _ := p.ReadUInt16()
 	p.SessionID = sessionId
 
-	parameter, _ := p.ReadBEUint16()
+	parameter, _ := p.ReadUInt16()
 	p.Parameter = parameter
 
-	code, _ := p.ReadBEUint16()
+	code, _ := p.ReadUInt16()
 	p.code = constants.PacketCode(code)
 }
 
@@ -55,7 +55,7 @@ func (p *InboundPacket) Len() int {
 	return p.bufPos
 }
 
-func (p *InboundPacket) ReadUint8() (uint8, error) {
+func (p *InboundPacket) ReadUInt8() (uint8, error) {
 	var val uint8
 
 	if p.canReadFurther(1) {
@@ -69,7 +69,7 @@ func (p *InboundPacket) ReadUint8() (uint8, error) {
 	return 0, fmt.Errorf("unable to read uint8 from buffer")
 }
 
-func (p *InboundPacket) ReadUint16() (uint16, error) {
+func (p *InboundPacket) ReadHUInt16() (uint16, error) {
 	var val uint16
 
 	if p.canReadFurther(2) {
@@ -84,7 +84,7 @@ func (p *InboundPacket) ReadUint16() (uint16, error) {
 	return 0, fmt.Errorf("unable to read uint16 from buffer")
 }
 
-func (p *InboundPacket) ReadUint32() (uint32, error) {
+func (p *InboundPacket) ReadHUInt32() (uint32, error) {
 	var val uint32
 
 	if p.canReadFurther(4) {
@@ -101,7 +101,7 @@ func (p *InboundPacket) ReadUint32() (uint32, error) {
 	return 0, fmt.Errorf("unable to read uint32 from buffer")
 }
 
-func (p *InboundPacket) ReadUint64() (uint64, error) {
+func (p *InboundPacket) ReadHUInt64() (uint64, error) {
 	var val uint64
 
 	if p.canReadFurther(8) {
@@ -136,7 +136,7 @@ func (p *InboundPacket) ReadInt8() (int8, error) {
 	return 0, fmt.Errorf("unable to read int8 from buffer")
 }
 
-func (p *InboundPacket) ReadInt16() (int16, error) {
+func (p *InboundPacket) ReadHInt16() (int16, error) {
 	var val int16
 
 	if p.canReadFurther(2) {
@@ -151,7 +151,7 @@ func (p *InboundPacket) ReadInt16() (int16, error) {
 	return 0, fmt.Errorf("unable to read int16 from buffer")
 }
 
-func (p *InboundPacket) ReadInt32() (int32, error) {
+func (p *InboundPacket) ReadHInt32() (int32, error) {
 	var val int32
 
 	if p.canReadFurther(4) {
@@ -168,7 +168,7 @@ func (p *InboundPacket) ReadInt32() (int32, error) {
 	return 0, fmt.Errorf("unable to read int32 from buffer")
 }
 
-func (p *InboundPacket) ReadInt64() (int64, error) {
+func (p *InboundPacket) ReadHInt64() (int64, error) {
 	var val int64
 
 	if p.canReadFurther(8) {
@@ -189,7 +189,7 @@ func (p *InboundPacket) ReadInt64() (int64, error) {
 	return 0, fmt.Errorf("unable to read int64 from buffer")
 }
 
-func (p *InboundPacket) ReadBEUint16() (uint16, error) {
+func (p *InboundPacket) ReadUInt16() (uint16, error) {
 	var val uint16
 
 	if p.canReadFurther(2) {
@@ -204,7 +204,7 @@ func (p *InboundPacket) ReadBEUint16() (uint16, error) {
 	return 0, fmt.Errorf("unable to read network-order uint16 from buffer")
 }
 
-func (p *InboundPacket) ReadBEUint32() (uint32, error) {
+func (p *InboundPacket) ReadUInt32() (uint32, error) {
 	var val uint32
 
 	if p.canReadFurther(4) {
@@ -221,7 +221,7 @@ func (p *InboundPacket) ReadBEUint32() (uint32, error) {
 	return 0, fmt.Errorf("unable to read network-order uint32 from buffer")
 }
 
-func (p *InboundPacket) ReadBEUint64() (uint64, error) {
+func (p *InboundPacket) ReadUInt64() (uint64, error) {
 	var val uint64
 
 	if p.canReadFurther(8) {
@@ -242,7 +242,7 @@ func (p *InboundPacket) ReadBEUint64() (uint64, error) {
 	return 0, fmt.Errorf("unable to read network-order uint64 from buffer")
 }
 
-func (p *InboundPacket) ReadBEInt16() (int16, error) {
+func (p *InboundPacket) ReadInt16() (int16, error) {
 	var val int16
 
 	if p.canReadFurther(2) {
@@ -257,7 +257,7 @@ func (p *InboundPacket) ReadBEInt16() (int16, error) {
 	return 0, fmt.Errorf("unable to read network-order int16 from buffer")
 }
 
-func (p *InboundPacket) ReadBEInt32() (int32, error) {
+func (p *InboundPacket) ReadInt32() (int32, error) {
 	var val int32
 
 	if p.canReadFurther(4) {
@@ -274,7 +274,7 @@ func (p *InboundPacket) ReadBEInt32() (int32, error) {
 	return 0, fmt.Errorf("unable to read network-order int32 from buffer")
 }
 
-func (p *InboundPacket) ReadBEInt64() (int64, error) {
+func (p *InboundPacket) ReadInt64() (int64, error) {
 	var val int64
 
 	if p.canReadFurther(8) {
@@ -325,7 +325,7 @@ func (p *InboundPacket) ReadLengthPrefixedString() (string, error) {
 		return "", fmt.Errorf("unable to read length-prefixed string from buffer: can't read length")
 	}
 
-	n, err := p.ReadUint8()
+	n, err := p.ReadUInt8()
 	if err != nil {
 		return "", err
 	}

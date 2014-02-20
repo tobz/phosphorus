@@ -18,59 +18,55 @@ func NewOutboundPacket(typ constants.PacketType, code constants.PacketCode) *Out
 	return p
 }
 
-func (p *OutboundPacket) WriteUint8(val uint8) {
+func (p *OutboundPacket) WriteUInt8(val uint8) {
 	binary.Write(p.buf, binary.LittleEndian, val)
 }
 
-func (p *OutboundPacket) WriteUint16(val uint16) {
+func (p *OutboundPacket) WriteHUInt16(val uint16) {
 	binary.Write(p.buf, binary.LittleEndian, val)
 }
 
-func (p *OutboundPacket) WriteUint32(val uint32) {
+func (p *OutboundPacket) WriteHUInt32(val uint32) {
 	binary.Write(p.buf, binary.LittleEndian, val)
 }
 
-func (p *OutboundPacket) WriteUint64(val uint64) {
+func (p *OutboundPacket) WriteHUInt64(val uint64) {
 	binary.Write(p.buf, binary.LittleEndian, val)
 }
 
-func (p *OutboundPacket) WriteInt8(val int8) {
+func (p *OutboundPacket) WriteHInt16(val int16) {
 	binary.Write(p.buf, binary.LittleEndian, val)
+}
+
+func (p *OutboundPacket) WriteHInt32(val int32) {
+	binary.Write(p.buf, binary.LittleEndian, val)
+}
+
+func (p *OutboundPacket) WriteHInt64(val int64) {
+	binary.Write(p.buf, binary.LittleEndian, val)
+}
+
+func (p *OutboundPacket) WriteUInt16(val uint16) {
+	binary.Write(p.buf, binary.BigEndian, val)
+}
+
+func (p *OutboundPacket) WriteUInt32(val uint32) {
+	binary.Write(p.buf, binary.BigEndian, val)
+}
+
+func (p *OutboundPacket) WriteUInt64(val uint64) {
+	binary.Write(p.buf, binary.BigEndian, val)
 }
 
 func (p *OutboundPacket) WriteInt16(val int16) {
-	binary.Write(p.buf, binary.LittleEndian, val)
+	binary.Write(p.buf, binary.BigEndian, val)
 }
 
 func (p *OutboundPacket) WriteInt32(val int32) {
-	binary.Write(p.buf, binary.LittleEndian, val)
+	binary.Write(p.buf, binary.BigEndian, val)
 }
 
 func (p *OutboundPacket) WriteInt64(val int64) {
-	binary.Write(p.buf, binary.LittleEndian, val)
-}
-
-func (p *OutboundPacket) WriteBEUint16(val uint16) {
-	binary.Write(p.buf, binary.BigEndian, val)
-}
-
-func (p *OutboundPacket) WriteBEUint32(val uint32) {
-	binary.Write(p.buf, binary.BigEndian, val)
-}
-
-func (p *OutboundPacket) WriteBEUint64(val uint64) {
-	binary.Write(p.buf, binary.BigEndian, val)
-}
-
-func (p *OutboundPacket) WriteBEInt16(val int16) {
-	binary.Write(p.buf, binary.BigEndian, val)
-}
-
-func (p *OutboundPacket) WriteBEInt32(val int32) {
-	binary.Write(p.buf, binary.BigEndian, val)
-}
-
-func (p *OutboundPacket) WriteBEInt64(val int64) {
 	binary.Write(p.buf, binary.BigEndian, val)
 }
 
@@ -96,7 +92,7 @@ func (p *OutboundPacket) WriteLengthPrefixedString(val string) {
 		strLen = 255
 	}
 
-	p.WriteUint8(uint8(strLen))
+	p.WriteUInt8(uint8(strLen))
 	p.buf.Write(strBytes[0:strLen])
 }
 

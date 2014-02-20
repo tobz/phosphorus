@@ -3,17 +3,17 @@ package interfaces
 import "time"
 
 type Account interface {
-    SetUsername(string)
-    Username() string
+	SetUsername(string)
+	Username() string
 
-    SetPassword(string) error
+	SetPassword(string) error
 
-    SetEmail(string)
-    Email() string
+	SetEmail(string)
+	Email() string
 
-    SetLastLogin(time.Time)
-    LastLogin() time.Time
+	SetLastLogin(time.Time)
+	LastLogin() time.Time
 
-    SetCreated(time.Time)
-    Created() time.Time
+	SetCreated(time.Time)
+	Created() time.Time
 }

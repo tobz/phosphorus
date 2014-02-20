@@ -87,10 +87,10 @@ func BenchmarkGetObjectsInRadiusNoObjectsBig(b *testing.B) {
 func BenchmarkGetObjectsInRadiusSmall(b *testing.B) {
 	tree := NewOctree(0.0, 0.0, 65536.0, 65536.0, 8192.0)
 
-    // Seed our tree with 10000 objects.
-    for j := 0; j < 10000; j++ {
-        tree.AddObject(&TestObject{getRandomPoint(65536.0, 65536.0, 8192.0), uint32(j)})
-    }
+	// Seed our tree with 10000 objects.
+	for j := 0; j < 10000; j++ {
+		tree.AddObject(&TestObject{getRandomPoint(65536.0, 65536.0, 8192.0), uint32(j)})
+	}
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -101,10 +101,10 @@ func BenchmarkGetObjectsInRadiusSmall(b *testing.B) {
 func BenchmarkGetObjectsInRadiusBig(b *testing.B) {
 	tree := NewOctree(0.0, 0.0, 65536.0, 65536.0, 8192.0)
 
-    // Seed our tree with 10000 objects.
-    for j := 0; j < 10000; j++ {
-        tree.AddObject(&TestObject{getRandomPoint(65536.0, 65536.0, 8192.0), uint32(j)})
-    }
+	// Seed our tree with 10000 objects.
+	for j := 0; j < 10000; j++ {
+		tree.AddObject(&TestObject{getRandomPoint(65536.0, 65536.0, 8192.0), uint32(j)})
+	}
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -112,11 +112,10 @@ func BenchmarkGetObjectsInRadiusBig(b *testing.B) {
 	}
 }
 
-
 func getRandomPoint(maxHeight, maxWidth, maxDepth float64) utils.Point3D {
-    randHeight := rand.Float64() * maxHeight
-    randWidth := rand.Float64() * maxWidth
-    randDepth := rand.Float64() * maxDepth
+	randHeight := rand.Float64() * maxHeight
+	randWidth := rand.Float64() * maxWidth
+	randDepth := rand.Float64() * maxDepth
 
-    return utils.Point3D{randHeight, randWidth, randDepth}
+	return utils.Point3D{randHeight, randWidth, randDepth}
 }

@@ -17,48 +17,90 @@ func NewPacketReader(conn io.Reader) *PacketReader {
 }
 
 func (r *PacketReader) Next() (*InboundPacket, error) {
-	// do a read to see if we have anything
+	// See if we have any packets in our left over buffer.
+	bufferedPacket, err := r.getPacketFromBuffer()
+	if bufferedPacket != nil || err != nil {
+		return bufferedPacket, err
+	}
+
+	// We've cleared through any buffered packets, so do a network read to get everything off the wire.
 	n, err := r.conn.Read(r.readBuf[r.readOff:])
 	if err != nil {
 		return nil, err
 	}
 
-	// if we didn't get anything, then we won't be able to get a packet out
+	// If we didn't get anything, then we won't be able to get a packet out.
 	if n == 0 {
 		return nil, nil
 	}
 
-	// we need atleast InboundPacketHeaderSize bytes to even have a valid empty packet
-	bufSize := r.readOff + n
-	if bufSize < constants.InboundPacketHeaderSize {
-		// increment our offset and dip out
-		r.readOff += n
+	// Increment our read offset based on what we received.
+	r.readOff += n
+
+	// See if we can get a packet out yet.
+	return r.getPacketFromBuffer()
+}
+
+func (r *PacketReader) getPacketFromBuffer() (*InboundPacket, error) {
+	// Make sure we have a packet in the buffer to read.
+	if !r.hasBufferedPacket() {
 		return nil, nil
 	}
 
-	// figure out how long are packet is.  packet length is always length of payload, so we have to
-	// add in the header size here to properly grab it all.
-	packetLength := ((int(r.readBuf[0]) << 8) | int(r.readBuf[1])) + constants.InboundPacketHeaderSize
+	// Looks like we have a packet: make sure the packet checksums match.
+	err := r.ensurePacketChecksum()
+	if err != nil {
+		return nil, err
+	}
 
-	// make sure the packet's checksum is on point.
+	// Create the packet, keeping in mind to not copy in the checksum.  No need for it now.
+	packetLength := r.getPacketLengthFromBuffer()
+	packet := NewInboundPacket(r.readBuf[:packetLength-2], constants.PacketTCP)
+
+	// If we pulled out a packet and there's left over data, we need to shift it to the front so the next call
+	// will read it out immediately.  Otherwise, we're done here, so put the read offset back to zero to start
+	// reading into our buffer from the front.
+	if r.readOff > packetLength {
+		remaining := (r.readOff - packetLength)
+		copy(r.readBuf, r.readBuf[packetLength:])
+		r.readOff = remaining
+	} else {
+		r.readOff = 0
+	}
+
+	return packet, nil
+}
+
+func (r *PacketReader) hasBufferedPacket() bool {
+	// See if we have enough bytes in our buffer for a packet at all.
+	if r.readOff < constants.InboundPacketHeaderSize {
+		return false
+	}
+
+	// See if we have enough bytes for the packet in our buffer based on the header.  Packet length is minus the
+	// packet header size, which is why we add it back in.
+	packetLength := r.getPacketLengthFromBuffer()
+	if r.readOff < packetLength {
+		return false
+	}
+
+	return true
+}
+
+func (r *PacketReader) getPacketLengthFromBuffer() int {
+	return ((int(r.readBuf[0]) << 8) | int(r.readBuf[1])) + constants.InboundPacketHeaderSize
+}
+
+func (r *PacketReader) ensurePacketChecksum() error {
+	packetLength := r.getPacketLengthFromBuffer()
+
 	calculatedChecksum := utils.CalculatePacketChecksum(r.readBuf, 0, packetLength-2)
 	providedChecksum := uint16(r.readBuf[packetLength-2])<<8 | uint16(r.readBuf[packetLength-1])
 	if providedChecksum != calculatedChecksum {
-		return nil, fmt.Errorf("bad packet checksum: got %X, calculated %X", providedChecksum, calculatedChecksum)
+		return fmt.Errorf("Bad packet checksum: got 0x%X, calculated 0x%X", providedChecksum, calculatedChecksum)
 	}
 
-	// create the packet, skipping the checksum at the end
-	packet := NewInboundPacket(r.readBuf[:packetLength-2], constants.PacketTCP)
-
-	// shift any remaining data to the beginning of the read buf.
-	if bufSize > packetLength {
-		copy(r.readBuf, r.readBuf[packetLength:])
-	}
-
-	// reset our read buffer to try and red in another packet next time around
-	r.readOff = 0
-
-	return packet, nil
+	return nil
 }
 
 type PacketWriter struct {

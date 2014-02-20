@@ -16,6 +16,10 @@ func init() {
 
 func HandleBadNameCheckRequest(c interfaces.Client, p *network.InboundPacket) error {
 	name, err := p.ReadBoundedString(30)
+	if err != nil {
+		return err
+	}
+
 	valid := true
 
 	invalidWords, err := c.Server().Config().GetAsManyStrings("server/invalidWords")
@@ -43,9 +47,9 @@ func SendBadNameCheckResponse(c interfaces.Client, name string, isValid bool) er
 
 	p.WriteRepeated(0x00, 20)
 	if isValid {
-		p.WriteUint8(0x01)
+		p.WriteUInt8(0x01)
 	} else {
-		p.WriteUint8(0x00)
+		p.WriteUInt8(0x00)
 	}
 
 	return c.Send(p)

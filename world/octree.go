@@ -197,7 +197,7 @@ func (o *Octree) getObjectsInRadiusImpl(p utils.Point3D, radius float64, objects
 		}
 	}
 
-    return objects
+	return objects
 }
 
 func square(i float64) float64 {

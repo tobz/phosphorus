@@ -1,10 +1,14 @@
 package server
 
 import (
+	"fmt"
 	"io"
 	"net"
+	"runtime/debug"
+	"time"
 
 	"github.com/tobz/phosphorus/constants"
+	"github.com/tobz/phosphorus/database/models"
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/network"
@@ -13,6 +17,7 @@ import (
 
 type Client struct {
 	errors chan error
+	logger *log.Logger
 
 	server     *Server
 	connection *net.TCPConn
@@ -20,14 +25,19 @@ type Client struct {
 	inbound  *network.PacketReader
 	outbound *network.PacketWriter
 
-	clientId     uint16
-	version      constants.ClientVersion
+	sessionId    uint16
 	connectionId uint32
-	account      interfaces.Account
+
+	version constants.ClientVersion
+	state   constants.ClientState
+
+	lastPingTime time.Time
+
+	account *models.Account
 }
 
 func NewClient(server *Server, connection *net.TCPConn, connectionId uint32) *Client {
-	return &Client{
+	c := &Client{
 		server:     server,
 		connection: connection,
 
@@ -36,9 +46,28 @@ func NewClient(server *Server, connection *net.TCPConn, connectionId uint32) *Cl
 
 		connectionId: connectionId,
 	}
+
+	clientLogger := log.NewLogger()
+	clientLogger.SetPrefixer(func(s string) string {
+		var clientPrefix string
+		if c.Account() != nil {
+			clientPrefix = fmt.Sprintf("[%s / %s]", c.connection.RemoteAddr().String(), c.Account().Username)
+		} else {
+			clientPrefix = fmt.Sprintf("[%s]", c.connection.RemoteAddr().String())
+		}
+
+		return fmt.Sprintf("%s %s", clientPrefix, s)
+	})
+
+	c.logger = clientLogger
+
+	return c
 }
 
 func (c *Client) Start() {
+	// Set our client state.
+	c.state = constants.ClientStateConnecting
+
 	// Start handling our network connection.
 	go func() {
 		// Zero tolerance error handling
@@ -46,9 +75,10 @@ func (c *Client) Start() {
 			err := recover()
 			if err != nil {
 				if err == io.EOF {
-					log.Server.ClientInfo(c, "client", "Connection closed from client side.")
+					c.logger.Info("client", "Connection closed from client side.")
 				} else {
-					log.Server.ClientError(c, "client", "Caught an error while in network loop: %s", err)
+					c.logger.Error("client", "Caught an error while in network loop: %s", err)
+					c.logger.Error("client", "Stack trace: %s", debug.Stack())
 				}
 
 				c.Stop()
@@ -90,11 +120,15 @@ func (c *Client) Connection() interfaces.LimitedConnection {
 	return c.connection
 }
 
-func (c *Client) SetAccount(account interfaces.Account) {
+func (c *Client) Logger() interfaces.Logger {
+	return c.logger
+}
+
+func (c *Client) SetAccount(account *models.Account) {
 	c.account = account
 }
 
-func (c *Client) Account() interfaces.Account {
+func (c *Client) Account() *models.Account {
 	return c.account
 }
 
@@ -106,8 +140,32 @@ func (c *Client) ClientVersion() constants.ClientVersion {
 	return c.version
 }
 
-func (c *Client) ConnectionId() uint32 {
+func (c *Client) SetClientState(state constants.ClientState) {
+	c.state = state
+}
+
+func (c *Client) ClientState() constants.ClientState {
+	return c.state
+}
+
+func (c *Client) LastPingTime() time.Time {
+	return c.lastPingTime
+}
+
+func (c *Client) MarkPingTime() {
+	c.lastPingTime = time.Now()
+}
+
+func (c *Client) ConnectionID() uint32 {
 	return c.connectionId
+}
+
+func (c *Client) SetSessionID(id uint16) {
+	c.sessionId = id
+}
+
+func (c *Client) SessionID() uint16 {
+	return c.sessionId
 }
 
 func (c *Client) Server() interfaces.Server {
@@ -120,7 +178,7 @@ func (c *Client) Send(p interfaces.Packet) error {
 		packetType = "UDP"
 	}
 
-	log.Server.ClientDebug(c, "client", "Sending packet %s(0x%X) -> %d bytes", packetType, uint8(p.Code()), p.Len())
+	c.logger.Debug("client", "Sending packet %s(0x%X) -> %d bytes", packetType, uint8(p.Code()), p.Len())
 
 	return c.outbound.Write(p)
 }

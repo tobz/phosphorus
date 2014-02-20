@@ -96,6 +96,18 @@ func (c *Config) GetAsString(spec string) (string, error) {
 	return c.yamlConf.Get(yamlSpec)
 }
 
+func (c *Config) GetAsBoolean(spec string) (bool, error) {
+	yamlSpec := getYamlSpec(spec)
+
+	// Make sure this is a single item.
+	ok := c.assertScalar(yamlSpec)
+	if !ok {
+		return false, fmt.Errorf("scalar requested, but spec points to list or doesn't exist")
+	}
+
+	return c.yamlConf.GetBool(yamlSpec)
+}
+
 func (c *Config) GetAsManyIntegers(spec string) ([]int64, error) {
 	return []int64{}, nil
 }
