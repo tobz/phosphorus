@@ -4,6 +4,9 @@ server:
     playerLimit: 2048
     ruleset: rvr
     autocreateAccounts: true
+world:
+    regions: config/regions.xml
+    zones: config/zones.xml
 database:
     type: sqlite3
     dsn: ./phosphorus.db

@@ -34,7 +34,26 @@ func NewWorldMgr(c interfaces.Config) (*WorldMgr, error) {
 		w.sessionQueue.Push(uint16(i))
 	}
 
+    // Now load in our regions.
+    regionConfig, err := c.GetAsString("world/regions")
+    if err != nil {
+        return nil, fmt.Errorf("couldn't find the location of the region data file!")
+    }
+
+    err = w.loadRegions(regionConfig)
+    if err != nil {
+        return nil, err
+    }
+
 	return w, nil
+}
+
+func (w *WorldMgr) loadRegions(regionConfig string) error {
+    // We'll eventually need to load zones first so we can figure out how big the region should be.
+    _, err := ReadRegions(regionConfig)
+    if err != nil {
+        return nil, err
+    }
 }
 
 func (w *WorldMgr) Start() error {
