@@ -14,7 +14,7 @@ type Octree struct {
 	objects  map[uint32]interfaces.WorldObject
 }
 
-func NewOctree(offsetX, offsetY, height, width, depth float64) *Octree {
+func NewOctree(height, width, depth float64) *Octree {
 	bl := utils.Point3D{0.0, 0.0, 0.0}
 	tr := utils.Point3D{height, width, depth}
 

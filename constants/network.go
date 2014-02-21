@@ -28,6 +28,7 @@ const (
 	ResponseBadNameCheck       PacketCode = 0xC3
 	RequestDuplicateNameCheck  PacketCode = 0xCB
 	ResponseDuplicateNameCheck PacketCode = 0xCC
+    RequestCharacterCreate     PacketCode = 0xFF
 )
 
 const (

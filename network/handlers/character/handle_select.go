@@ -1,4 +1,4 @@
-package characterselect
+package character
 
 import (
 	"github.com/tobz/phosphorus/constants"
