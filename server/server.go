@@ -9,6 +9,7 @@ import (
 	"github.com/tobz/phosphorus/rulesets"
 	"github.com/tobz/phosphorus/utils"
 	"github.com/tobz/phosphorus/world"
+    "github.com/tobz/phosphorus/statistics"
 )
 
 type Server struct {
@@ -44,6 +45,23 @@ func (s *Server) Start() error {
 	log.Server.Info("server", "Starting the server...")
 
 	// This is where managers and all that shit will be instanciated.
+
+    // Set up our statistics if they're configured.
+    statisticsType, err := s.config.GetAsString("statistics/provider")
+    if err != nil {
+        // Just warn the user that statistics won't be running.  It's not a reason to *not* run the server.
+        log.Server.Warn("server", "Statistics configuration missing: server will not record statistics.  Update statistics configuration and restart Phosphorus to enable.")
+    } else {
+        switch statisticsType {
+        case "influxdb":
+            err = statistics.ConfigureInfluxDB(s.config)
+            if err != nil {
+                return err
+            }
+        default:
+            log.Server.Warn("server", "Unknown statistics provider '%s': server will not record statistics.  Update statistics configuration and restart Phosphorus to enable.")
+        }
+    }
 
 	// Get our database connection poppin'.
 	databaseType, err := s.config.GetAsString("database/type")

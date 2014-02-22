@@ -64,7 +64,7 @@ func HandleCharacterCreate(c interfaces.Client, p *network.InboundPacket) error 
 			}
 
 			// Now see if this is an existing character.  Make sure it belongs to us, too.
-			tx, err := c.Server().Database().Begin
+			tx, err := c.Server().Database().Begin()
 			if err != nil {
 				return err
 			}
@@ -90,9 +90,19 @@ func HandleCharacterCreate(c interfaces.Client, p *network.InboundPacket) error 
 
 			// We didn't find another existing character.  Proceed with trying to create the character.  Pull
             // out the realm this character is so we can send the character overview at the end.
-            characterRealm := handleCharacterCreate(c, p, accountName, characterName, slot)
+            characterRealm = handleCharacterCreate(c, p, accountName, characterName, slot)
 		}
 	}
 
 	return SendCharacterOverview(c, characterRealm)
+}
+
+func deleteCharacterIfExists(c interfaces.Client, accountName, characterName string, slot int) {
+}
+
+func handleCharacterCustomization(c interfaces.Client, p *network.InboundPacket, accountName, characterName string, slot int) {
+}
+
+func handleCharacterCreate(c interfaces.Client, p *network.InboundPacket, accountName, characterName string, slot int) constants.ClientRealm {
+    return constants.ClientRealmNone
 }

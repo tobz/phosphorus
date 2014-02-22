@@ -10,6 +10,13 @@ world:
 database:
     type: sqlite3
     dsn: ./phosphorus.db
+statistics:
+    provider: influxdb
+    host: localhost:8086
+    username: phosphorus
+    password: phosphorus
+    database: phosphorus
+    flushRate: 5e9
 misc:
     invalidWords:
         - fuck

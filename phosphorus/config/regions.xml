@@ -4,14 +4,14 @@
 		<description>Albion</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>1</id>
+		<regionID>1</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Albion Housing</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>2</id>
+		<regionID>2</regionID>
 		<expansion>0</expansion>
 		<isHousingEnabled>True</isHousingEnabled>
 	</region>
@@ -19,49 +19,49 @@
 		<description>Camelot City</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>10</id>
+		<regionID>10</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Stonehenge Barrows</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>20</id>
+		<regionID>20</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Tomb of Mithra</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>21</id>
+		<regionID>21</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Keltoi Fogou</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>22</id>
+		<regionID>22</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Catacombs of Cardova</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>23</id>
+		<regionID>23</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Tepok's Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>24</id>
+		<regionID>24</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Tutorial</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>27</id>
+		<regionID>27</regionID>
 		<expansion>0</expansion>
 		<tutorial>True</tutorial>
 	</region>
@@ -69,63 +69,63 @@
 		<description>Atlantis</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>7970</waterLevel>
-		<regionID>30</id>
+		<regionID>30</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Cetus' Pit</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>18960</waterLevel>
-		<regionID>35</id>
+		<regionID>35</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Sobekite Eternal</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>15314</waterLevel>
-		<regionID>36</id>
+		<regionID>36</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Temple of Twilight</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>17669</waterLevel>
-		<regionID>37</id>
+		<regionID>37</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Halls of Ma'ati</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>40</id>
+		<regionID>40</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>The Great Pyramid</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>45</id>
+		<regionID>45</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Deep Volcanus</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>46</id>
+		<regionID>46</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Aerus City</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>47</id>
+		<regionID>47</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>The Unused Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>48</id>
+		<regionID>48</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -133,7 +133,7 @@
 		<description>Rugnog's Haven</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>49</id>
+		<regionID>49</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -141,252 +141,252 @@
 		<description>Avalon City</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>50</id>
+		<regionID>50</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Avalon</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>51</id>
+		<regionID>51</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Underground Forest</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>58</id>
+		<regionID>58</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Glashtin Forge</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>59</id>
+		<regionID>59</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Caer Sidi</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>60</id>
+		<regionID>60</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Krondon</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>61</id>
+		<regionID>61</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Crystal Cave</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>62</id>
+		<regionID>62</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Roman Aqueducts</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>63</id>
+		<regionID>63</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Inconnu Crypt</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>65</id>
+		<regionID>65</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Underground Forest</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>66</id>
+		<regionID>66</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Deadlands of Annwn</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>67</id>
+		<regionID>67</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Lower Crypt</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>68</id>
+		<regionID>68</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Darkspire</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>69</id>
+		<regionID>69</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Ruins of Atlantis</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>5804</waterLevel>
-		<regionID>70</id>
+		<regionID>70</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Ruinrar Atlantis</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>5804</waterLevel>
-		<regionID>71</id>
+		<regionID>71</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Scrios de Atlantis</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>5804</waterLevel>
-		<regionID>72</id>
+		<regionID>72</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Atlantis</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>7970</waterLevel>
-		<regionID>73</id>
+		<regionID>73</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Cetus' Pit</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>18960</waterLevel>
-		<regionID>78</id>
+		<regionID>78</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Sobekite Eternal</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>15314</waterLevel>
-		<regionID>79</id>
+		<regionID>79</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Temple of Twilight</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>17669</waterLevel>
-		<regionID>80</id>
+		<regionID>80</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Halls of Ma'ati</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>83</id>
+		<regionID>83</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>The Great Pyramid</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>88</id>
+		<regionID>88</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Deep Volcanus</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>89</id>
+		<regionID>89</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Aerus City</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>90</id>
+		<regionID>90</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Celestius</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>91</id>
+		<regionID>91</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Veil Rift</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>92</id>
+		<regionID>92</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Shar Labyrinth</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>93</id>
+		<regionID>93</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Queen's Labyrinth</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>94</id>
+		<regionID>94</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>The Frontlines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>95</id>
+		<regionID>95</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Underground Forest</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>96</id>
+		<regionID>96</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Deadlands of Annwn</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>97</id>
+		<regionID>97</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Darkspire</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>98</id>
+		<regionID>98</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Glashtin Forge</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>99</id>
+		<regionID>99</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Midgard</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>100</id>
+		<regionID>100</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Jordheim</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>101</id>
+		<regionID>101</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Midgard Housing</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>102</id>
+		<regionID>102</regionID>
 		<expansion>0</expansion>
 		<isHousingEnabled>True</isHousingEnabled>
 	</region>
@@ -394,168 +394,168 @@
 		<description>The Frontlines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>109</id>
+		<regionID>109</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Volcanus Instance 1</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>123</id>
+		<regionID>123</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Volcanus Instance 2</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>124</id>
+		<regionID>124</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Spindelhalla</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>125</id>
+		<regionID>125</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Vendo Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>126</id>
+		<regionID>126</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Varulvhamn</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>127</id>
+		<regionID>127</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Cursed Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>128</id>
+		<regionID>128</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Nisse's Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>129</id>
+		<regionID>129</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Atlantis</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>7970</waterLevel>
-		<regionID>130</id>
+		<regionID>130</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Cetus' Pit</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>18960</waterLevel>
-		<regionID>135</id>
+		<regionID>135</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Sobekite Eternal</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>15314</waterLevel>
-		<regionID>136</id>
+		<regionID>136</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Temple of Twilight</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>17669</waterLevel>
-		<regionID>137</id>
+		<regionID>137</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Halls of Ma'ati</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>140</id>
+		<regionID>140</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>The Great Pyramid</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>145</id>
+		<regionID>145</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Deep Volcanus</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>146</id>
+		<regionID>146</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Aerus City</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>147</id>
+		<regionID>147</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>The Frontlines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>148</id>
+		<regionID>148</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Nyttheim</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>149</id>
+		<regionID>149</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Trollheim</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>150</id>
+		<regionID>150</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Aegir</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>151</id>
+		<regionID>151</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Tuscaran Glacier</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>160</id>
+		<regionID>160</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Iarnvidiur's Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>161</id>
+		<regionID>161</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Deadlands of Annwn</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>162</id>
+		<regionID>162</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>New Frontiers</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>7879</waterLevel>
-		<regionID>163</id>
+		<regionID>163</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
@@ -564,49 +564,49 @@
 		<!--<isDivingEnabled>True</isDivingEnabled>-->
 		<!--<waterLevel>4323</waterLevel>-->
 		<waterLevel>0</waterLevel>
-		<regionID>165</id>
+		<regionID>165</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Fomor City</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>180</id>
+		<regionID>180</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>HyBrasil</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>181</id>
+		<regionID>181</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Darkspire</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>188</id>
+		<regionID>188</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Glashtin Forge</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>189</id>
+		<regionID>189</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Tur Suil</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>190</id>
+		<regionID>190</regionID>
 		<expansion>1</expansion>
 	</region>
 	<region>
 		<description>Galladoria</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>191</id>
+		<regionID>191</regionID>
 		<expansion>1</expansion>
 	</region>
 	<!-- MIG -->
@@ -614,7 +614,7 @@
 		<description>Le Sanctuaire Du Haut Consule</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>192</id>
+		<regionID>192</regionID>
 		<expansion>1</expansion>
 		<instance>True</instance>
 	</region>
@@ -622,7 +622,7 @@
 		<description>Le Sanctuaire Du Haut Consule</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>193</id>
+		<regionID>193</regionID>
 		<expansion>1</expansion>
 		<instance>True</instance>
 	</region>
@@ -630,7 +630,7 @@
 		<description>Le Sanctuaire Du Haut Consule</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>194</id>
+		<regionID>194</regionID>
 		<expansion>1</expansion>
 		<instance>True</instance>
 	</region>
@@ -639,56 +639,56 @@
 		<description>The Otherworld</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>195</id>
+		<regionID>195</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>The Otherworld</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>196</id>
+		<regionID>196</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>The Otherworld</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>197</id>
+		<regionID>197</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Volcanus Instance 3</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>198</id>
+		<regionID>198</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Volcanus Instance 4</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>199</id>
+		<regionID>199</regionID>
 		<expansion>2</expansion>
 	</region>
 	<region>
 		<description>Hibernia</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>200</id>
+		<regionID>200</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Tir na Nog</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>201</id>
+		<regionID>201</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Hibernia Housing</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>202</id>
+		<regionID>202</regionID>
 		<expansion>0</expansion>
 		<isHousingEnabled>True</isHousingEnabled>
 	</region>
@@ -696,196 +696,196 @@
 		<description>Coruscating Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>220</id>
+		<regionID>220</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Muire Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>221</id>
+		<regionID>221</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Spraggon Den</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>222</id>
+		<regionID>222</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Koalinth Tribal Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>223</id>
+		<regionID>223</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Treibh Caillte</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>224</id>
+		<regionID>224</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Abandoned Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>226</id>
+		<regionID>226</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Abandoned Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>227</id>
+		<regionID>227</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Abandoned Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>228</id>
+		<regionID>228</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Burial Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>229</id>
+		<regionID>229</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description></description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>230</id>
+		<regionID>230</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Art Test Zone</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>231</id>
+		<regionID>231</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>- Art Test Dungeon</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>232</id>
+		<regionID>232</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Summoner's Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>233</id>
+		<regionID>233</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>The Proving Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>234</id>
+		<regionID>234</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>The Lion's Den</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>235</id>
+		<regionID>235</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>The Hills of Claret</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>236</id>
+		<regionID>236</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Killaloe</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>237</id>
+		<regionID>237</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Thidranki</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>3760</waterLevel>
-		<regionID>238</id>
+		<regionID>238</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Braemar</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>239</id>
+		<regionID>239</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Wilton</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>240</id>
+		<regionID>240</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Molvik</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>241</id>
+		<regionID>241</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Leirvik</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>242</id>
+		<regionID>242</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Kobold Undercity</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>243</id>
+		<regionID>243</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Passage of Conflict</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>244</id>
+		<regionID>244</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Labyrinth</description>
 		<isDivingEnabled>True</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>245</id>
+		<regionID>245</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description></description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>247</id>
+		<regionID>247</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Darkness Falls</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>249</id>
+		<regionID>249</regionID>
 		<expansion>0</expansion>
 	</region>
 	<region>
 		<description>Forgotten Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>256</id>
+		<regionID>256</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -893,7 +893,7 @@
 		<description>Forgotten Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>257</id>
+		<regionID>257</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -901,7 +901,7 @@
 		<description>Forgotten Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>258</id>
+		<regionID>258</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -909,7 +909,7 @@
 		<description>Damp Cavern</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>278</id>
+		<regionID>278</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -917,7 +917,7 @@
 		<description>Damp Cavern</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>279</id>
+		<regionID>279</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -925,7 +925,7 @@
 		<description>Damp Cavern</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>280</id>
+		<regionID>280</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -933,7 +933,7 @@
 		<description>Forgotten Sepulchre</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>281</id>
+		<regionID>281</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -941,7 +941,7 @@
 		<description>Forgotten Sepulchre</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>282</id>
+		<regionID>282</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -949,7 +949,7 @@
 		<description>Forgotten Sepulchre</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>283</id>
+		<regionID>283</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -957,7 +957,7 @@
 		<description>The Concealed Guardhouse</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>284</id>
+		<regionID>284</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -965,7 +965,7 @@
 		<description>The Concealed Guardhouse</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>285</id>
+		<regionID>285</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -973,7 +973,7 @@
 		<description>The Concealed Guardhouse</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>286</id>
+		<regionID>286</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -981,7 +981,7 @@
 		<description>The Gossamer Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>287</id>
+		<regionID>287</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -989,7 +989,7 @@
 		<description>The Gossamer Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>288</id>
+		<regionID>288</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -997,7 +997,7 @@
 		<description>The Gossamer Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>289</id>
+		<regionID>289</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1005,7 +1005,7 @@
 		<description>Underground Tunnel</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>290</id>
+		<regionID>290</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1013,7 +1013,7 @@
 		<description>Underground Tunnel</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>291</id>
+		<regionID>291</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1021,7 +1021,7 @@
 		<description>Underground Tunnel</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>292</id>
+		<regionID>292</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1029,7 +1029,7 @@
 		<description>Burial Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>293</id>
+		<regionID>293</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1037,7 +1037,7 @@
 		<description>Burial Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>294</id>
+		<regionID>294</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1045,7 +1045,7 @@
 		<description>Burial Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>295</id>
+		<regionID>295</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1053,7 +1053,7 @@
 		<description>Desecrated Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>296</id>
+		<regionID>296</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1061,7 +1061,7 @@
 		<description>Desecrated Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>297</id>
+		<regionID>297</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1069,7 +1069,7 @@
 		<description>Desecrated Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>298</id>
+		<regionID>298</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1077,7 +1077,7 @@
 		<description>Damp Cavern</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>300</id>
+		<regionID>300</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1085,7 +1085,7 @@
 		<description>Damp Cavern</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>301</id>
+		<regionID>301</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1093,7 +1093,7 @@
 		<description>Damp Cavern</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>302</id>
+		<regionID>302</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1101,7 +1101,7 @@
 		<description>Damp Cavern</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>303</id>
+		<regionID>303</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1109,7 +1109,7 @@
 		<description>Damp Cavern</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>304</id>
+		<regionID>304</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1117,7 +1117,7 @@
 		<description>Forgotten Sepulchre</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>305</id>
+		<regionID>305</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1125,7 +1125,7 @@
 		<description>Forgotten Sepulchre</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>306</id>
+		<regionID>306</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1133,7 +1133,7 @@
 		<description>Forgotten Sepulchre</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>307</id>
+		<regionID>307</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1141,7 +1141,7 @@
 		<description>Forgotten Sepulchre</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>308</id>
+		<regionID>308</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1149,7 +1149,7 @@
 		<description>Forgotten Sepulchre</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>309</id>
+		<regionID>309</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1157,7 +1157,7 @@
 		<description>The Concealed Guardhouse</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>310</id>
+		<regionID>310</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1165,7 +1165,7 @@
 		<description>The Concealed Guardhouse</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>311</id>
+		<regionID>311</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1173,7 +1173,7 @@
 		<description>The Concealed Guardhouse</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>312</id>
+		<regionID>312</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1181,7 +1181,7 @@
 		<description>The Concealed Guardhouse</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>313</id>
+		<regionID>313</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1189,7 +1189,7 @@
 		<description>The Concealed Guardhouse</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>314</id>
+		<regionID>314</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1197,7 +1197,7 @@
 		<description>The Gossamer Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>315</id>
+		<regionID>315</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1205,7 +1205,7 @@
 		<description>The Gossamer Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>316</id>
+		<regionID>316</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1213,7 +1213,7 @@
 		<description>The Gossamer Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>317</id>
+		<regionID>317</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1221,7 +1221,7 @@
 		<description>The Gossamer Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>318</id>
+		<regionID>318</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1229,7 +1229,7 @@
 		<description>The Gossamer Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>319</id>
+		<regionID>319</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1237,7 +1237,7 @@
 		<description>Underground Tunnel</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>320</id>
+		<regionID>320</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1245,7 +1245,7 @@
 		<description>Underground Tunnel</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>321</id>
+		<regionID>321</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1253,7 +1253,7 @@
 		<description>Underground Tunnel</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>322</id>
+		<regionID>322</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1261,7 +1261,7 @@
 		<description>Underground Tunnel</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>323</id>
+		<regionID>323</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1269,7 +1269,7 @@
 		<description>Underground Tunnel</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>324</id>
+		<regionID>324</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1277,7 +1277,7 @@
 		<description>The Forgotten Tunnels</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>325</id>
+		<regionID>325</regionID>
 		<expansion>0</expansion>
 		<instance>True</instance>
 	</region>
@@ -1285,7 +1285,7 @@
 		<description>The Hidden Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>326</id>
+		<regionID>326</regionID>
 		<expansion>0</expansion>
 		<instance>True</instance>
 	</region>
@@ -1293,7 +1293,7 @@
 		<description>Caverns of Madness</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>327</id>
+		<regionID>327</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1301,7 +1301,7 @@
 		<description>The Hidden Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>328</id>
+		<regionID>328</regionID>
 		<expansion>0</expansion>
 		<instance>True</instance>
 	</region>
@@ -1309,7 +1309,7 @@
 		<description>Jarlsberg's Hideout</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>329</id>
+		<regionID>329</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1317,7 +1317,7 @@
 		<description>The Foothills of Albion</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>330</id>
+		<regionID>330</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1325,14 +1325,14 @@
 		<description>Burial AW4</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>331</id>
+		<regionID>331</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Rebel Half Orc Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>332</id>
+		<regionID>332</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1340,7 +1340,7 @@
 		<description>The Haunted Halls</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>333</id>
+		<regionID>333</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1348,7 +1348,7 @@
 		<description>The Foothills of Midgard</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>334</id>
+		<regionID>334</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1356,7 +1356,7 @@
 		<description>Doiri Ban</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>335</id>
+		<regionID>335</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1364,7 +1364,7 @@
 		<description>Demonic Prison</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>336</id>
+		<regionID>336</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1372,7 +1372,7 @@
 		<description>Demonic Prison</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>337</id>
+		<regionID>337</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1380,7 +1380,7 @@
 		<description>Demonic Prison</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>338</id>
+		<regionID>338</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1388,49 +1388,49 @@
 		<description>Brimstone Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>339</id>
+		<regionID>339</regionID>
 		<expansion>4</expansion>
 	</region>
 	<region>
 		<description>Halls of Helgardh</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>340</id>
+		<regionID>340</regionID>
 		<expansion>4</expansion>
 	</region>
 	<region>
 		<description>Cave of Cruachan</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>341</id>
+		<regionID>341</regionID>
 		<expansion>4</expansion>
 	</region>
 	<region>
 		<description>Mid Launch 2</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>342</id>
+		<regionID>342</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Alb Launch 2</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>343</id>
+		<regionID>343</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Hib Launch 2</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>344</id>
+		<regionID>344</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Tomte Prison</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>345</id>
+		<regionID>345</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1438,7 +1438,7 @@
 		<description>Nisse's Retreat</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>346</id>
+		<regionID>346</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1446,7 +1446,7 @@
 		<description>Lair of the Demon Lord</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>347</id>
+		<regionID>347</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1454,14 +1454,14 @@
 		<description>The Baron's Gaol</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>348</id>
+		<regionID>348</regionID>
 		<expansion>4</expansion>
 	</region>
 	<region>
 		<description>Lios's Eternal Rest</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>349</id>
+		<regionID>349</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1469,7 +1469,7 @@
 		<description>Liche's Unrest</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>350</id>
+		<regionID>350</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1477,21 +1477,21 @@
 		<description>Nephraal's Gaol</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>351</id>
+		<regionID>351</regionID>
 		<expansion>4</expansion>
 	</region>
 	<region>
 		<description>Morfesa's Gaol</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>352</id>
+		<regionID>352</regionID>
 		<expansion>4</expansion>
 	</region>
 	<region>
 		<description>Den of Bones</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>353</id>
+		<regionID>353</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1499,7 +1499,7 @@
 		<description>The Lost Burrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>354</id>
+		<regionID>354</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1507,7 +1507,7 @@
 		<description>Tethra's Stronghold</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>355</id>
+		<regionID>355</regionID>
 		<expansion>0</expansion>
 		<instance>True</instance>
 	</region>
@@ -1515,7 +1515,7 @@
 		<description>Barrow of Restless Dead</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>356</id>
+		<regionID>356</regionID>
 		<expansion>0</expansion>
 		<instance>True</instance>
 	</region>
@@ -1523,7 +1523,7 @@
 		<description>The Cursed Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>357</id>
+		<regionID>357</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1531,7 +1531,7 @@
 		<description>The Burrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>358</id>
+		<regionID>358</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1539,7 +1539,7 @@
 		<description>Red Dagger Hideout</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>359</id>
+		<regionID>359</regionID>
 		<expansion>0</expansion>
 		<instance>True</instance>
 	</region>
@@ -1547,7 +1547,7 @@
 		<description>King Eirik's Throne Room</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>360</id>
+		<regionID>360</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1555,7 +1555,7 @@
 		<description>Arachnid's Labyrinth</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>361</id>
+		<regionID>361</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1563,7 +1563,7 @@
 		<description>The Master's Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>362</id>
+		<regionID>362</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1571,7 +1571,7 @@
 		<description>Anataeus' Sanctuary</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>363</id>
+		<regionID>363</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1579,7 +1579,7 @@
 		<description>Keeper Iraeda's Sanctuary</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>364</id>
+		<regionID>364</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1587,7 +1587,7 @@
 		<description>Bandit Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>365</id>
+		<regionID>365</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1595,7 +1595,7 @@
 		<description>Gnoll Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>366</id>
+		<regionID>366</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1603,7 +1603,7 @@
 		<description>Vandr's Bane</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>367</id>
+		<regionID>367</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1611,7 +1611,7 @@
 		<description>Past and Present</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>368</id>
+		<regionID>368</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1619,7 +1619,7 @@
 		<description>Half-Orc Camp</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>369</id>
+		<regionID>369</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1627,7 +1627,7 @@
 		<description>Brutal Realization</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>370</id>
+		<regionID>370</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1635,7 +1635,7 @@
 		<description>History Repeats Itself</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>371</id>
+		<regionID>371</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1643,7 +1643,7 @@
 		<description>Hounds of Arawn</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>372</id>
+		<regionID>372</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1651,7 +1651,7 @@
 		<description>Passage of Echoes</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>373</id>
+		<regionID>373</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1659,7 +1659,7 @@
 		<description>The Unrestful Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>374</id>
+		<regionID>374</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1667,7 +1667,7 @@
 		<description>The Lost Passages</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>375</id>
+		<regionID>375</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1675,7 +1675,7 @@
 		<description>Goblin's Cookery</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>376</id>
+		<regionID>376</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1683,7 +1683,7 @@
 		<description>The Beastmaster's Den</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>377</id>
+		<regionID>377</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1691,7 +1691,7 @@
 		<description>Keeper Garran's Sanctuary</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>378</id>
+		<regionID>378</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1699,7 +1699,7 @@
 		<description>The Funerary Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>379</id>
+		<regionID>379</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1707,7 +1707,7 @@
 		<description>Lair of Doom</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>380</id>
+		<regionID>380</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1715,7 +1715,7 @@
 		<description>The Arena</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>381</id>
+		<regionID>381</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1723,7 +1723,7 @@
 		<description>The Funerary Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>382</id>
+		<regionID>382</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1731,7 +1731,7 @@
 		<description>The Funerary Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>383</id>
+		<regionID>383</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1739,7 +1739,7 @@
 		<description>The Ritual Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>384</id>
+		<regionID>384</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1747,7 +1747,7 @@
 		<description>The Betrayer's Den</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>385</id>
+		<regionID>385</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1755,7 +1755,7 @@
 		<description>The Sundered Tombs</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>386</id>
+		<regionID>386</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1763,7 +1763,7 @@
 		<description>The Sundered Tombs</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>387</id>
+		<regionID>387</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1771,7 +1771,7 @@
 		<description>The Sundered Tombs</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>388</id>
+		<regionID>388</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1779,7 +1779,7 @@
 		<description>Shafts of the Tenebrae</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>389</id>
+		<regionID>389</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1787,7 +1787,7 @@
 		<description>Lair of the Exiled</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>390</id>
+		<regionID>390</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1796,7 +1796,7 @@
 		<description>La Tour Des Arcanes ALB</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>391</id>
+		<regionID>391</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1805,7 +1805,7 @@
 		<description>The Hall of Reawakening</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>392</id>
+		<regionID>392</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1813,7 +1813,7 @@
 		<description>The Hidden Crypt</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>393</id>
+		<regionID>393</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1821,7 +1821,7 @@
 		<description>King Constantine's Throne Room</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>394</id>
+		<regionID>394</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1829,7 +1829,7 @@
 		<description>King Lamfhotas' Throne Room</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>395</id>
+		<regionID>395</regionID>
 		<expansion>4</expansion>
 		<instance>True</instance>
 	</region>
@@ -1837,7 +1837,7 @@
 		<description>The Depths of Despair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>396</id>
+		<regionID>396</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1845,7 +1845,7 @@
 		<description>Realm of the Damned</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>397</id>
+		<regionID>397</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1854,7 +1854,7 @@
 		<description>La Tour des Arcanes MID</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>398</id>
+		<regionID>398</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1862,7 +1862,7 @@
 		<description>La Tour des Arcanes HIB</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>399</id>
+		<regionID>399</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1871,7 +1871,7 @@
 		<description>Burial Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>400</id>
+		<regionID>400</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1879,7 +1879,7 @@
 		<description>Burial Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>401</id>
+		<regionID>401</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1887,7 +1887,7 @@
 		<description>Burial Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>402</id>
+		<regionID>402</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1895,7 +1895,7 @@
 		<description>Burial Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>403</id>
+		<regionID>403</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1903,7 +1903,7 @@
 		<description>Burial Tomb</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>404</id>
+		<regionID>404</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1911,7 +1911,7 @@
 		<description>Desecrated Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>405</id>
+		<regionID>405</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1919,7 +1919,7 @@
 		<description>Desecrated Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>406</id>
+		<regionID>406</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1927,7 +1927,7 @@
 		<description>Desecrated Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>407</id>
+		<regionID>407</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1935,7 +1935,7 @@
 		<description>Desecrated Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>408</id>
+		<regionID>408</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1943,7 +1943,7 @@
 		<description>Desecrated Grounds</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>409</id>
+		<regionID>409</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1951,7 +1951,7 @@
 		<description>Forgotten Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>410</id>
+		<regionID>410</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1959,7 +1959,7 @@
 		<description>Forgotten Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>411</id>
+		<regionID>411</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1967,7 +1967,7 @@
 		<description>Forgotten Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>412</id>
+		<regionID>412</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1975,7 +1975,7 @@
 		<description>Forgotten Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>413</id>
+		<regionID>413</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1983,7 +1983,7 @@
 		<description>Forgotten Mines</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>414</id>
+		<regionID>414</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1991,7 +1991,7 @@
 		<description>The Funerary Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>415</id>
+		<regionID>415</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -1999,7 +1999,7 @@
 		<description>The Funerary Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>416</id>
+		<regionID>416</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2007,7 +2007,7 @@
 		<description>The Funerary Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>417</id>
+		<regionID>417</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2015,7 +2015,7 @@
 		<description>The Funerary Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>418</id>
+		<regionID>418</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2023,7 +2023,7 @@
 		<description>The Funerary Hall</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>419</id>
+		<regionID>419</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2031,7 +2031,7 @@
 		<description>The Sundered Tombs</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>420</id>
+		<regionID>420</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2039,7 +2039,7 @@
 		<description>The Sundered Tombs</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>421</id>
+		<regionID>421</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2047,7 +2047,7 @@
 		<description>The Sundered Tombs</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>422</id>
+		<regionID>422</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2055,7 +2055,7 @@
 		<description>The Sundered Tombs</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>423</id>
+		<regionID>423</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2063,7 +2063,7 @@
 		<description>The Sundered Tombs</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>424</id>
+		<regionID>424</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2071,7 +2071,7 @@
 		<description>The Lost Wing</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>425</id>
+		<regionID>425</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2079,7 +2079,7 @@
 		<description>Deliah's Sanctuary</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>426</id>
+		<regionID>426</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2087,7 +2087,7 @@
 		<description>The Cursed Barrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>427</id>
+		<regionID>427</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2095,7 +2095,7 @@
 		<description>The Cursed Barrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>428</id>
+		<regionID>428</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2103,7 +2103,7 @@
 		<description>Snyblem's Lair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>429</id>
+		<regionID>429</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2111,7 +2111,7 @@
 		<description>The Plutonian Shore</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>430</id>
+		<regionID>430</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2119,7 +2119,7 @@
 		<description>The Cursed Barrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>431</id>
+		<regionID>431</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2127,7 +2127,7 @@
 		<description>Dismal Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>432</id>
+		<regionID>432</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2135,7 +2135,7 @@
 		<description>Snarg's Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>433</id>
+		<regionID>433</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2143,7 +2143,7 @@
 		<description>The Maze of Tribulation</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>434</id>
+		<regionID>434</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2151,7 +2151,7 @@
 		<description>The Smelting Pot</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>435</id>
+		<regionID>435</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2159,7 +2159,7 @@
 		<description>Forges of Flame</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>436</id>
+		<regionID>436</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2167,7 +2167,7 @@
 		<description>Hugak's Smithy</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>437</id>
+		<regionID>437</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2175,7 +2175,7 @@
 		<description>The Goblin Workshop</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>438</id>
+		<regionID>438</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2183,7 +2183,7 @@
 		<description>Wolak's Crucible</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>439</id>
+		<regionID>439</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2191,7 +2191,7 @@
 		<description>Marik's Workroom</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>440</id>
+		<regionID>440</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2199,7 +2199,7 @@
 		<description>Dismal Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>441</id>
+		<regionID>441</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2207,7 +2207,7 @@
 		<description>The Steward's Crypt</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>442</id>
+		<regionID>442</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2215,7 +2215,7 @@
 		<description>Serf's Folly</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>443</id>
+		<regionID>443</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2223,7 +2223,7 @@
 		<description>Dismal Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>444</id>
+		<regionID>444</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2231,7 +2231,7 @@
 		<description>The Dark Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>445</id>
+		<regionID>445</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2239,7 +2239,7 @@
 		<description>Blathnait's Refuge</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>446</id>
+		<regionID>446</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2247,7 +2247,7 @@
 		<description>Broken Mirrors</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>447</id>
+		<regionID>447</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2255,7 +2255,7 @@
 		<description>The Dark Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>448</id>
+		<regionID>448</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2263,7 +2263,7 @@
 		<description>The Dark Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>449</id>
+		<regionID>449</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2271,7 +2271,7 @@
 		<description>The Cursed Barrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>450</id>
+		<regionID>450</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2279,7 +2279,7 @@
 		<description>The Cursed Barrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>451</id>
+		<regionID>451</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2287,7 +2287,7 @@
 		<description>The Cursed Barrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>452</id>
+		<regionID>452</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2295,7 +2295,7 @@
 		<description>The Cursed Barrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>453</id>
+		<regionID>453</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2303,7 +2303,7 @@
 		<description>The Cursed Barrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>454</id>
+		<regionID>454</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2311,7 +2311,7 @@
 		<description>Dismal Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>455</id>
+		<regionID>455</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2319,7 +2319,7 @@
 		<description>Dismal Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>456</id>
+		<regionID>456</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2327,7 +2327,7 @@
 		<description>Dismal Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>457</id>
+		<regionID>457</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2335,7 +2335,7 @@
 		<description>Dismal Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>458</id>
+		<regionID>458</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2343,7 +2343,7 @@
 		<description>Dismal Grotto</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>459</id>
+		<regionID>459</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2351,7 +2351,7 @@
 		<description>The Accursed Caves</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>460</id>
+		<regionID>460</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2359,7 +2359,7 @@
 		<description>The Accursed Caves</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>461</id>
+		<regionID>461</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2367,7 +2367,7 @@
 		<description>The Accursed Caves</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>462</id>
+		<regionID>462</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2375,7 +2375,7 @@
 		<description>The Accursed Caves</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>463</id>
+		<regionID>463</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2383,7 +2383,7 @@
 		<description>The Accursed Caves</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>464</id>
+		<regionID>464</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2391,7 +2391,7 @@
 		<description>The Dark Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>465</id>
+		<regionID>465</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2399,7 +2399,7 @@
 		<description>The Dark Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>466</id>
+		<regionID>466</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2407,7 +2407,7 @@
 		<description>The Dark Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>467</id>
+		<regionID>467</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2415,7 +2415,7 @@
 		<description>The Dark Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>468</id>
+		<regionID>468</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2423,7 +2423,7 @@
 		<description>The Dark Caverns</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>469</id>
+		<regionID>469</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2431,7 +2431,7 @@
 		<description>Half Orc Command Post</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>470</id>
+		<regionID>470</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2439,7 +2439,7 @@
 		<description>The Unused Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>471</id>
+		<regionID>471</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2447,7 +2447,7 @@
 		<description>The Unused Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>472</id>
+		<regionID>472</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2455,7 +2455,7 @@
 		<description>The Unused Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>473</id>
+		<regionID>473</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2463,7 +2463,7 @@
 		<description>The Unused Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>474</id>
+		<regionID>474</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2471,7 +2471,7 @@
 		<description>Rise of the Spraggons</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>475</id>
+		<regionID>475</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2479,7 +2479,7 @@
 		<description>The Warrens</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>476</id>
+		<regionID>476</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2487,7 +2487,7 @@
 		<description>The Accursed Caves</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>477</id>
+		<regionID>477</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2495,7 +2495,7 @@
 		<description>The Accursed Caves</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>478</id>
+		<regionID>478</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2503,7 +2503,7 @@
 		<description>The Ancient's Retreat</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>479</id>
+		<regionID>479</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2511,7 +2511,7 @@
 		<description>The Shaman's Inner Sanctum</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>480</id>
+		<regionID>480</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2519,7 +2519,7 @@
 		<description>The Accursed Caves</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>481</id>
+		<regionID>481</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2527,7 +2527,7 @@
 		<description>The Unused Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>482</id>
+		<regionID>482</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2535,7 +2535,7 @@
 		<description>The Brawler's Den</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>483</id>
+		<regionID>483</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2543,7 +2543,7 @@
 		<description>Felena's Sorrow</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>484</id>
+		<regionID>484</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2551,7 +2551,7 @@
 		<description>The Unused Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>485</id>
+		<regionID>485</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2559,7 +2559,7 @@
 		<description>The Unused Mine</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>486</id>
+		<regionID>486</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2567,7 +2567,7 @@
 		<description>The Pit of Despair</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>487</id>
+		<regionID>487</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2575,7 +2575,7 @@
 		<description>The Forgotten Vein</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>488</id>
+		<regionID>488</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2583,14 +2583,14 @@
 		<description>Demon's Breach</description> 
 		<isDivingEnabled>False</isDivingEnabled> 
 		<waterLevel>0</waterLevel> 
-		<regionID>489</id> 
+		<regionID>489</regionID> 
 		<expansion>3</expansion> 
 	</region> 
 	<region>
 		<description>Maze of Madness</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>491</id>
+		<regionID>491</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2598,7 +2598,7 @@
 		<description>Shattered Lands</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>492</id>
+		<regionID>492</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2606,7 +2606,7 @@
 		<description>The Gnoll's Den</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>494</id>
+		<regionID>494</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2614,7 +2614,7 @@
 		<description>The Inner Sanctum</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>495</id>
+		<regionID>495</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2622,7 +2622,7 @@
 		<description>The Deep</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>496</id>
+		<regionID>496</regionID>
 		<expansion>3</expansion>
 		<instance>True</instance>
 	</region>
@@ -2630,21 +2630,21 @@
 		<description>Mid Launch</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>497</id>
+		<regionID>497</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Alb Launch</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>498</id>
+		<regionID>498</regionID>
 		<expansion>3</expansion>
 	</region>
 	<region>
 		<description>Hib Launch</description>
 		<isDivingEnabled>False</isDivingEnabled>
 		<waterLevel>0</waterLevel>
-		<regionID>499</id>
+		<regionID>499</regionID>
         <expansion>3</expansion>
 	</region>
 </root>
