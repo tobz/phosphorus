@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/tobz/phosphorus/badge.png?branch=master)](https://coveralls.io/r/tobz/phosphorus?branch=master) [![Build Status](https://drone.io/github.com/tobz/phosphorus/status.png)](https://drone.io/github.com/tobz/phosphorus/latest)
+
 phosphorus
 ===========
 
