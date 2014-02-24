@@ -191,6 +191,57 @@ func BenchmarkGetObjectsInRadiusLarge100Objects(b *testing.B) {
 	}
 }
 
+func BenchmarkGetObjectsInRadiusSmall100000Objects(b *testing.B) {
+	tree := NewOctree(524288, 524288, 8192)
+
+	// Seed our tree with 100,000 objects.
+	for j := 0; j < 100000; j++ {
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+	}
+
+	// Pick a random point to search at.
+	searchPoint := getRandomPoint(524288, 524288, 8192)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		tree.GetObjectsInRadius(searchPoint, 300)
+	}
+}
+
+func BenchmarkGetObjectsInRadiusMedium100000Objects(b *testing.B) {
+	tree := NewOctree(524288, 524288, 8192)
+
+	// Seed our tree with 100,000 objects.
+	for j := 0; j < 100000; j++ {
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+	}
+
+	// Pick a random point to search at.
+	searchPoint := getRandomPoint(524288, 524288, 8192)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		tree.GetObjectsInRadius(searchPoint, 3600)
+	}
+}
+
+func BenchmarkGetObjectsInRadiusLarge100000Objects(b *testing.B) {
+	tree := NewOctree(524288, 524288, 8192)
+
+	// Seed our tree with 100,000 objects.
+	for j := 0; j < 100000; j++ {
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+	}
+
+	// Pick a random point to search at.
+	searchPoint := getRandomPoint(524288, 524288, 8192)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		tree.GetObjectsInRadius(searchPoint, 65536)
+	}
+}
+
 func getRandomPoint(maxHeight, maxWidth, maxDepth int64) utils.Point3D {
 	randHeight := rand.Int63n(maxHeight)
 	randWidth := rand.Int63n(maxWidth)

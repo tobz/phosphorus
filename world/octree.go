@@ -75,20 +75,14 @@ func (o *Octree) containsRadius(p utils.Point3D, radius int64) bool {
 
 	if p.X < o.bl.X {
 		distSquared -= square(p.X - o.bl.X)
-	} else if p.X > o.tr.X {
-		distSquared -= square(p.X - o.tr.X)
 	}
 
 	if p.Y < o.bl.Y {
 		distSquared -= square(p.Y - o.bl.Y)
-	} else if p.Y > o.tr.Y {
-		distSquared -= square(p.Y - o.tr.Y)
 	}
 
 	if p.Z < o.bl.Z {
 		distSquared -= square(p.Z - o.bl.Z)
-	} else if p.Z > o.tr.Z {
-		distSquared -= square(p.Z - o.tr.Z)
 	}
 
 	return distSquared > 0
