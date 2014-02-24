@@ -34,7 +34,27 @@ func TestMatchingPlaintext(t *testing.T) {
 }
 
 func TestBarfOnLoadingGarbage(t *testing.T) {
-	s, err := LoadScryptFromHash("asa#$@$%@241e2q 1e!2@22@212")
+    s, err := LoadScryptFromHash("123")
+	assert.Nil(t, s)
+	assert.NotNil(t, err)
+
+    s, err = LoadScryptFromHash("asd")
+	assert.Nil(t, s)
+	assert.NotNil(t, err)
+
+	s, err = LoadScryptFromHash("123@456")
+	assert.Nil(t, s)
+	assert.NotNil(t, err)
+
+    s, err = LoadScryptFromHash("asd@lol")
+	assert.Nil(t, s)
+	assert.NotNil(t, err)
+
+    s, err = LoadScryptFromHash("123@456@789")
+	assert.Nil(t, s)
+	assert.NotNil(t, err)
+
+    s, err = LoadScryptFromHash("asd@lol@wtf")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 }
