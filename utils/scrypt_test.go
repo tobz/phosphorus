@@ -38,15 +38,7 @@ func TestBarfOnLoadingGarbage(t *testing.T) {
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
-    s, err = LoadScryptFromHash("asd")
-	assert.Nil(t, s)
-	assert.NotNil(t, err)
-
 	s, err = LoadScryptFromHash("123@456")
-	assert.Nil(t, s)
-	assert.NotNil(t, err)
-
-    s, err = LoadScryptFromHash("asd@lol")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
@@ -54,11 +46,7 @@ func TestBarfOnLoadingGarbage(t *testing.T) {
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
-    s, err = LoadScryptFromHash("asd@lol@wtf")
-	assert.Nil(t, s)
-	assert.NotNil(t, err)
-
-    s, err = LoadScryptFromHash("123@456@789@foo@bar")
+    s, err = LoadScryptFromHash("123@456@789@012")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
@@ -66,6 +54,17 @@ func TestBarfOnLoadingGarbage(t *testing.T) {
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
+    s, err = LoadScryptFromHash("123@asd@lol@bbq@kfc")
+	assert.Nil(t, s)
+	assert.NotNil(t, err)
+
+    s, err = LoadScryptFromHash("123@456@wtf@bbq@kfc")
+	assert.Nil(t, s)
+	assert.NotNil(t, err)
+
+    s, err = LoadScryptFromHash("123@456@789@bbq@kfc")
+	assert.Nil(t, s)
+	assert.NotNil(t, err)
 }
 
 func BenchmarkPlaintextEncryption(b *testing.B) {
