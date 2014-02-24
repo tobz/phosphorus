@@ -7,8 +7,8 @@ type Point3D struct {
 }
 
 func (p *Point3D) WithinRadius(pp Point3D, r int64) bool {
-    xDiff := (pp.X - p.X)
-    yDiff := (pp.Y - p.Y)
+	xDiff := (pp.X - p.X)
+	yDiff := (pp.Y - p.Y)
 
-    return ((xDiff * xDiff) + (yDiff * yDiff)) < (r * r)
+	return ((xDiff * xDiff) + (yDiff * yDiff)) < (r * r)
 }

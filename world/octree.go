@@ -62,7 +62,7 @@ func (o *Octree) subdivideImpl(divideDepth int) {
 		delete(o.objects, k)
 	}
 
-    o.objects = nil
+	o.objects = nil
 }
 
 func (o *Octree) contains(obj interfaces.WorldObject) bool {
@@ -108,14 +108,14 @@ func (o *Octree) addObjectImpl(obj interfaces.WorldObject) {
 	for _, child := range o.children {
 		if child != nil && child.contains(obj) {
 			child.addObjectImpl(obj)
-            return
+			return
 		}
 	}
 
-    if o.objects != nil {
-        o.objects[obj.ObjectID()] = obj
-        return
-    }
+	if o.objects != nil {
+		o.objects[obj.ObjectID()] = obj
+		return
+	}
 }
 
 func (o *Octree) RemoveObject(obj interfaces.WorldObject) error {
@@ -166,7 +166,7 @@ func (o *Octree) GetObjectsInRadius(p utils.Point3D, radius int64) []interfaces.
 	defer o.mlock.RUnlock()
 
 	// Create our holder for objects we find.
-	objects := make([]interfaces.WorldObject, 0)
+	objects := make([]interfaces.WorldObject, 0, 16)
 	objects = o.getObjectsInRadiusImpl(p, radius, objects)
 
 	return objects
@@ -182,7 +182,7 @@ func (o *Octree) getObjectsInRadiusImpl(p utils.Point3D, radius int64, objects [
 
 	// If we're a leaf node, we need to check our own children.
 	if o.objects != nil {
-	    radiusSquared := square(radius)
+		radiusSquared := square(radius)
 		for _, obj := range o.objects {
 			p0 := obj.Position()
 			if (square(p.X-p0.X) + square(p.Y-p0.Y) + square(p.Z-p0.Z)) <= radiusSquared {

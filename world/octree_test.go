@@ -77,7 +77,6 @@ func TestMovingOutOfBoundsObject(t *testing.T) {
 	assert.NotNil(t, err)
 }
 
-
 func TestRetrievingInRangeObject(t *testing.T) {
 	tree := NewOctree(2048, 2048, 2048)
 	assert.NotNil(t, tree)
@@ -90,7 +89,6 @@ func TestRetrievingInRangeObject(t *testing.T) {
 	assert.NotEmpty(t, objs)
 	assert.Equal(t, objs[0].ObjectID(), uint32(666))
 }
-
 
 func TestRetrievingOutOfRangeObject(t *testing.T) {
 	tree := NewOctree(2048, 2048, 2048)

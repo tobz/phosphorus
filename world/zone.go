@@ -11,8 +11,8 @@ type ZoneEntry struct {
 	ZoneID      uint32 `xml:"zoneID"`
 	RegionID    uint32 `xml:"regionID"`
 	Description string `xml:"description"`
-	Height      uint32 `xml:"waterLevel"`
-	Width       uint32 `xml:"expansion"`
+	Height      uint32 `xml:"height"`
+	Width       uint32 `xml:"width"`
 	OffsetX     uint32 `xml:"offsetx"`
 	OffsetY     uint32 `xml:"offsety"`
 }

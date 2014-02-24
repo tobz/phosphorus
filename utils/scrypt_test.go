@@ -34,7 +34,7 @@ func TestMatchingPlaintext(t *testing.T) {
 }
 
 func TestBarfOnLoadingGarbage(t *testing.T) {
-    s, err := LoadScryptFromHash("123")
+	s, err := LoadScryptFromHash("123")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
@@ -42,28 +42,51 @@ func TestBarfOnLoadingGarbage(t *testing.T) {
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
-    s, err = LoadScryptFromHash("123@456@789")
+	s, err = LoadScryptFromHash("123@456@789")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
-    s, err = LoadScryptFromHash("123@456@789@012")
+	s, err = LoadScryptFromHash("123@456@789@012")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
-    s, err = LoadScryptFromHash("asd@lol@wtf@bbq@kfc")
+	s, err = LoadScryptFromHash("asd@lol@wtf@bbq@kfc")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
-    s, err = LoadScryptFromHash("123@asd@lol@bbq@kfc")
+	s, err = LoadScryptFromHash("123@asd@lol@bbq@kfc")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
-    s, err = LoadScryptFromHash("123@456@wtf@bbq@kfc")
+	s, err = LoadScryptFromHash("123@456@wtf@bbq@kfc")
 	assert.Nil(t, s)
 	assert.NotNil(t, err)
 
-    s, err = LoadScryptFromHash("123@456@789@bbq@kfc")
+	s, err = LoadScryptFromHash("123@456@789@bbq@kfc")
 	assert.Nil(t, s)
+	assert.NotNil(t, err)
+}
+
+func TestErrorsOnUnreasonableParameters(t *testing.T) {
+	s, err := NewScrypt()
+	assert.NotNil(t, s)
+	assert.Nil(t, err)
+
+	// Set a bogus parameter.
+	s.paramN = 3312
+
+	e, err := s.HashPlaintext("test plaintext")
+	assert.Equal(t, "", e, "ciphertext must be empty")
+	assert.NotNil(t, err)
+}
+
+func TestErrorsOnUnreasonableParametersFromExistingHash(t *testing.T) {
+	s, err := LoadScryptFromHash("1232@1@1@YXNkc2FkYXM=@notarealhash")
+	assert.NotNil(t, s)
+	assert.Nil(t, err)
+
+	e, err := s.HashPlaintext("test plaintext")
+	assert.Equal(t, "", e, "ciphertext must be empty")
 	assert.NotNil(t, err)
 }
 
