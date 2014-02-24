@@ -65,8 +65,8 @@ func NewRegion(regionEntry RegionEntry, zones []ZoneEntry) *Region {
 
 	// Figure out which zones belong to this region.  Also figure out what the maximum
 	// dimensions of our region need to be.
-	var maxX uint32
-	var maxY uint32
+	var maxX int64
+	var maxY int64
 
 	internalZones := make(map[uint32]ZoneEntry)
 	for _, zone := range zones {
@@ -75,19 +75,19 @@ func NewRegion(regionEntry RegionEntry, zones []ZoneEntry) *Region {
 
 			maxZoneY := (zone.OffsetY + zone.Height)
 			maxZoneX := (zone.OffsetX + zone.Width)
-			if maxZoneY > maxY {
-				maxY = maxZoneY
+			if int64(maxZoneY) > maxY {
+				maxY = int64(maxZoneY)
 			}
 
-			if maxZoneX > maxX {
-				maxX = maxZoneX
+			if int64(maxZoneX) > maxX {
+				maxX = int64(maxZoneX)
 			}
 		}
 	}
 	r.internalZones = internalZones
 
 	// Now create our tree.
-	tree := NewOctree(float64(maxY), float64(maxX), 32768)
+	tree := NewOctree(maxY, maxX, 32768)
 	r.tree = tree
 
 	return r

@@ -11,7 +11,7 @@ type Area interface {
 
 type circleArea struct {
 	origin utils.Point3D
-	radius float64
+	radius int64
 }
 
 func (ca *circleArea) Name() string {

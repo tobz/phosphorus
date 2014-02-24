@@ -4,7 +4,6 @@ import "fmt"
 import "sync"
 import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/utils"
-import "github.com/tobz/phosphorus/constants"
 
 type Octree struct {
 	bl       utils.Point3D
@@ -14,12 +13,12 @@ type Octree struct {
 	objects  map[uint32]interfaces.WorldObject
 }
 
-func NewOctree(height, width, depth float64) *Octree {
-	bl := utils.Point3D{0.0, 0.0, 0.0}
+func NewOctree(height, width, depth int64) *Octree {
+	bl := utils.Point3D{0, 0, 0}
 	tr := utils.Point3D{height, width, depth}
 
 	tree := &Octree{bl: bl, tr: tr, mlock: &sync.RWMutex{}, objects: make(map[uint32]interfaces.WorldObject)}
-	tree.Subdivide(constants.DefaultOctreeDepth)
+	tree.Subdivide(2)
 
 	return tree
 }
@@ -33,27 +32,23 @@ func (o *Octree) Subdivide(divideDepth int) {
 }
 
 func (o *Octree) subdivideImpl(divideDepth int) {
-	// Reduce the depth for this pass.
-	divideDepth -= 1
-
 	// Do the subdivision.
-	o.children[0] = &Octree{bl: utils.Point3D{o.bl.X, o.bl.Y, o.bl.Z}, tr: utils.Point3D{o.tr.X / 2.0, o.tr.Y / 2.0, o.tr.Z / 2.0}}
-	o.children[1] = &Octree{bl: utils.Point3D{o.tr.X / 2.0, o.bl.Y, o.bl.Z}, tr: utils.Point3D{o.tr.X, o.tr.Y / 2.0, o.tr.Z / 2.0}}
-	o.children[2] = &Octree{bl: utils.Point3D{o.bl.X, o.tr.Y / 2.0, o.bl.Z}, tr: utils.Point3D{o.tr.X / 2.0, o.tr.Y, o.tr.Z / 2.0}}
-	o.children[3] = &Octree{bl: utils.Point3D{o.tr.X / 2.0, o.tr.Y / 2.0, o.bl.Z}, tr: utils.Point3D{o.tr.X, o.tr.Y, o.tr.Z / 2.0}}
-	o.children[4] = &Octree{bl: utils.Point3D{o.bl.X, o.bl.Y, o.tr.Z / 2.0}, tr: utils.Point3D{o.tr.X / 2.0, o.tr.Y / 2.0, o.tr.Z}}
-	o.children[5] = &Octree{bl: utils.Point3D{o.tr.X / 2.0, o.bl.Y, o.tr.Z / 2.0}, tr: utils.Point3D{o.tr.X, o.tr.Y / 2.0, o.tr.Z}}
-	o.children[6] = &Octree{bl: utils.Point3D{o.bl.X, o.tr.Y / 2.0, o.tr.Z / 2.0}, tr: utils.Point3D{o.tr.X / 2.0, o.tr.Y, o.tr.Z}}
-	o.children[7] = &Octree{bl: utils.Point3D{o.tr.X / 2.0, o.tr.Y / 2.0, o.tr.Z / 2.0}, tr: utils.Point3D{o.tr.X, o.tr.Y, o.tr.Z}}
+	o.children[0] = &Octree{bl: utils.Point3D{o.bl.X, o.bl.Y, o.bl.Z}, tr: utils.Point3D{o.tr.X / 2, o.tr.Y / 2, o.tr.Z / 2}}
+	o.children[1] = &Octree{bl: utils.Point3D{o.tr.X / 2, o.bl.Y, o.bl.Z}, tr: utils.Point3D{o.tr.X, o.tr.Y / 2, o.tr.Z / 2}}
+	o.children[2] = &Octree{bl: utils.Point3D{o.bl.X, o.tr.Y / 2, o.bl.Z}, tr: utils.Point3D{o.tr.X / 2, o.tr.Y, o.tr.Z / 2}}
+	o.children[3] = &Octree{bl: utils.Point3D{o.tr.X / 2, o.tr.Y / 2, o.bl.Z}, tr: utils.Point3D{o.tr.X, o.tr.Y, o.tr.Z / 2}}
+	o.children[4] = &Octree{bl: utils.Point3D{o.bl.X, o.bl.Y, o.tr.Z / 2}, tr: utils.Point3D{o.tr.X / 2, o.tr.Y / 2, o.tr.Z}}
+	o.children[5] = &Octree{bl: utils.Point3D{o.tr.X / 2, o.bl.Y, o.tr.Z / 2}, tr: utils.Point3D{o.tr.X, o.tr.Y / 2, o.tr.Z}}
+	o.children[6] = &Octree{bl: utils.Point3D{o.bl.X, o.tr.Y / 2, o.tr.Z / 2}, tr: utils.Point3D{o.tr.X / 2, o.tr.Y, o.tr.Z}}
+	o.children[7] = &Octree{bl: utils.Point3D{o.tr.X / 2, o.tr.Y / 2, o.tr.Z / 2}, tr: utils.Point3D{o.tr.X, o.tr.Y, o.tr.Z}}
 
 	// See if we need to keep dividing.
 	for _, child := range o.children {
-		if divideDepth > 0 {
-			child.subdivideImpl(divideDepth)
+		if divideDepth > 1 {
+			child.subdivideImpl(divideDepth - 1)
 		} else {
 			// We're not dividing, so make sure these children can hold objects.
-			objs := make(map[uint32]interfaces.WorldObject)
-			child.objects = objs
+			child.objects = make(map[uint32]interfaces.WorldObject)
 		}
 	}
 
@@ -66,15 +61,17 @@ func (o *Octree) subdivideImpl(divideDepth int) {
 	for k := range o.objects {
 		delete(o.objects, k)
 	}
+
+    o.objects = nil
 }
 
 func (o *Octree) contains(obj interfaces.WorldObject) bool {
 	p := obj.Position()
-	return (o.bl.X < p.X && p.X < o.tr.X) && (o.bl.Y < p.Y && p.Y < o.tr.Y) && (o.bl.Z < p.Z && p.Z < o.tr.Z)
+	return (o.bl.X <= p.X && p.X <= o.tr.X) && (o.bl.Y <= p.Y && p.Y <= o.tr.Y) && (o.bl.Z <= p.Z && p.Z <= o.tr.Z)
 }
 
-func (o *Octree) containsRadius(p utils.Point3D, radius float64) bool {
-	distSquared := radius * radius
+func (o *Octree) containsRadius(p utils.Point3D, radius int64) bool {
+	distSquared := square(radius)
 
 	if p.X < o.bl.X {
 		distSquared -= square(p.X - o.bl.X)
@@ -117,11 +114,14 @@ func (o *Octree) addObjectImpl(obj interfaces.WorldObject) {
 	for _, child := range o.children {
 		if child != nil && child.contains(obj) {
 			child.addObjectImpl(obj)
-			return
+            return
 		}
 	}
 
-	o.objects[obj.ObjectID()] = obj
+    if o.objects != nil {
+        o.objects[obj.ObjectID()] = obj
+        return
+    }
 }
 
 func (o *Octree) RemoveObject(obj interfaces.WorldObject) error {
@@ -167,7 +167,7 @@ func (o *Octree) MoveObject(obj interfaces.WorldObject) error {
 	return nil
 }
 
-func (o *Octree) GetObjectsInRadius(p utils.Point3D, radius float64) []interfaces.WorldObject {
+func (o *Octree) GetObjectsInRadius(p utils.Point3D, radius int64) []interfaces.WorldObject {
 	o.mlock.RLock()
 	defer o.mlock.RUnlock()
 
@@ -178,7 +178,7 @@ func (o *Octree) GetObjectsInRadius(p utils.Point3D, radius float64) []interface
 	return objects
 }
 
-func (o *Octree) getObjectsInRadiusImpl(p utils.Point3D, radius float64, objects []interfaces.WorldObject) []interfaces.WorldObject {
+func (o *Octree) getObjectsInRadiusImpl(p utils.Point3D, radius int64, objects []interfaces.WorldObject) []interfaces.WorldObject {
 	// Find out which of our children intersect with this sphere and rope them into the check.
 	for _, child := range o.children {
 		if child != nil && child.containsRadius(p, radius) {
@@ -188,7 +188,7 @@ func (o *Octree) getObjectsInRadiusImpl(p utils.Point3D, radius float64, objects
 
 	// If we're a leaf node, we need to check our own children.
 	if o.objects != nil {
-		radiusSquared := square(radius)
+	    radiusSquared := square(radius)
 		for _, obj := range o.objects {
 			p0 := obj.Position()
 			if (square(p.X-p0.X) + square(p.Y-p0.Y) + square(p.Z-p0.Z)) <= radiusSquared {
@@ -200,6 +200,6 @@ func (o *Octree) getObjectsInRadiusImpl(p utils.Point3D, radius float64, objects
 	return objects
 }
 
-func square(i float64) float64 {
+func square(i int64) int64 {
 	return i * i
 }

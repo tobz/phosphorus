@@ -1,12 +1,12 @@
 package utils
 
 type Point3D struct {
-	X float64
-	Y float64
-	Z float64
+	X int64
+	Y int64
+	Z int64
 }
 
-func (p *Point3D) WithinRadius(pp Point3D, r float64) bool {
+func (p *Point3D) WithinRadius(pp Point3D, r int64) bool {
     xDiff := (pp.X - p.X)
     yDiff := (pp.Y - p.Y)
 
