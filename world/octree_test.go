@@ -41,6 +41,43 @@ func TestAddingOutOfBoundsObject(t *testing.T) {
 	assert.NotNil(t, err)
 }
 
+func TestRemovingObject(t *testing.T) {
+	tree := NewOctree(2048, 2048, 2048)
+	assert.NotNil(t, tree)
+
+	obj := &TestObject{utils.Point3D{512, 512, 512}, 666}
+	err := tree.RemoveObject(obj)
+	assert.Nil(t, err)
+}
+
+func TestRemovingOutOfBoundsObject(t *testing.T) {
+	tree := NewOctree(2048, 2048, 2048)
+	assert.NotNil(t, tree)
+
+	obj := &TestObject{utils.Point3D{-12, -52, 51}, 666}
+	err := tree.RemoveObject(obj)
+	assert.NotNil(t, err)
+}
+
+func TestMovingObject(t *testing.T) {
+	tree := NewOctree(2048, 2048, 2048)
+	assert.NotNil(t, tree)
+
+	obj := &TestObject{utils.Point3D{512, 512, 512}, 666}
+	err := tree.MoveObject(obj)
+	assert.Nil(t, err)
+}
+
+func TestMovingOutOfBoundsObject(t *testing.T) {
+	tree := NewOctree(2048, 2048, 2048)
+	assert.NotNil(t, tree)
+
+	obj := &TestObject{utils.Point3D{-12, -52, 51}, 666}
+	err := tree.MoveObject(obj)
+	assert.NotNil(t, err)
+}
+
+
 func TestRetrievingInRangeObject(t *testing.T) {
 	tree := NewOctree(2048, 2048, 2048)
 	assert.NotNil(t, tree)
@@ -53,6 +90,7 @@ func TestRetrievingInRangeObject(t *testing.T) {
 	assert.NotEmpty(t, objs)
 	assert.Equal(t, objs[0].ObjectID(), uint32(666))
 }
+
 
 func TestRetrievingOutOfRangeObject(t *testing.T) {
 	tree := NewOctree(2048, 2048, 2048)
