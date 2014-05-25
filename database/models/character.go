@@ -39,10 +39,15 @@ type Character struct {
 	Level      uint8  `db:"level"`
 	Experience uint64 `db:"experience"`
 
+	Endurance    uint32 `db:"endurance"`
+	MaxEndurance uint32 `db:"max_endurance"`
+
+	MaxSpeed uint32 `db:"max_speed"`
+
 	PositionX uint32 `db:"position_x"`
 	PositionY uint32 `db:"position_y"`
 	PositionZ uint32 `db:"position_z"`
-	Region    uint32 `db:"region"`
+	Region    uint8  `db:"region"`
 	Heading   uint32 `db:"heading"`
 
 	BindPositionX uint32 `db:"bind_position_x"`
@@ -50,4 +55,6 @@ type Character struct {
 	BindPositionZ uint32 `db:"bind_position_z"`
 	BindRegion    uint32 `db:"bind_region"`
 	BindHeading   uint32 `db:"bind_heading"`
+
+	GuildID uint32 `db:"guild_id"`
 }

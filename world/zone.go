@@ -8,8 +8,8 @@ type ZonesContainer struct {
 }
 
 type ZoneEntry struct {
-	ZoneID      uint32 `xml:"zoneID"`
-	RegionID    uint32 `xml:"regionID"`
+	ZoneID      uint16 `xml:"zoneID"`
+	RegionID    uint16 `xml:"regionID"`
 	Description string `xml:"description"`
 	Height      uint32 `xml:"height"`
 	Width       uint32 `xml:"width"`

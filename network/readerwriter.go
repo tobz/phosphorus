@@ -2,6 +2,9 @@ package network
 
 import "io"
 import "fmt"
+
+import "github.com/rcrowley/go-metrics"
+
 import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/constants"
 import "github.com/tobz/phosphorus/utils"
@@ -10,10 +13,12 @@ type PacketReader struct {
 	conn    io.Reader
 	readBuf []byte
 	readOff int
+
+	processedBytes metrics.Counter
 }
 
-func NewPacketReader(conn io.Reader) *PacketReader {
-	return &PacketReader{conn, make([]byte, 8192), 0}
+func NewPacketReader(conn io.Reader, counter metrics.Counter) *PacketReader {
+	return &PacketReader{conn, make([]byte, 8192), 0, counter}
 }
 
 func (r *PacketReader) Next() (*InboundPacket, error) {
@@ -32,6 +37,10 @@ func (r *PacketReader) Next() (*InboundPacket, error) {
 	// If we didn't get anything, then we won't be able to get a packet out.
 	if n == 0 {
 		return nil, nil
+	}
+
+	if r.processedBytes != nil {
+		r.processedBytes.Inc(int64(n))
 	}
 
 	// Increment our read offset based on what we received.
@@ -80,6 +89,7 @@ func (r *PacketReader) hasBufferedPacket() bool {
 	// See if we have enough bytes for the packet in our buffer based on the header.  Packet length is minus the
 	// packet header size, which is why we add it back in.
 	packetLength := r.getPacketLengthFromBuffer()
+
 	if r.readOff < packetLength {
 		return false
 	}
@@ -105,17 +115,23 @@ func (r *PacketReader) ensurePacketChecksum() error {
 
 type PacketWriter struct {
 	conn io.Writer
+
+	processedBytes metrics.Counter
 }
 
-func NewPacketWriter(conn io.Writer) *PacketWriter {
-	return &PacketWriter{conn}
+func NewPacketWriter(conn io.Writer, counter metrics.Counter) *PacketWriter {
+	return &PacketWriter{conn, counter}
 }
 
-func (r *PacketWriter) Write(p interfaces.Packet) error {
+func (w *PacketWriter) Write(p interfaces.Packet) error {
 	// Finalize the packet.
 	p.Finalize()
 
+	if w.processedBytes != nil {
+		w.processedBytes.Inc(int64(p.Len()))
+	}
+
 	// Write the packet.
-	_, err := r.conn.Write(p.Buffer())
+	_, err := w.conn.Write(p.Buffer())
 	return err
 }

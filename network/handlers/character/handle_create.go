@@ -1,10 +1,11 @@
 package character
 
 import (
+	"database/sql"
 	"fmt"
 	"regexp"
 	"strings"
-    "database/sql"
+	"time"
 
 	"github.com/tobz/phosphorus/constants"
 	"github.com/tobz/phosphorus/database/models"
@@ -34,7 +35,7 @@ func HandleCharacterCreate(c interfaces.Client, p *network.InboundPacket) error 
 
 	// Loop through all the possible slots.  There will either be character info or filler for the
 	// given slot.  The differences are explained below.
-    characterRealm := constants.ClientRealmNone
+	characterRealm := constants.ClientRealmNone
 
 	for slot := 0; slot < 10; slot++ {
 		// Try and get a character name.
@@ -71,7 +72,7 @@ func HandleCharacterCreate(c interfaces.Client, p *network.InboundPacket) error 
 			defer tx.Rollback()
 
 			character := &models.Character{}
-			err = tx.SelectOne(character, "SELECT * FROM character WHERE first_name = ?", characterName)
+			err = tx.SelectOne(character, "SELECT * FROM characters WHERE first_name = ?", characterName)
 			if err == nil {
 				// We found a character.  Make sure they belong to us before trying to customize.
 				if character.AccountID != c.Account().AccountID {
@@ -89,8 +90,15 @@ func HandleCharacterCreate(c interfaces.Client, p *network.InboundPacket) error 
 			}
 
 			// We didn't find another existing character.  Proceed with trying to create the character.  Pull
-            // out the realm this character is so we can send the character overview at the end.
-            characterRealm = handleCharacterCreate(c, p, accountName, characterName, slot)
+			// out the realm this character is so we can send the character overview at the end.
+			character, err = handleCharacterCreate(c, p, accountName, characterName, slot)
+
+			// Close our transaction.
+			err = tx.Commit()
+			if err != nil {
+				// Can we send something here to drop them back to the login error screen?
+				return err
+			}
 		}
 	}
 
@@ -103,6 +111,200 @@ func deleteCharacterIfExists(c interfaces.Client, accountName, characterName str
 func handleCharacterCustomization(c interfaces.Client, p *network.InboundPacket, accountName, characterName string, slot int) {
 }
 
-func handleCharacterCreate(c interfaces.Client, p *network.InboundPacket, accountName, characterName string, slot int) constants.ClientRealm {
-    return constants.ClientRealmNone
+func handleCharacterCreate(c interfaces.Client, p *network.InboundPacket, accountName, characterName string, slot int) (*models.Character, error) {
+	var err error
+
+	customization, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	// Create our character.
+	character := &models.Character{}
+	character.AccountID = c.Account().AccountID
+	character.GuildID = 0
+	character.FirstName = characterName
+	character.Level = 1
+
+	// Get all of the customization details, if any.
+	if customization != 0 {
+		character.EyeSize, err = p.ReadUInt8()
+		if err != nil {
+			return nil, err
+		}
+
+		character.LipSize, err = p.ReadUInt8()
+		if err != nil {
+			return nil, err
+		}
+
+		character.EyeColor, err = p.ReadUInt8()
+		if err != nil {
+			return nil, err
+		}
+
+		character.HairColor, err = p.ReadUInt8()
+		if err != nil {
+			return nil, err
+		}
+
+		character.FaceType, err = p.ReadUInt8()
+		if err != nil {
+			return nil, err
+		}
+
+		character.HairStyle, err = p.ReadUInt8()
+		if err != nil {
+			return nil, err
+		}
+
+		p.Skip(3)
+
+		character.MoodType, err = p.ReadUInt8()
+		if err != nil {
+			return nil, err
+		}
+
+		p.Skip(13)
+	} else {
+		// Not doing any customizing?  Just do some skippin' then.
+		p.Skip(23)
+	}
+
+	// Skip the location string, class name and race name.
+	p.Skip(72)
+
+	// Skip the level byte because we're just going to start them at level 1.
+	p.Skip(1)
+
+	// Get their class and realm.
+	character.Class, err = p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Realm, err = p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	// Get their race, gender
+	startRaceGender, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Race = (startRaceGender & 0x0F) + ((startRaceGender & 0x40) >> 2)
+	character.Gender = ((startRaceGender >> 4) & 0x01)
+	startInShroudedIsles := ((startRaceGender >> 7) != 0)
+
+	// Get their model and region.
+	character.BaseModel, err = p.ReadHUInt16()
+	if err != nil {
+		return nil, err
+	}
+
+	character.CurrentModel = character.BaseModel
+
+	character.Region, err = p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	// Now read in their stats.
+	strength, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Strength = uint32(strength)
+
+	dexterity, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Dexterity = uint32(dexterity)
+
+	constitution, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Constitution = uint32(constitution)
+
+	quickness, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Quickness = uint32(quickness)
+
+	intelligence, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Intelligence = uint32(intelligence)
+
+	piety, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Piety = uint32(piety)
+
+	empathy, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Empathy = uint32(empathy)
+
+	charisma, err := p.ReadUInt8()
+	if err != nil {
+		return nil, err
+	}
+
+	character.Charisma = uint32(charisma)
+
+	// Skip some random cruft.
+	p.Skip(48)
+
+	// Make sure their base class is set if necessary.
+	adjustBaseClassIfNecessary(character)
+
+	// Make sure the character so far is valid.  Valid realm, class, race, stats, etc.
+	if err = verifyValidCharacter(character); err != nil {
+		return nil, err
+	}
+
+	// Set some particulars for the character.
+	character.Created = time.Now()
+	character.AccountSlot = uint32(slot) * uint32(character.Realm)
+	character.Endurance = 100
+	character.MaxEndurance = 100
+	character.MaxSpeed = constants.BaseCharacterSpeed
+
+	// Set their starting point.
+	setStartingLocation(character, startInShroudedIsles)
+
+	// Set their starting guild.
+	setStartingGuild(character)
+
+	// Now we should be able to save our character so pass it back to the caller.
+	return character, nil
+}
+
+func adjustBaseClassIfNecessary(character *models.Character) {
+}
+
+func setStartingLocation(character *models.Character, startInSi bool) {
+}
+
+func setStartingGuild(character *models.Character) {
+}
+
+func verifyValidCharacter(character *models.Character) error {
+	return nil
 }

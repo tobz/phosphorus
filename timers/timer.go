@@ -14,7 +14,7 @@ type Timer struct {
 	timerSinkLock     *sync.Mutex
 	timerOverUnder    metrics.Gauge
 	timerTickDuration metrics.Gauge
-    timerSinkCount    metrics.Counter
+	timerSinkCount    metrics.Counter
 }
 
 func NewTimer(d time.Duration) *Timer {
@@ -22,7 +22,7 @@ func NewTimer(d time.Duration) *Timer {
 	timerSinks := make([]interfaces.TimerSink, 0)
 	timerSinkLock := &sync.Mutex{}
 
-    return &Timer{tickInterval: d, tickerStop: tickerStop, timerSinks: timerSinks, timerSinkLock: timerSinkLock}
+	return &Timer{tickInterval: d, tickerStop: tickerStop, timerSinks: timerSinks, timerSinkLock: timerSinkLock}
 }
 
 func NewTrackedTimer(timerName string, d time.Duration) *Timer {
@@ -31,7 +31,7 @@ func NewTrackedTimer(timerName string, d time.Duration) *Timer {
 	timer.timerTickDuration = metrics.GetOrRegisterGauge(fmt.Sprintf("timers.%s.tickDuration", timerName), statistics.Registry)
 	timer.timerSinkCount = metrics.GetOrRegisterCounter(fmt.Sprintf("timers.%s.sinkCount", timerName), statistics.Registry)
 
-    return timer
+	return timer
 }
 
 func (t *Timer) Start() {

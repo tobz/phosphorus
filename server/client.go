@@ -7,13 +7,24 @@ import (
 	"runtime/debug"
 	"time"
 
+	"github.com/rcrowley/go-metrics"
+
 	"github.com/tobz/phosphorus/constants"
 	"github.com/tobz/phosphorus/database/models"
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/network"
 	"github.com/tobz/phosphorus/network/handlers"
+	"github.com/tobz/phosphorus/statistics"
 )
+
+var globalBytesSent metrics.Counter
+var globalBytesReceived metrics.Counter
+
+func init() {
+	globalBytesSent = metrics.GetOrRegisterCounter("client.bytesSent", statistics.Registry)
+	globalBytesReceived = metrics.GetOrRegisterCounter("client.bytesReceived", statistics.Registry)
+}
 
 type Client struct {
 	errors chan error
@@ -41,8 +52,8 @@ func NewClient(server *Server, connection *net.TCPConn, connectionId uint32) *Cl
 		server:     server,
 		connection: connection,
 
-		inbound:  network.NewPacketReader(connection),
-		outbound: network.NewPacketWriter(connection),
+		inbound:  network.NewPacketReader(connection, globalBytesReceived),
+		outbound: network.NewPacketWriter(connection, globalBytesSent),
 
 		connectionId: connectionId,
 	}

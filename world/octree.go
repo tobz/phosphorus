@@ -10,14 +10,14 @@ type Octree struct {
 	tr       utils.Point3D
 	mlock    *sync.RWMutex
 	children [8]*Octree
-	objects  map[uint32]interfaces.WorldObject
+	objects  map[uint16]interfaces.WorldObject
 }
 
 func NewOctree(height, width, depth int64) *Octree {
 	bl := utils.Point3D{0, 0, 0}
 	tr := utils.Point3D{height, width, depth}
 
-	tree := &Octree{bl: bl, tr: tr, mlock: &sync.RWMutex{}, objects: make(map[uint32]interfaces.WorldObject)}
+	tree := &Octree{bl: bl, tr: tr, mlock: &sync.RWMutex{}, objects: make(map[uint16]interfaces.WorldObject)}
 	tree.Subdivide(2)
 
 	return tree
@@ -48,7 +48,7 @@ func (o *Octree) subdivideImpl(divideDepth int) {
 			child.subdivideImpl(divideDepth - 1)
 		} else {
 			// We're not dividing, so make sure these children can hold objects.
-			child.objects = make(map[uint32]interfaces.WorldObject)
+			child.objects = make(map[uint16]interfaces.WorldObject)
 		}
 	}
 

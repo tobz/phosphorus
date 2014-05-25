@@ -20,7 +20,8 @@ const (
 	ClientVersion1112    ClientVersion = 1112
 	ClientVersion1113    ClientVersion = 1113
 	ClientVersion1114    ClientVersion = 1114
-	ClientVersionMaximum ClientVersion = ClientVersion1114
+	ClientVersion1115    ClientVersion = 1115
+	ClientVersionMaximum ClientVersion = ClientVersion1115
 )
 
 type ClientRealm uint8

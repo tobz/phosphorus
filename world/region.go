@@ -3,7 +3,9 @@ package world
 import "os"
 import "fmt"
 import "sync"
+import "time"
 import "encoding/xml"
+import "github.com/tobz/phosphorus/constants"
 import "github.com/tobz/phosphorus/interfaces"
 
 type RegionsContainer struct {
@@ -11,11 +13,11 @@ type RegionsContainer struct {
 }
 
 type RegionEntry struct {
-	RegionID       uint32 `xml:"regionID"`
+	RegionID       uint16 `xml:"regionID"`
 	Description    string `xml:"description"`
 	DivingEnabled  bool   `xml:"isDivingEnabled"`
 	WaterLevel     int32  `xml:"waterLevel"`
-	Expansion      uint32 `xml:"expansion"`
+	Expansion      uint8  `xml:"expansion"`
 	HousingEnabled bool   `xml:"isHousingEnabled"`
 	Instance       bool   `xml:"instance"`
 }
@@ -42,22 +44,25 @@ func ReadRegions(regionConfig string) ([]RegionEntry, error) {
 }
 
 type Region struct {
-	internalZones   map[uint32]ZoneEntry
+	lastMovementUpdateTime time.Time
+	lastBehaviorUpdateTime time.Time
+
+	internalZones   map[uint16]ZoneEntry
 	internalAreas   map[uint32]Area
-	internalObjects map[uint32]interfaces.WorldObject
+	internalObjects map[uint16]interfaces.WorldObject
 
 	objectLock *sync.RWMutex
 
 	tree *Octree
 }
 
-func NewRegion(regionEntry RegionEntry, zones []ZoneEntry) *Region {
+func NewRegion(re RegionEntry, zones []ZoneEntry) *Region {
 	r := &Region{}
 
 	internalAreas := make(map[uint32]Area)
 	r.internalAreas = internalAreas
 
-	internalObjects := make(map[uint32]interfaces.WorldObject)
+	internalObjects := make(map[uint16]interfaces.WorldObject)
 	r.internalObjects = internalObjects
 
 	objectLock := &sync.RWMutex{}
@@ -68,9 +73,9 @@ func NewRegion(regionEntry RegionEntry, zones []ZoneEntry) *Region {
 	var maxX int64
 	var maxY int64
 
-	internalZones := make(map[uint32]ZoneEntry)
+	internalZones := make(map[uint16]ZoneEntry)
 	for _, zone := range zones {
-		if regionEntry.RegionID == zone.RegionID {
+		if re.RegionID == zone.RegionID {
 			internalZones[zone.ZoneID] = zone
 
 			maxZoneY := (zone.OffsetY + zone.Height)
@@ -91,6 +96,28 @@ func NewRegion(regionEntry RegionEntry, zones []ZoneEntry) *Region {
 	r.tree = tree
 
 	return r
+}
+
+func (r *Region) Tick() {
+	currentTime := time.Now()
+
+	// See if it's time to update movement.
+	if currentTime.After(r.lastMovementUpdateTime.Add(constants.RegionMovementUpdateInterval)) {
+		r.lastMovementUpdateTime = time.Now()
+		go r.updateMovement()
+	}
+
+	// See if it's time to update behavior.
+	if currentTime.After(r.lastMovementUpdateTime.Add(constants.RegionMovementUpdateInterval)) {
+		r.lastBehaviorUpdateTime = time.Now()
+		go r.updateBehavior()
+	}
+}
+
+func (r *Region) updateMovement() {
+}
+
+func (r *Region) updateBehavior() {
 }
 
 func (r *Region) AddObject(obj interfaces.WorldObject) error {

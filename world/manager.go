@@ -6,11 +6,18 @@ import "math"
 import "github.com/tobz/phosphorus/interfaces"
 import "github.com/tobz/phosphorus/utils"
 import "github.com/tobz/phosphorus/log"
+import "github.com/tobz/phosphorus/timers"
+import "github.com/tobz/phosphorus/constants"
 
 type WorldMgr struct {
 	sessionQueue  interfaces.Queue
 	clientMap     map[uint16]interfaces.Client
 	clientMapLock *sync.RWMutex
+
+	regions           map[uint16]*Region
+	regionUpdateTimer *timers.Timer
+
+	worldUpdateTimer *timers.Timer
 }
 
 func NewWorldMgr(c interfaces.Config) (*WorldMgr, error) {
@@ -34,7 +41,15 @@ func NewWorldMgr(c interfaces.Config) (*WorldMgr, error) {
 		w.sessionQueue.Push(uint16(i))
 	}
 
+	// Set up our timers.
+	w.regionUpdateTimer = timers.NewTrackedTimer("regionUpdateTimer", constants.WorldManagerRegionTickInterval)
+
+	w.worldUpdateTimer = timers.NewTrackedTimer("worldUpdateTime", constants.WorldManagerUpdateTickInterval)
+	w.worldUpdateTimer.AddSink(w)
+
 	// Now load in our regions.
+	w.regions = make(map[uint16]*Region)
+
 	regionConfig, err := c.GetAsString("world/regions")
 	if err != nil {
 		return nil, fmt.Errorf("couldn't find the location of the region data file!")
@@ -55,24 +70,49 @@ func NewWorldMgr(c interfaces.Config) (*WorldMgr, error) {
 
 func (w *WorldMgr) loadRegionsAndZones(regionConfig, zoneConfig string) error {
 	// Load up our zones first.  We need them to properly size our regions.
-	_, err := ReadZones(zoneConfig)
+	zoneEntries, err := ReadZones(zoneConfig)
 	if err != nil {
 		return err
 	}
 
 	// Now load our regions.
-	_, err = ReadRegions(regionConfig)
+	regionEntries, err := ReadRegions(regionConfig)
 	if err != nil {
 		return err
+	}
+
+	// Now go through each region entry and create it.
+	for _, regionEntry := range regionEntries {
+		region := NewRegion(regionEntry, zoneEntries)
+
+		// Register the region for tick updates.
+		w.regionUpdateTimer.AddSink(region)
+
+		// Store the region.
+		if _, ok := w.regions[regionEntry.RegionID]; ok {
+			return fmt.Errorf("tried to register region #%d, but region ID already register!", regionEntry.RegionID)
+		}
+
+		w.regions[regionEntry.RegionID] = region
 	}
 
 	return nil
 }
 
 func (w *WorldMgr) Start() error {
+	// Start our update timers which will start driving all the behavior in the game world.
+	w.regionUpdateTimer.Start()
+	w.worldUpdateTimer.Start()
+
 	log.Server.Info("world", "World manager is now running.")
 
 	return nil
+}
+
+func (w *WorldMgr) Tick() {
+	// Looking for players who haven't sent their ping heartbeat in a while and disconnect them.
+
+	// Perform XYZ task, ABC task, etc.
 }
 
 func (w *WorldMgr) AddClient(c interfaces.Client) error {

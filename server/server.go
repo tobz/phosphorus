@@ -3,13 +3,15 @@ package server
 import (
 	"net"
 
+	"github.com/rcrowley/go-metrics"
+
 	"github.com/tobz/phosphorus/database"
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/rulesets"
+	"github.com/tobz/phosphorus/statistics"
 	"github.com/tobz/phosphorus/utils"
 	"github.com/tobz/phosphorus/world"
-    "github.com/tobz/phosphorus/statistics"
 )
 
 type Server struct {
@@ -27,6 +29,8 @@ type Server struct {
 
 	ruleset interfaces.Ruleset
 	world   interfaces.World
+
+	connectionCount metrics.Counter
 }
 
 func NewServer(config *Config) *Server {
@@ -38,6 +42,8 @@ func NewServer(config *Config) *Server {
 		register:   make(chan *Client),
 		unregister: make(chan *Client),
 		stop:       make(chan struct{}),
+
+		connectionCount: metrics.GetOrRegisterCounter("server.connectionCount", statistics.Registry),
 	}
 }
 
@@ -46,22 +52,22 @@ func (s *Server) Start() error {
 
 	// This is where managers and all that shit will be instanciated.
 
-    // Set up our statistics if they're configured.
-    statisticsType, err := s.config.GetAsString("statistics/provider")
-    if err != nil {
-        // Just warn the user that statistics won't be running.  It's not a reason to *not* run the server.
-        log.Server.Warn("server", "Statistics configuration missing: server will not record statistics.  Update statistics configuration and restart Phosphorus to enable.")
-    } else {
-        switch statisticsType {
-        case "influxdb":
-            err = statistics.ConfigureInfluxDB(s.config)
-            if err != nil {
-                return err
-            }
-        default:
-            log.Server.Warn("server", "Unknown statistics provider '%s': server will not record statistics.  Update statistics configuration and restart Phosphorus to enable.")
-        }
-    }
+	// Set up our statistics if they're configured.
+	statisticsType, err := s.config.GetAsString("statistics/provider")
+	if err != nil {
+		// Just warn the user that statistics won't be running.  It's not a reason to *not* run the server.
+		log.Server.Warn("server", "Statistics configuration missing: server will not record statistics.  Update statistics configuration and restart Phosphorus to enable.")
+	} else {
+		switch statisticsType {
+		case "influxdb":
+			err = statistics.ConfigureInfluxDB(s.config)
+			if err != nil {
+				return err
+			}
+		default:
+			log.Server.Warn("server", "Unknown statistics provider '%s': server will not record statistics.  Update statistics configuration and restart Phosphorus to enable.")
+		}
+	}
 
 	// Get our database connection poppin'.
 	databaseType, err := s.config.GetAsString("database/type")
@@ -162,6 +168,8 @@ func (s *Server) Start() error {
 			case c := <-s.register:
 				log.Server.Info("server", "Accepting new connection from client %s", c.connection.RemoteAddr().String())
 				s.clients[c.ConnectionID()] = c
+
+				s.connectionCount.Inc(1)
 
 				c.Start()
 			case c := <-s.unregister:

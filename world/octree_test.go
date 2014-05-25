@@ -7,14 +7,14 @@ import "github.com/stretchr/testify/assert"
 
 type TestObject struct {
 	pos utils.Point3D
-	id  uint32
+	id  uint16
 }
 
 func (t *TestObject) Position() utils.Point3D {
 	return t.pos
 }
 
-func (t *TestObject) ObjectID() uint32 {
+func (t *TestObject) ObjectID() uint16 {
 	return t.id
 }
 
@@ -87,7 +87,7 @@ func TestRetrievingInRangeObject(t *testing.T) {
 
 	objs := tree.GetObjectsInRadius(utils.Point3D{500, 500, 500}, 256)
 	assert.NotEmpty(t, objs)
-	assert.Equal(t, objs[0].ObjectID(), uint32(666))
+	assert.Equal(t, objs[0].ObjectID(), uint16(666))
 }
 
 func TestRetrievingOutOfRangeObject(t *testing.T) {
@@ -143,7 +143,7 @@ func BenchmarkGetObjectsInRadiusSmall100Objects(b *testing.B) {
 
 	// Seed our tree with 100 objects.
 	for j := 0; j < 100; j++ {
-		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint16(j)})
 	}
 
 	// Pick a random point to search at.
@@ -160,7 +160,7 @@ func BenchmarkGetObjectsInRadiusMedium100Objects(b *testing.B) {
 
 	// Seed our tree with 100 objects.
 	for j := 0; j < 100; j++ {
-		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint16(j)})
 	}
 
 	// Pick a random point to search at.
@@ -177,7 +177,7 @@ func BenchmarkGetObjectsInRadiusLarge100Objects(b *testing.B) {
 
 	// Seed our tree with 100 objects.
 	for j := 0; j < 100; j++ {
-		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint16(j)})
 	}
 
 	// Pick a random point to search at.
@@ -194,7 +194,7 @@ func BenchmarkGetObjectsInRadiusSmall100000Objects(b *testing.B) {
 
 	// Seed our tree with 100,000 objects.
 	for j := 0; j < 100000; j++ {
-		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint16(j)})
 	}
 
 	// Pick a random point to search at.
@@ -211,7 +211,7 @@ func BenchmarkGetObjectsInRadiusMedium100000Objects(b *testing.B) {
 
 	// Seed our tree with 100,000 objects.
 	for j := 0; j < 100000; j++ {
-		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint16(j)})
 	}
 
 	// Pick a random point to search at.
@@ -228,7 +228,7 @@ func BenchmarkGetObjectsInRadiusLarge100000Objects(b *testing.B) {
 
 	// Seed our tree with 100,000 objects.
 	for j := 0; j < 100000; j++ {
-		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint32(j)})
+		tree.AddObject(&TestObject{getRandomPoint(524288, 524288, 8192), uint16(j)})
 	}
 
 	// Pick a random point to search at.

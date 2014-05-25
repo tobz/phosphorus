@@ -94,3 +94,7 @@ const (
 	CharacterRaceMidgardMinotaur  CharacterRace = 20
 	CharacterRaceHiberniaMinotaur CharacterRace = 21
 )
+
+const (
+	BaseCharacterSpeed = 191
+)
