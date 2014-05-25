@@ -52,7 +52,7 @@ func (p *InboundPacket) Buffer() []byte {
 }
 
 func (p *InboundPacket) Len() int {
-	return p.bufPos
+	return len(p.buf)
 }
 
 func (p *InboundPacket) ReadUInt8() (uint8, error) {

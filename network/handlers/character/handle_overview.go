@@ -2,6 +2,7 @@ package character
 
 import (
 	"fmt"
+    "log"
 	"strings"
 
 	"github.com/tobz/phosphorus/constants"
@@ -122,21 +123,24 @@ func SendCharacterOverview(c interfaces.Client, realm constants.ClientRealm) err
 
 	// If we have no characters, just send an empty packet.
 	if len(characters) == 0 {
+        log.Printf("no chars!")
 		p.WriteRepeated(0x00, 1950)
 		return c.Send(p)
 	}
 
 	// Build a map of account slots for characters so we can properly display characters
 	// in the slots they should be in.
-	charactersBySlot := make(map[int]*models.Character)
+	charactersBySlot := make(map[uint32]*models.Character)
 
 	for _, character := range characters {
-		charactersBySlot[int(character.AccountSlot)] = character
+        log.Printf("found char %s at slot %d", character.FirstName, character.AccountSlot)
+
+		charactersBySlot[character.AccountSlot] = character
 	}
 
 	// Now iterate through the map, going in order, so we can determine an empty slot from
 	// an occupied slot.
-	startingSlot := int(realm) * 100
+	startingSlot := uint32(realm * 100)
 
 	for slot := startingSlot; slot < (startingSlot + 10); slot++ {
 		character, ok := charactersBySlot[slot]

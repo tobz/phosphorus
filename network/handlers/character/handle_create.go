@@ -6,6 +6,7 @@ import (
 	"regexp"
 	"strings"
 	"time"
+    "log"
 
 	"github.com/tobz/phosphorus/constants"
 	"github.com/tobz/phosphorus/database/models"
@@ -35,7 +36,7 @@ func HandleCharacterCreate(c interfaces.Client, p *network.InboundPacket) error 
 
 	// Loop through all the possible slots.  There will either be character info or filler for the
 	// given slot.  The differences are explained below.
-	characterRealm := constants.ClientRealmNone
+	characterRealm := constants.ClientRealm(c.Account().Realm)
 
 	for slot := 0; slot < 10; slot++ {
 		// Try and get a character name.
@@ -52,6 +53,8 @@ func HandleCharacterCreate(c interfaces.Client, p *network.InboundPacket) error 
 
 			p.Skip(164)
 		} else {
+            log.Printf("Character found: %s", characterName)
+
 			// We have a character!  Let's verify their name is valid and all of that.
 			matches, err := regexp.MatchString("^[A-Z][a-z]+$", characterName)
 			if err != nil {
@@ -73,30 +76,36 @@ func HandleCharacterCreate(c interfaces.Client, p *network.InboundPacket) error 
 
 			character := &models.Character{}
 			err = tx.SelectOne(character, "SELECT * FROM characters WHERE first_name = ?", characterName)
-			if err == nil {
+            switch {
+            case err == nil:
 				// We found a character.  Make sure they belong to us before trying to customize.
 				if character.AccountID != c.Account().AccountID {
 					return fmt.Errorf("client tried to run customization for a character on another account: %s", characterName)
 				}
 
-				// Try and do the customization.  Close our transaction first since we don't need
-				// it anymore.  There's no risk of multi-client collision now.
-				tx.Rollback()
-
+				// Do the customization.
 				handleCharacterCustomization(c, p, accountName, characterName, slot)
-			} else if err != nil && err != sql.ErrNoRows {
+            case err == sql.ErrNoRows:
+                // We didn't find another existing character.  Proceed with trying to create the character.  Pull
+                // out the realm this character is so we can send the character overview at the end.
+                character, err = handleCharacterCreate(c, p, accountName, characterName, slot)
+                if err != nil {
+                    return err
+                }
+
+                err = tx.Insert(character)
+                if err != nil {
+                    return err
+                }
+
+                // Close our transaction.
+                err = tx.Commit()
+                if err != nil {
+                    // Can we send something here to drop them back to the login error screen?
+                    return err
+			    }
+            default:
 				// We got a legitimate error.  Wah.
-				return err
-			}
-
-			// We didn't find another existing character.  Proceed with trying to create the character.  Pull
-			// out the realm this character is so we can send the character overview at the end.
-			character, err = handleCharacterCreate(c, p, accountName, characterName, slot)
-
-			// Close our transaction.
-			err = tx.Commit()
-			if err != nil {
-				// Can we send something here to drop them back to the login error screen?
 				return err
 			}
 		}
@@ -109,6 +118,7 @@ func deleteCharacterIfExists(c interfaces.Client, accountName, characterName str
 }
 
 func handleCharacterCustomization(c interfaces.Client, p *network.InboundPacket, accountName, characterName string, slot int) {
+    p.Skip(164)
 }
 
 func handleCharacterCreate(c interfaces.Client, p *network.InboundPacket, accountName, characterName string, slot int) (*models.Character, error) {
@@ -281,7 +291,7 @@ func handleCharacterCreate(c interfaces.Client, p *network.InboundPacket, accoun
 
 	// Set some particulars for the character.
 	character.Created = time.Now()
-	character.AccountSlot = uint32(slot) * uint32(character.Realm)
+	character.AccountSlot = uint32(slot) + uint32(character.Realm * 100)
 	character.Endurance = 100
 	character.MaxEndurance = 100
 	character.MaxSpeed = constants.BaseCharacterSpeed
