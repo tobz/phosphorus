@@ -12,20 +12,21 @@ type Character struct {
 	Created    time.Time `db:"created_dt"`
 	LastPlayed time.Time `db:"last_played_dt"`
 
-	FirstName    string         `db:"first_name"`
-	LastName     sql.NullString `db:"last_name"`
-	Race         uint8          `db:"race"`
-	Class        uint8          `db:"class"`
-	Gender       uint8          `db:"gender"`
-	EyeSize      uint8          `db:"eye_size"`
-	LipSize      uint8          `db:"lip_size"`
-	EyeColor     uint8          `db:"eye_color"`
-	HairColor    uint8          `db:"hair_color"`
-	FaceType     uint8          `db:"face_type"`
-	HairStyle    uint8          `db:"hair_style"`
-	MoodType     uint8          `db:"mood_type"`
-	BaseModel    uint16         `db:"base_model"`
-	CurrentModel uint16         `db:"current_model"`
+	FirstName         string         `db:"first_name"`
+	LastName          sql.NullString `db:"last_name"`
+	Race              uint8          `db:"race"`
+	Class             uint8          `db:"class"`
+	Gender            uint8          `db:"gender"`
+	EyeSize           uint8          `db:"eye_size"`
+	LipSize           uint8          `db:"lip_size"`
+	EyeColor          uint8          `db:"eye_color"`
+	HairColor         uint8          `db:"hair_color"`
+	FaceType          uint8          `db:"face_type"`
+	HairStyle         uint8          `db:"hair_style"`
+	MoodType          uint8          `db:"mood_type"`
+	BaseModel         uint16         `db:"base_model"`
+	CurrentModel      uint16         `db:"current_model"`
+	CustomizationStep uint8          `db:"customization_step"`
 
 	Constitution uint32 `db:"constitution"`
 	Dexterity    uint32 `db:"dexterity"`

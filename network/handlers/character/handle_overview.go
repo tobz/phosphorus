@@ -2,7 +2,6 @@ package character
 
 import (
 	"fmt"
-    "log"
 	"strings"
 
 	"github.com/tobz/phosphorus/constants"
@@ -123,7 +122,6 @@ func SendCharacterOverview(c interfaces.Client, realm constants.ClientRealm) err
 
 	// If we have no characters, just send an empty packet.
 	if len(characters) == 0 {
-        log.Printf("no chars!")
 		p.WriteRepeated(0x00, 1950)
 		return c.Send(p)
 	}
@@ -133,8 +131,6 @@ func SendCharacterOverview(c interfaces.Client, realm constants.ClientRealm) err
 	charactersBySlot := make(map[uint32]*models.Character)
 
 	for _, character := range characters {
-        log.Printf("found char %s at slot %d", character.FirstName, character.AccountSlot)
-
 		charactersBySlot[character.AccountSlot] = character
 	}
 
@@ -167,6 +163,9 @@ func SendCharacterOverview(c interfaces.Client, realm constants.ClientRealm) err
 		// These control armor extensions, but we don't have that yet, so...
 		p.WriteUInt8(0x00)
 		p.WriteUInt8(0x00)
+
+		// Customization step.  Controls whether the player can further customise this character.
+		p.WriteUInt8(character.CustomizationStep)
 
 		// More facial stuff.  Why is this broken up? :/
 		p.WriteUInt8(character.MoodType)

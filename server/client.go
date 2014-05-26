@@ -75,37 +75,43 @@ func NewClient(server *Server, connection *net.TCPConn, connectionId uint32) *Cl
 	return c
 }
 
+func (c *Client) handleError(err interface{}) {
+	if err == io.EOF {
+		c.logger.Info("client", "Connection closed from client side.")
+	} else {
+		c.logger.Error("client", "Caught an error while in network loop: %s", err)
+		c.logger.Error("client", "Stack trace: %s", debug.Stack())
+	}
+
+	c.Stop()
+}
+
 func (c *Client) Start() {
 	// Set our client state.
 	c.state = constants.ClientStateConnecting
 
 	// Start handling our network connection.
 	go func() {
-		// Zero tolerance error handling
+		// Zero tolerance error handling.
 		defer func() {
 			err := recover()
 			if err != nil {
-				if err == io.EOF {
-					c.logger.Info("client", "Connection closed from client side.")
-				} else {
-					c.logger.Error("client", "Caught an error while in network loop: %s", err)
-					c.logger.Error("client", "Stack trace: %s", debug.Stack())
-				}
-
-				c.Stop()
+				c.handleError(err)
 			}
 		}()
 
 		for {
 			p, err := c.inbound.Next()
 			if err != nil {
-				panic(err)
+				c.handleError(err)
+				return
 			}
 
 			if p != nil {
 				err = handlers.Handle(c, p)
 				if err != nil {
-					panic(err)
+					c.handleError(err)
+					return
 				}
 			}
 		}

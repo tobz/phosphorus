@@ -2,7 +2,6 @@ package network
 
 import "io"
 import "fmt"
-import "log"
 
 import "github.com/rcrowley/go-metrics"
 
@@ -57,8 +56,6 @@ func (r *PacketReader) getPacketFromBuffer() (*InboundPacket, error) {
 		return nil, nil
 	}
 
-    log.Printf("current packet: %v", r.readBuf)
-
 	// Looks like we have a packet: make sure the packet checksums match.
 	err := r.ensurePacketChecksum()
 	if err != nil {
@@ -92,8 +89,6 @@ func (r *PacketReader) hasBufferedPacket() bool {
 	// See if we have enough bytes for the packet in our buffer based on the header.  Packet length is minus the
 	// packet header size, which is why we add it back in.
 	packetLength := r.getPacketLengthFromBuffer()
-
-    log.Printf("packet length reported as %d", packetLength)
 
 	if r.readOff < packetLength {
 		return false

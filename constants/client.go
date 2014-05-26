@@ -27,7 +27,7 @@ const (
 type ClientRealm uint8
 
 const (
-	ClientRealmMinimum  ClientRealm = ClientRealmNone
+	ClientRealmMinimum  ClientRealm = ClientRealmAlbion
 	ClientRealmNone     ClientRealm = 0x00
 	ClientRealmAlbion   ClientRealm = 0x01
 	ClientRealmMidgard  ClientRealm = 0x02
