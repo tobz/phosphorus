@@ -13,6 +13,7 @@ import (
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/network"
 	"github.com/tobz/phosphorus/network/handlers"
+	"github.com/tobz/phosphorus/scripting"
 )
 
 func init() {
@@ -241,6 +242,7 @@ func handleCharacterCreate(c interfaces.Client, p *network.InboundPacket, accoun
 	character.FirstName = characterName
 	character.Level = 1
 	character.CustomizationStep = 1
+	character.Created = time.Now()
 
 	// Get all of the customization details, if any.
 	if customizationMode == 1 {
@@ -410,6 +412,12 @@ func handleCharacterCreate(c interfaces.Client, p *network.InboundPacket, accoun
 
 	// Set their starting guild.
 	setStartingGuild(character)
+
+	// Call out to the scripting engine to finalize the character.
+	_, err = scripting.GlobalScriptExecutor.Execute("character", "finalizeNewCharacter", character)
+	if err != nil {
+		return nil, err
+	}
 
 	// Now we should be able to save our character so pass it back to the caller.
 	return character, nil
