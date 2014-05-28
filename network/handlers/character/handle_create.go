@@ -13,7 +13,6 @@ import (
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/network"
 	"github.com/tobz/phosphorus/network/handlers"
-	"github.com/tobz/phosphorus/scripting"
 )
 
 func init() {
@@ -414,7 +413,7 @@ func handleCharacterCreate(c interfaces.Client, p *network.InboundPacket, accoun
 	setStartingGuild(character)
 
 	// Call out to the scripting engine to finalize the character.
-	_, err = scripting.GlobalScriptExecutor.Execute("character", "finalizeNewCharacter", character)
+	_, err = c.Server().ScriptExecutor().Execute("character", "finalizeNewCharacter", character)
 	if err != nil {
 		return nil, err
 	}

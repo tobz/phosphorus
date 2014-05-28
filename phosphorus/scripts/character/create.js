@@ -1,0 +1,2 @@
+function finalizeNewCharacter(chr) {
+}

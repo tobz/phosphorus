@@ -5,6 +5,7 @@ type Server interface {
 	Ruleset() Ruleset
 	Database() Database
 	World() World
+	ScriptExecutor() ScriptExecutor
 
 	ShortName() string
 }

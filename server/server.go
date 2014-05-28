@@ -9,6 +9,7 @@ import (
 	"github.com/tobz/phosphorus/interfaces"
 	"github.com/tobz/phosphorus/log"
 	"github.com/tobz/phosphorus/rulesets"
+	"github.com/tobz/phosphorus/scripting"
 	"github.com/tobz/phosphorus/statistics"
 	"github.com/tobz/phosphorus/utils"
 	"github.com/tobz/phosphorus/world"
@@ -27,8 +28,9 @@ type Server struct {
 	unregister chan *Client
 	stop       chan struct{}
 
-	ruleset interfaces.Ruleset
-	world   interfaces.World
+	ruleset        interfaces.Ruleset
+	world          interfaces.World
+	scriptExecutor interfaces.ScriptExecutor
 
 	connectionCount metrics.Counter
 }
@@ -114,6 +116,14 @@ func (s *Server) Start() error {
 	}
 
 	s.world = world
+
+	// Load our script executor.
+	scriptExecutor, err := scripting.NewScriptExecutor(s.config)
+	if err != nil {
+		return err
+	}
+
+	s.scriptExecutor = scriptExecutor
 
 	// Now start listening.
 	tcpListenAddr, err := s.config.GetAsString("server/tcpListen")
@@ -252,6 +262,10 @@ func (s *Server) Database() interfaces.Database {
 
 func (s *Server) World() interfaces.World {
 	return s.world
+}
+
+func (s *Server) ScriptExecutor() interfaces.ScriptExecutor {
+	return s.scriptExecutor
 }
 
 func (s *Server) ShortName() string {
